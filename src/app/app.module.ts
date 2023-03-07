@@ -30,13 +30,28 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ConfirmationService } from 'primeng/api';
 import { MessageService } from 'primeng/api';
 import { InputTextareaModule } from 'primeng/inputtextarea';
+import { SidebarComponent } from './sidebar/sidebar.component';
+import {SidebarModule} from 'primeng/sidebar';
+import { BodyComponent } from './AdminDashbord/body/body.component';
+import { SidenavComponent } from './AdminDashbord/sidenav/sidenav.component';
+import { DashboardComponent } from './AdminDashbord/dashboard/dashboard.component';
+import { ProductsComponent } from './AdminDashbord/products/products.component';
+//material imports 
+// template imports 
+import { AppLayoutModule } from './layout/app.layout.module';
+
 
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    TableComponent
+    TableComponent,
+    SidebarComponent,
+    BodyComponent,
+    SidenavComponent,
+    DashboardComponent,
+    ProductsComponent
   ],
   imports: [
     BrowserModule,
@@ -54,7 +69,6 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
     MultiSelectModule,
     ContextMenuModule,
     DropdownModule,
-    ButtonModule,
     ToastModule,
     InputTextModule,
     ProgressBarModule,
@@ -67,6 +81,9 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
     InputNumberModule,
     ConfirmDialogModule,
     InputTextareaModule,
+    SidebarModule,
+    AppLayoutModule,
+    
         
   ],
   providers: [ProductService,ConfirmationService,MessageService],
