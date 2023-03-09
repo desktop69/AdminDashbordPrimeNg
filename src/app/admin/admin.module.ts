@@ -1,14 +1,15 @@
 import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
-import {ButtonModule} from 'primeng/button';
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import {AccordionModule} from 'primeng/accordion';     //accordion and accordion tab
+import { ButtonModule } from 'primeng/button';
+import { AccordionModule } from 'primeng/accordion';     //accordion and accordion tab
 // table imports
-import {TableModule} from 'primeng/table';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { TableModule } from 'primeng/table';
+import { TableComponent } from './table/table.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
-import {FormsModule} from '@angular/forms';
+import { FormsModule } from '@angular/forms';
+import { ProductService } from './table/product.service';
 import { RatingModule } from 'primeng/rating';
 // crud table imprts tests
 import { ToastModule } from 'primeng/toast';
@@ -28,16 +29,21 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ConfirmationService } from 'primeng/api';
 import { MessageService } from 'primeng/api';
 import { InputTextareaModule } from 'primeng/inputtextarea';
-import { AdminModule } from './admin/admin.module';
+import { SidebarModule } from 'primeng/sidebar';
+
+//material imports 
+// template imports 
+import { AppLayoutModule } from './layout/app.layout.module';
+import { AppComponent } from '../app.component';
 
 @NgModule({
   declarations: [
-    AppComponent,
+    TableComponent,
   ],
   imports: [
+    CommonModule,
     BrowserModule,
     BrowserAnimationsModule,
-    AppRoutingModule,
     ButtonModule,
     AccordionModule,
     TableModule,
@@ -62,9 +68,10 @@ import { AdminModule } from './admin/admin.module';
     InputNumberModule,
     ConfirmDialogModule,
     InputTextareaModule,
-    AdminModule,      
+    SidebarModule,
+    AppLayoutModule,
   ],
-  providers: [ConfirmationService,MessageService],
+  providers: [ProductService, ConfirmationService, MessageService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AdminModule { }
