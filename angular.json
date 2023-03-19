@@ -31,9 +31,27 @@
               "src/styles.scss",
               "node_modules/primeicons/primeicons.css",
               "node_modules/primeng/resources/themes/lara-light-blue/theme.css",
-              "node_modules/primeng/resources/primeng.min.css"
+              "node_modules/primeng/resources/primeng.min.css",
+              "src/assets/css/bootstrap-grid.css",
+              "src/assets/css/style.css",
+              "src/assets/css/colors/blue.css"
             ],
-            "scripts": []
+            "scripts": [
+              "src/assets/js/jquery-3.3.1.min.js",
+              "src/assets/js/jquery-migrate-3.0.0.min.js",
+              "src/assets/js/mmenu.min.js",
+              "src/assets/js/tippy.all.min.js",
+              "src/assets/js/simplebar.min.js",
+              "src/assets/js/bootstrap-slider.min.js",
+              "src/assets/js/bootstrap-select.min.js",
+              "src/assets/js/snackbar.js",
+              "src/assets/js/clipboard.min.js",
+              "src/assets/js/counterup.min.js",
+              "src/assets/js/magnific-popup.min.js",
+              "src/assets/js/slick.min.js",
+              "src/assets/js/custom.js"
+
+            ]
           },
           "configurations": {
             "production": {

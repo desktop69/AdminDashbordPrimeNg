@@ -1,26 +1,43 @@
+import { DialogComponent } from './consultor/landingPage/dialog/dialog.component';
+import { DashbordIndexComponent } from './consultor/Dashbord/dashbord-index/dashbord-index.component';
 import { ConsultorComponent } from './consultor/consultor.component';
 import { TableComponent } from './admin/table/table.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AppLayoutComponent } from './admin/layout/app.layout.component';
 import { AppComponent } from './app.component';
+import { ResumeComponent } from './consultor/Dashbord/ResumeData/resume/resume.component';
+import { SettingsComponent } from './consultor/Dashbord/settings/settings.component';
+import { IndexHomeComponent } from './consultor/landingPage/index-home/index-home.component';
 
 const routes: Routes = [
-  { path: '', component: AppComponent },
+  {path: "", redirectTo: "consultor", pathMatch: "full" },
+  ///{ path: 'consultor', component: IndexHomeComponent },
+ 
   {
     path: 'admin', component: AppLayoutComponent,
     children: [
-      { path: 'dashboard', component: TableComponent },
+      { path: 'dashboardadmin', component: TableComponent },
  
 
     ]
   },
   {
-    path: 'consultor', component: ConsultorComponent,
+    path: 'consultor', component: IndexHomeComponent,
     children: [
-      { path: '', component: TableComponent },
+
+      { path: 'Settings', component: SettingsComponent},
+      { path: 'register', component: DialogComponent}
+
   
 
+    ]
+  },
+  {
+    path: 'dashboardConsultor', component: DashbordIndexComponent,
+    children: [
+      { path: 'Resume', component: ResumeComponent },
+      { path: 'Settings', component: SettingsComponent}
     ]
   }
 ];

@@ -1,3 +1,4 @@
+import { ConsultorModule } from './consultor/consultor.module';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import {ButtonModule} from 'primeng/button';
@@ -62,7 +63,8 @@ import { AdminModule } from './admin/admin.module';
     InputNumberModule,
     ConfirmDialogModule,
     InputTextareaModule,
-    AdminModule,      
+    AdminModule,   
+    ConsultorModule   
   ],
   providers: [ConfirmationService,MessageService],
   bootstrap: [AppComponent]
