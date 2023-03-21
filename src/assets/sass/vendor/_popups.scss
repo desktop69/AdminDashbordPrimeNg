@@ -923,7 +923,7 @@ img.mfp-img {
     background-color: #f2f2f2;
     width: 100%;
   }
-  input.account-type-radio:empty {
+  input.role:empty {
     display: none;
   }
   label i {
@@ -932,7 +932,7 @@ img.mfp-img {
     top: 2px;
     margin-right: 2px;
   }
-  input.account-type-radio {
+  input.role{
     &:empty ~ label {
       position: relative;
       float: left;

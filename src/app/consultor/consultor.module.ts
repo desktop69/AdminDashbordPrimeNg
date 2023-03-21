@@ -1,9 +1,9 @@
-import { NgModule } from '@angular/core';
+import { forwardRef, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ConsultorComponent } from './consultor.component';
 import { IndexHomeComponent } from './landingPage/index-home/index-home.component';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from '../app-routing.module';
 import { DashbordHeaderComponent } from './Dashbord/dashbord-header/dashbord-header.component';
@@ -25,6 +25,7 @@ import { LoginComponent } from '../auth/login/login.component';
 import { MembershipPlansComponent } from './landingPage/membership-plans/membership-plans.component';
 import { DialogComponent } from './landingPage/dialog/dialog.component';
 import { RegisterComponent } from '../auth/register/register.component';
+import { RegisterDTO } from '../auth/models/register.model';
 
 
 
@@ -67,5 +68,6 @@ import { RegisterComponent } from '../auth/register/register.component';
     HttpClientModule,
     ReactiveFormsModule
   ]
+
 })
 export class ConsultorModule { }

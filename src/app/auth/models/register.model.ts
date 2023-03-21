@@ -1,7 +1,9 @@
-export interface RegisterDTO {
-    email: string;
-    username: string;
-    password: string;
+export class RegisterDTO {
+    email!: string;
+    username!: string;
+    password!: string;
     //confirmPassword: string;
-    role?: string;
+     role!: string;
+  
+
   }

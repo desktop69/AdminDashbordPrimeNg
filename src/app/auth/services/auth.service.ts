@@ -15,14 +15,16 @@ export class AuthService {
 
   public loggedUser!: string;
   public isloggedIn: Boolean = false;
-  public roles!: string[];
+  public roles!: string;
   private helper = new JwtHelperService();
-  apiURL: string = 'localhost:3000/auth';
+  private apiURL = 'http://localhost:3000/auth';
   token!: string;
 
-
+  
   register(registerDTO: RegisterDTO): Observable<any> {
-    const url = `${this.apiURL}/register`;
+    const url = `${this.apiURL + '/register'}`;
+    console.log("url :"+url );
+    console.log("register dto" ,registerDTO);
     return this.http.post(url, registerDTO);
   }
   
@@ -53,7 +55,9 @@ export class AuthService {
       return;
     }
     const decodedToken = this.helper.decodeToken(this.token);
-    this.roles = decodedToken.roles;
+    console.log("decoded token ",decodedToken);
+    this.roles = decodedToken.role;
+    console.log("roles ", this.roles);
     this.loggedUser = decodedToken.sub;
   }
 
@@ -69,8 +73,29 @@ export class AuthService {
   isAdmin(): Boolean {
     if (!this.roles)
       return false;
-    return this.roles.indexOf('ADMIN') >= 0;
+    return true;
   }
+
+  
+  isConsultor(): Boolean {
+    if (!this.roles)
+      return false;
+    return this.roles.indexOf('CONSULTOR') >= 0;
+  }
+
+  isEntreprise(): Boolean {
+    if (!this.roles)
+      return false;
+    return this.roles.indexOf('ENTREPRISE') >= 0;
+  }
+
+  checkRole(type :string) {
+    if(this.roles === type) {
+      return true; 
+    }
+    return false;
+  }
+
 
   logout() {
     this.loggedUser = undefined!;

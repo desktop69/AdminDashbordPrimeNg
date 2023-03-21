@@ -1,6 +1,5 @@
-
 <div>
-    <app-header></app-header>
+	<app-header></app-header>
 </div>
 <div class="clearfix"></div>
 <!-- Header Container / End -->
@@ -33,62 +32,89 @@
 <div class="container">
 	<div class="row">
 		<div class="col-xl-5 offset-xl-3">
-            <div class="login-frame">
-			<div class="login-register-page">
-				<!-- Welcome Text -->
-				<div class="welcome-text">
-					<h3 style="font-size: 26px;">Let's create your account!</h3>
-					<span>Already have an account? <a routerLink="login">Log In!</a></span>
+			<div class="login-frame">
+				<div class="login-register-page">
+					<!-- Welcome Text -->
+					<div class="welcome-text">
+						<h3 style="font-size: 26px;">Let's create your account!</h3>
+						<span>Already have an account? <a routerLink="/login">Log In!</a></span>
+					</div>
+
+					<!-- Account Type -->
+
+
+
+					<form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+
+						<ng-container formGroupName="roleGroup">
+							<div class="account-type">
+								<div>
+									<input type="radio" value="consultor" name="role" formControlName="role"
+										id="freelancer-radio" class="role" />
+									<label for="freelancer-radio" class="ripple-effect-dark"><i
+											class="icon-material-outline-account-circle"></i> Consultor</label>
+								</div>
+
+								<div>
+									<input type="radio" name="role" value="entreprise" formControlName="role"
+										id="employer-radio" class="role" />
+									<label for="employer-radio" class="ripple-effect-dark"><i
+											class="icon-material-outline-business-center"></i> Entreprise</label>
+								</div>
+							</div>
+						</ng-container>
+
+
+						<div class="input-with-icon-left">
+							<i class="icon-material-baseline-mail-outline"></i>
+							<input class="input-text with-border" name="emailaddress-register" type="email"
+								class="form-control" formControlName="email" id="emailaddress-register"
+								placeholder="Email Address" required />
+						</div>
+
+						<div alert alert-danger *ngIf="email.invalid && (email.dirty || email.touched)">
+							<div alert alert-danger *ngIf="email.errors?.required">Email is required.</div>
+							<div *ngIf="email.errors?.email">Email must be a valid email address.</div>
+						</div>
+
+						<div class="input-with-icon-left">
+							<i class="icon-material-outline-account-circle"></i>
+							<input class="input-text with-border" name="emailaddress-register" type="text"
+								class="form-control" formControlName="username" placeholder="User Name" required />
+						</div>
+
+						<div class="input-with-icon-left" title="Should be at least 8 characters long"
+							data-tippy-placement="bottom">
+							<i class="icon-material-outline-lock"></i>
+							<input type="password" class="input-text with-border" name="password-register"
+								id="password-register" placeholder="Password" formControlName="password" required />
+						</div>
+
+						<!-- Button -->
+						<div class="form-group">
+							<button type="submit"
+								class="button full-width button-sliding-icon ripple-effect margin-top-10">Register <i
+									class="icon-material-outline-arrow-right-alt"></i></button>
+						</div>
+
+					</form>
+
+
+
+
+					<!-- Social Login -->
+					<div class="social-login-separator"><span>or</span></div>
+					<div class="social-login-buttons">
+						<button class="facebook-login ripple-effect"><i class="icon-brand-facebook-f"></i> Register via
+							Facebook</button>
+						<button class="google-login ripple-effect"><i class="icon-brand-google-plus-g"></i> Register via
+							Google+</button>
+					</div>
 				</div>
 
-				<!-- Account Type -->
-		
-					
-				<form id="register-account-form" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-
-					<div class="account-type">
-					  <div>
-						<input type="radio" name="account-type-radio" id="freelancer-radio" class="account-type-radio" checked />
-						<label for="freelancer-radio" class="ripple-effect-dark"><i class="icon-material-outline-account-circle"></i> Consultor</label>
-					  </div>
-				  
-					  <div>
-						<input type="radio" name="account-type-radio" id="employer-radio" class="account-type-radio" />
-						<label for="employer-radio" class="ripple-effect-dark"><i class="icon-material-outline-business-center"></i> Entreprise</label>
-					  </div>
-					</div>
-				  
-					<div class="input-with-icon-left">
-					  <i class="icon-material-baseline-mail-outline"></i>
-					  <input class="input-text with-border" name="emailaddress-register" type="email" class="form-control" formControlName="email" id="emailaddress-register" placeholder="Email Address" required />
-					</div>
-				  
-					<div class="input-with-icon-left" title="Should be at least 8 characters long" data-tippy-placement="bottom">
-					  <i class="icon-material-outline-lock"></i>
-					  <input type="password" class="input-text with-border" name="password-register" id="password-register" placeholder="Password" formControlName="password" required />
-					</div>
-				  
-					<div class="form-group">
-					  <button type="submit" class="button full-width button-sliding-icon ripple-effect margin-top-10">Register <i class="icon-material-outline-arrow-right-alt"></i></button>
-					</div>
-				  
-				  </form>
-				  
-				
-				<!-- Button -->
-				<button class="button full-width button-sliding-icon ripple-effect margin-top-10" type="submit" form="login-form">Register <i class="icon-material-outline-arrow-right-alt"></i></button>
-				
-				<!-- Social Login -->
-				<div class="social-login-separator"><span>or</span></div>
-				<div class="social-login-buttons">
-					<button class="facebook-login ripple-effect"><i class="icon-brand-facebook-f"></i> Register via Facebook</button>
-					<button class="google-login ripple-effect"><i class="icon-brand-google-plus-g"></i> Register via Google+</button>
-				</div>
 			</div>
-
 		</div>
 	</div>
-</div>
 </div>
 
 <!-- Spacer -->

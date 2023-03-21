@@ -122,17 +122,17 @@
 			<!-- Right Side Content / End -->
 			<div class="right-side">
 
-				<div class="header-widget">
-					<a routerLink="/login" class="popup-with-zoom-anim log-in-button"><i class="icon-feather-log-in"></i> <span>Log In / Register</span></a>
+				<div *ngIf="!authService.isloggedIn" class="header-widget">
+					<a  routerLink="/login" class="popup-with-zoom-anim log-in-button"><i class="icon-feather-log-in"></i> <span>Log In / Register</span></a>
 				</div>
 
 
-				<!-- 						
-						<ul class="user-menu-small-nav">
+										
+						<ul *ngIf="authService.isloggedIn" class="user-menu-small-nav">
 							<li><a href="dashboard.html"><i class="icon-material-outline-dashboard"></i> Dashboard</a></li>
 							<li><a href="dashboard-settings.html"><i class="icon-material-outline-settings"></i> Settings</a></li>
-							<li><a href="index-logged-out.html"><i class="icon-material-outline-power-settings-new"></i> Logout</a></li>
-						</ul> -->
+							<li><a href="index-logged-out.html" (click) = "onLogout()"><i class="icon-material-outline-power-settings-new" ></i> Logout</a></li>
+						</ul> 
 
 				<!-- Mobile Navigation Button -->
 				<span class="mmenu-trigger">

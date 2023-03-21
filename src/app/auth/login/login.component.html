@@ -42,6 +42,11 @@
               <h3>We're glad to see you again!</h3>
               <span>Don't have an account? <a  routerLink="/register">Sign Up!</a></span>
             </div>
+
+            <div class="notification error closeable"  *ngIf="err == 1" >
+              <p> Incorrect username or Password</p>
+              <a class="close" href="#"></a>
+            </div>
   
             <!-- Form -->
             <form method="post" id="login-form">

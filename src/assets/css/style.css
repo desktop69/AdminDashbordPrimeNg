@@ -10911,7 +10911,7 @@ img.mfp-img {
 }
 
 /* hide input */
-.account-type input.account-type-radio:empty {
+.account-type input.role:empty {
 	display: none;
 }
 
@@ -10923,7 +10923,7 @@ img.mfp-img {
 	margin-right: 2px;
 }
 
-.account-type input.account-type-radio:empty ~ label {
+.account-type input.role:empty ~ label {
 	position: relative;
 	float: left;
 	padding: 10px;
@@ -10942,18 +10942,18 @@ img.mfp-img {
 	overflow: hidden;
 }
 
-.account-type input.account-type-radio ~ label:hover {
+.account-type input.role ~ label:hover {
 	color: #289c41;
 	background-color: #e4f6e9;
 }
 
-.account-type input.account-type-radio:checked ~ label {
+.account-type input.role:checked ~ label {
 	color: #fff;
 	background-color: #47bb67;
 }
 
-.account-type input.account-type-radio:empty ~ label:after,
-.account-type input.account-type-radio:empty ~ label:before {
+.account-type input.role:empty ~ label:after,
+.account-type input.role:empty ~ label:before {
 	position: absolute;
 	display: block;
 	top: 0;

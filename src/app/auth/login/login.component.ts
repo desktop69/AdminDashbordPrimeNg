@@ -12,7 +12,7 @@ import { AuthService } from '../services/auth.service';
 export class LoginComponent implements OnInit {
   user = new User();
   message: string = '';
-
+  err: number = 0;
   constructor(private authService: AuthService,
     private router: Router) { }
 
@@ -21,15 +21,41 @@ export class LoginComponent implements OnInit {
   }
 
 
+  // onLoggedin() {
+  //   console.log(this.user)
+  //   this.authService.login(this.user).subscribe(response => {
+  //     const token = response.res.token;
+  //     this.message = response.res.message;
+  //     this.authService.saveToken(token);
+  //   });
+  //   console.log(this.message)
+  //   console.log("Success");
+  // }
   onLoggedin() {
-    console.log(this.user)
-    this.authService.login(this.user).subscribe(response => {
-      const token = response.res.token;
-      this.message = response.res.message;
-      this.authService.saveToken(token);
+    console.log(this.user);
+    this.authService.login(this.user).subscribe({
+      next: response => {
+        const token = response.res.token;
+        this.message = response.res.message;
+        this.authService.saveToken(token);
+        
+        if (this.authService.checkRole("entreprise")) {
+          this.router.navigate(['/entreprise']);
+        } else if (this.authService.checkRole("consultor")){
+          this.router.navigate(['/consultor']);
+        } else {
+          this.router.navigate(['/admin']);
+        }
+      },
+      error: (err: any) => {
+        this.err = 1;
+        console.log(this.err);
+      }
     });
-    console.log(this.message)
+  
+    console.log(this.message);
     console.log("Success");
   }
+  
 
 }

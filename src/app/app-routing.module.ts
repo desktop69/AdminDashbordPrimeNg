@@ -1,3 +1,4 @@
+import { EntrepriseComponent } from './entreprise/entreprise.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { LoginComponent } from './auth/login/login.component';
 import { DialogComponent } from './consultor/landingPage/dialog/dialog.component';
@@ -43,6 +44,13 @@ const routes: Routes = [
     children: [
       { path: 'Resume', component: ResumeComponent },
       { path: 'Settings', component: SettingsComponent }
+    ]
+  },
+
+  {
+    path: 'entreprise', component: EntrepriseComponent,
+    children: [
+
     ]
   }
 ];
