@@ -1,3 +1,5 @@
+import { RegisterComponent } from './auth/register/register.component';
+import { LoginComponent } from './auth/login/login.component';
 import { DialogComponent } from './consultor/landingPage/dialog/dialog.component';
 import { DashbordIndexComponent } from './consultor/Dashbord/dashbord-index/dashbord-index.component';
 import { ConsultorComponent } from './consultor/consultor.component';
@@ -11,25 +13,28 @@ import { SettingsComponent } from './consultor/Dashbord/settings/settings.compon
 import { IndexHomeComponent } from './consultor/landingPage/index-home/index-home.component';
 
 const routes: Routes = [
-  {path: "", redirectTo: "consultor", pathMatch: "full" },
-  ///{ path: 'consultor', component: IndexHomeComponent },
- 
+  { path: "", redirectTo: "consultor", pathMatch: "full" },
+  { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
+
   {
     path: 'admin', component: AppLayoutComponent,
     children: [
       { path: 'dashboardadmin', component: TableComponent },
- 
+
 
     ]
   },
   {
     path: 'consultor', component: IndexHomeComponent,
+
     children: [
 
-      { path: 'Settings', component: SettingsComponent},
-      { path: 'register', component: DialogComponent}
+      { path: 'Settings', component: SettingsComponent },
+      { path: 'register', component: DialogComponent },
 
-  
+
+
 
     ]
   },
@@ -37,7 +42,7 @@ const routes: Routes = [
     path: 'dashboardConsultor', component: DashbordIndexComponent,
     children: [
       { path: 'Resume', component: ResumeComponent },
-      { path: 'Settings', component: SettingsComponent}
+      { path: 'Settings', component: SettingsComponent }
     ]
   }
 ];

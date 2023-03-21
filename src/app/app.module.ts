@@ -1,15 +1,15 @@
 import { ConsultorModule } from './consultor/consultor.module';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import {ButtonModule} from 'primeng/button';
+import { ButtonModule } from 'primeng/button';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import {AccordionModule} from 'primeng/accordion';     //accordion and accordion tab
+import { AccordionModule } from 'primeng/accordion';     //accordion and accordion tab
 // table imports
-import {TableModule} from 'primeng/table';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { TableModule } from 'primeng/table';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
-import {FormsModule} from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RatingModule } from 'primeng/rating';
 // crud table imprts tests
 import { ToastModule } from 'primeng/toast';
@@ -30,10 +30,16 @@ import { ConfirmationService } from 'primeng/api';
 import { MessageService } from 'primeng/api';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { AdminModule } from './admin/admin.module';
+import { RegisterComponent } from './auth/register/register.component';
+import { LoginComponent } from './auth/login/login.component';
+import { BannerComponent } from './consultor/landingPage/banner/banner.component';
+import { FooterComponent } from './consultor/landingPage/footer/footer.component';
+import { HeaderComponent } from './consultor/landingPage/header/header.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -63,10 +69,11 @@ import { AdminModule } from './admin/admin.module';
     InputNumberModule,
     ConfirmDialogModule,
     InputTextareaModule,
-    AdminModule,   
-    ConsultorModule   
+    AdminModule,
+    ReactiveFormsModule
+
   ],
-  providers: [ConfirmationService,MessageService],
+  providers: [ConfirmationService, MessageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

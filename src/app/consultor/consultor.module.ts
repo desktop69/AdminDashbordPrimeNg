@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ConsultorComponent } from './consultor.component';
 import { IndexHomeComponent } from './landingPage/index-home/index-home.component';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from '../app-routing.module';
 import { DashbordHeaderComponent } from './Dashbord/dashbord-header/dashbord-header.component';
@@ -21,9 +21,10 @@ import { FeaturesJobsComponent } from './landingPage/features-jobs/features-jobs
 import { FooterComponent } from './landingPage/footer/footer.component';
 import { HeaderComponent } from './landingPage/header/header.component';
 import { HighestFreelancerComponent } from './landingPage/highest-freelancer/highest-freelancer.component';
-import { LoginComponent } from './landingPage/login/login.component';
+import { LoginComponent } from '../auth/login/login.component';
 import { MembershipPlansComponent } from './landingPage/membership-plans/membership-plans.component';
 import { DialogComponent } from './landingPage/dialog/dialog.component';
+import { RegisterComponent } from '../auth/register/register.component';
 
 
 
@@ -51,6 +52,7 @@ import { DialogComponent } from './landingPage/dialog/dialog.component';
     TrainingsQualificationsComponent,
     LanguageComponent,
     DialogComponent,
+    RegisterComponent,
 
 
 
@@ -63,6 +65,7 @@ import { DialogComponent } from './landingPage/dialog/dialog.component';
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
+    ReactiveFormsModule
   ]
 })
 export class ConsultorModule { }

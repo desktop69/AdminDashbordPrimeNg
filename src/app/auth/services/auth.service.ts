@@ -1,13 +1,16 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { JwtHelperService } from '@auth0/angular-jwt';
-import { User } from './model/user.model';
+import { Observable } from 'rxjs';
+import { RegisterDTO } from '../models/register.model';
+import { User } from '../models/user.model';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AuthServiceService {
+export class AuthService {
+
   constructor(private router: Router, private http: HttpClient) { }
 
   public loggedUser!: string;
@@ -17,6 +20,12 @@ export class AuthServiceService {
   apiURL: string = 'localhost:3000/auth';
   token!: string;
 
+
+  register(registerDTO: RegisterDTO): Observable<any> {
+    const url = `${this.apiURL}/register`;
+    return this.http.post(url, registerDTO);
+  }
+  
   testingapi(){
     const data = this.http.get(this.apiURL+ "/test");
    
@@ -83,8 +92,4 @@ export class AuthServiceService {
   isTokenExpired(): Boolean {
     return this.helper.isTokenExpired(this.token);
   }
-
-
-
-
 }

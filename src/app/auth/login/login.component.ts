@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthServiceService } from '../../Dashbord/AuthService-Service .service';
-import { User } from '../../Dashbord/model/user.model';
+
+import { User } from '../models/user.model';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -12,7 +13,7 @@ export class LoginComponent implements OnInit {
   user = new User();
   message: string = '';
 
-  constructor(private authService : AuthServiceService,
+  constructor(private authService: AuthService,
     private router: Router) { }
 
   ngOnInit(): void {
@@ -20,16 +21,15 @@ export class LoginComponent implements OnInit {
   }
 
 
-  onLoggin(){
+  onLoggedin() {
     console.log(this.user)
     this.authService.login(this.user).subscribe(response => {
       const token = response.res.token;
-       this.message = response.res.message;
-      this.authService.saveToken(token);     
+      this.message = response.res.message;
+      this.authService.saveToken(token);
     });
     console.log(this.message)
     console.log("Success");
-
   }
 
 }
