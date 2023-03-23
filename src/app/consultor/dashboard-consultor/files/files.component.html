@@ -1,0 +1,25 @@
+<div class="container">
+    <h2>Upload File</h2>
+    <form (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="file">Choose File:</label>
+        <input type="file" id="file" (change)="onFileSelected($event)" />
+      </div>
+      <button type="submit" [disabled]="!selectedFile" class="btn btn-primary">Upload</button>
+    </form>
+  </div>
+
+
+<hr>
+
+  <div *ngIf="file">
+    <h3>File Details:</h3>
+    <p>File Name: {{ file.name }}</p>
+    <p>Content Type: {{ file.contentType }}</p>
+    <a [href]="'data:' + file.contentType + ';base64,' + file.data" [download]="file.name">
+      Download File
+    </a>
+  </div>
+  
+
+  

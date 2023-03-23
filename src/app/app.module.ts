@@ -1,3 +1,5 @@
+import { DashboardConsultorModule } from './consultor/dashboard-consultor/dashboard-consultor.module';
+
 import { ConsultorModule } from './consultor/consultor.module';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -30,18 +32,20 @@ import { ConfirmationService } from 'primeng/api';
 import { MessageService } from 'primeng/api';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { AdminModule } from './admin/admin.module';
-import { RegisterComponent } from './auth/register/register.component';
-import { LoginComponent } from './auth/login/login.component';
-import { BannerComponent } from './consultor/landingPage/banner/banner.component';
-import { FooterComponent } from './consultor/landingPage/footer/footer.component';
-import { HeaderComponent } from './consultor/landingPage/header/header.component';
+import { CommonModule } from '@angular/common';
+import { ResetPasswordComponent } from './auth/reset-password/reset-password.component';
+
+
 
 @NgModule({
   declarations: [
     AppComponent,
+    ResetPasswordComponent,
+
 
   ],
   imports: [
+    CommonModule,
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
@@ -70,7 +74,10 @@ import { HeaderComponent } from './consultor/landingPage/header/header.component
     ConfirmDialogModule,
     InputTextareaModule,
     AdminModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ConsultorModule,
+    DashboardConsultorModule
+
 
   ],
   providers: [ConfirmationService, MessageService],

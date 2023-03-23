@@ -1,5 +1,4 @@
-<!-- Header Container ================================================== -->
-<header id="header-container" class="fullwidth dashboard-header not-sticky">
+
 
 	<!-- Header -->
 	<div id="header">
@@ -8,7 +7,7 @@
 			<div class="left-side">		
 				<!-- Logo -->
 				<div id="logo">
-					<a href="index.html"><img src="./assets/logo.png" alt="log"></a>
+					<a href="/"><img src="" alt="log"></a>
 				</div>
 
 				<!-- Main Navigation -->
@@ -17,9 +16,7 @@
 
 						<li><a href="#">Home</a>
 							<ul class="dropdown-nav">
-								<li><a href="index.html">Home 1</a></li>
-								<li><a href="index-2.html">Home 2</a></li>
-								<li><a href="index-3.html">Home 3</a></li>
+								<li><a routerLink="/">Home</a></li>
 							</ul>
 						</li>
 
@@ -118,14 +115,14 @@
 			<div class="right-side">
 
 				<!--  User Notifications -->
-				<div class="header-widget hide-on-mobile">
+				<div class="header-widget hide-on-mobile" [class.active]="isUseremailActive">
 					
 					<!-- Notifications -->
-					<div class="header-notifications">
+					<div class="header-notifications" [class.active]="isUseremailActive">
 
 						<!-- Trigger -->
-						<div class="header-notifications-trigger">
-							<a href="#"><i class="icon-feather-bell"></i><span>4</span></a>
+						<div class="header-notifications-trigger" [class.active]="isUseremailActive" >
+							<a ><i class="icon-feather-bell" (click)="toggleUserEmail()"></i><span>4</span></a>
 						</div>
 
 						<!-- Dropdown -->
@@ -189,9 +186,9 @@
 					</div>
 					
 					<!-- Messages -->
-					<div class="header-notifications">
-						<div class="header-notifications-trigger">
-							<a href="#"><i class="icon-feather-mail"></i><span>3</span></a>
+					<div class="header-notifications" [class.active]="isUserNotificationMenuActive">
+						<div class="header-notifications-trigger" (click)="toggleUserMenunot()">
+							<a ><i class="icon-feather-mail"></i><span>3</span></a>
 						</div>
 
 						<!-- Dropdown -->
@@ -254,45 +251,50 @@
 				<!--  User Notifications / End -->
 
 				<!-- User Menu -->
-				<div class="header-widget">
-
-					<!-- Messages -->
-					<div class="header-notifications user-menu">
+				<div class="header-widget" [class.active]="isUserMenuActive">
+					<div class="header-notifications user-menu" [class.active]="isUserMenuActive">
 						<div class="header-notifications-trigger">
-							<a href="#"><div class="user-avatar status-online"><img src="images/user-avatar-small-01.jpg" alt=""></div></a>
+						  <div *ngIf="image">
+							<a (click)="toggleUserMenu()"> <div class="user-avatar status-online"><img [src]="'data:image/png;base64,' + image.data" alt="User image" /></div></a>
+						  </div>
 						</div>
-
+					  
 						<!-- Dropdown -->
-						<div class="header-notifications-dropdown">
-
-							<!-- User Status -->
-							<div class="user-status">
-
-								<!-- User Name / Avatar -->
-								<div class="user-details">
-									<div class="user-avatar status-online"><img src="images/user-avatar-small-01.jpg" alt=""></div>
-									<div class="user-name">
-										Tom Smith <span>Freelancer</span>
-									</div>
-								</div>
+						<div class="header-notifications-dropdown" >
+								<!-- User Status -->
+								<div class="user-status">
 								
-								<!-- User Status Switcher -->
-								<div class="status-switch" id="snackbar-user-status">
-									<label class="user-online current-status">Online</label>
-									<label class="user-invisible">Invisible</label>
-									<!-- Status Indicator -->
-									<span class="status-indicator" aria-hidden="true"></span>
-								</div>	
+								
+								
+									<!-- User Name / Avatar -->
+									<div class="user-details">
+										<div *ngIf="image">
+										<div class="user-avatar status-online"><img [src]="'data:image/png;base64,' + image.data"  alt=""></div>
+										</div>
+										<div class="user-name">
+											{{this.authService.LoggedUserName}} <span>{{this.authService.roles}}</span>
+										</div>
+									</div>
+									
+									<!-- User Status Switcher -->
+									<div class="status-switch" id="snackbar-user-status">
+										<label class="user-online current-status">Online</label>
+										<label class="user-invisible">Invisible</label>
+										<!-- Status Indicator -->
+										<span class="status-indicator" aria-hidden="true"></span>
+									</div>	
+							</div>
+							
+							<ul class="user-menu-small-nav">
+								<li><a routerLink="/dashboardConsultor"><i class="icon-material-outline-dashboard"></i> Dashboard</a></li>
+								<li><a routerLink="/dashboardConsultor/Settings"><i class="icon-material-outline-settings"></i> Settings</a></li>
+								<li><a class="cur"  (click)="onLogout()"><i class="icon-material-outline-power-settings-new"></i> Logout</a></li>
+							</ul>
 						</div>
-						
-						<ul class="user-menu-small-nav">
-							<li><a href="dashboard.html"><i class="icon-material-outline-dashboard"></i> Dashboard</a></li>
-							<li><a href="dashboard-settings.html"><i class="icon-material-outline-settings"></i> Settings</a></li>
-							<li><a href="index-logged-out.html"><i class="icon-material-outline-power-settings-new"></i> Logout</a></li>
-						</ul>
-
-						</div>
-					</div>
+					  </div>
+					  
+					<!-- Messages -->
+				
 
 				</div>
 				<!-- User Menu / End -->
@@ -313,6 +315,5 @@
 	</div>
 	<!-- Header / End -->
 
-</header>
-<div class="clearfix"></div>
-<!-- Header Container / End -->
+
+

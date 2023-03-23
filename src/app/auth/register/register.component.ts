@@ -30,6 +30,7 @@ err: number = 0;
     
   }
   get email() { return this.registerForm.get('email'); }
+  
   onSubmit() {
       this.newUser.email = this.registerForm.get('email').value;
       this.newUser.username = this.registerForm.get('username').value;

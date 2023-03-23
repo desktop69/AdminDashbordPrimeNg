@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/app/auth/services/auth.service';
 
 @Component({
   selector: 'app-dashbord-side-bar',
@@ -7,9 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashbordSideBarComponent implements OnInit {
 
-  constructor() { }
+  constructor(public authService:AuthService ,private router :Router) { }
 
-  ngOnInit(): void {
+  ngOnInit(
+
+  ): void {
+    
+  }
+
+
+  onLogout() {
+    this.authService.logout();
   }
 
 }

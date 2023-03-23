@@ -54,7 +54,7 @@ export class LoginComponent implements OnInit {
     });
   
     console.log(this.message);
-    console.log("Success");
+    console.log("who logged",this.authService.isloggedIn)
   }
   
 

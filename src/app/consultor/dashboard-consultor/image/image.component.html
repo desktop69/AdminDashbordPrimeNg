@@ -1,0 +1,81 @@
+<div *ngIf="image">
+    <img [src]="'data:image/png;base64,' + image.data" alt="User image" />
+  </div>
+
+
+
+<!-- 
+<form (ngSubmit)="onSubmit()">
+<div class="col-auto">
+    <div class="avatar-wrapper" data-tippy-placement="bottom" title="Change Avatar">
+        <img class="profile-pic"  alt="" />
+        <div class="upload-button"></div>
+        <input class="file-upload" (change)="onFileSelected($event)"  id="image"  type="file" accept="image/*"/>
+    </div>
+</div>
+<button type="button" [disabled]="!selectedFile">Upload</button>
+</form> -->
+
+
+<!-- <div class="container">
+    <h1>Upload Image</h1>
+    <div class="col-auto">
+      <div class="avatar-wrapper" data-tippy-placement="bottom" title="Change Avatar">
+        <img class="profile-pic" alt="" />
+        <div class="upload-button"></div>
+        <input class="file-upload" (change)="onFileSelected($event)" id="image" type="file" accept="image/*" />
+      </div>
+    </div>
+    <button type="button" [disabled]="!selectedFile" (click)="onSubmit()">Upload</button>
+  </div> -->
+
+<!-- In image-upload.component.html -->
+
+<form (ngSubmit)="onSubmit()">
+  <div class="col-auto custom-avatar ">
+
+    
+    <div class="avatar-wrapper" data-tippy-placement="bottom" title="Change Avatar">
+      <img
+        #profilePic
+        class="profile-pic"
+        [src]="(image ? ('data:image/png;base64,' + image.data) : 'assets/avatar.png')"
+        alt=""
+      />
+      <div class="upload-button" (click)="onUploadButtonClick()"></div>
+      <input #fileInput class="file-upload" (change)="onFileSelected($event)" id="image" type="file" accept="image/*" />
+    </div>
+  </div>
+  <button type="button" [disabled]="!selectedFile" (click)="onSubmit()">Upload</button>
+
+  <!-- Add the new button -->
+  <button type="button" [disabled]="!selectedFile" (click)="updateImageByUserId()">
+    Update 
+  </button>
+  <button type="button" class="btn-icon" [disabled]="!image" (click)="onDeleteImage()">
+    <i class="icon-material-outline-delete"></i>
+    Delete 
+  </button>
+</form>
+
+
+
+
+<!-- 
+<div class="col-xl-6 col-md-6">
+  <div class="section-headline margin-top-25 margin-bottom-12">
+    <h5>Keywords input</h5>
+  </div>
+
+  <div class="keywords-container">
+    <div class="keyword-input-container"  *ngFor="let input of inputs; let i = index" >
+      <input type="text" class="keyword-input" placeholder="Add Keywords" [(ngModel)]="input.value"/>
+      <button class="keyword-input-button ripple-effect" (click)="addInput()"><i class="icon-material-outline-add"></i></button> 
+  </div>
+  <button class="keyword-input-button red ripple-effect " (click)="deleteInput(i)"><i class="icon-material-outline-delete"></i></button>
+    <div class="keywords-list">
+
+    </div>
+    <div class="clearfix"></div>
+  </div>
+</div> -->

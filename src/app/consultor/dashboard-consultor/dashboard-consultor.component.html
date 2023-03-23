@@ -1,0 +1,29 @@
+<!-- <p>dashboard-consultor works!</p> -->
+<div class="gray">
+    <!-- Wrapper -->
+    <div id="wrapper">
+        <header id="header-container" class="fullwidth dashboard-header not-sticky">
+            <app-dashbord-header></app-dashbord-header>
+
+        </header>
+        <div class="dashboard-container">
+
+            <div class="dashboard-sidebar">
+                <app-dashbord-side-bar></app-dashbord-side-bar>
+
+            </div>
+            <div class="dashboard-content-container" data-simplebar>
+                <div class="dashboard-content-inner">
+
+                    <router-outlet>
+
+                    </router-outlet>
+                </div>
+
+                <!-- <app-dashboard-consultor-footer></app-dashboard-consultor-footer> -->
+            </div>
+
+        </div>
+    </div>
+
+</div>

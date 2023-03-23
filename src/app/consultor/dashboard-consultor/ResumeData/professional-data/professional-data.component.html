@@ -1,0 +1,92 @@
+<!-- Row -->
+<div class="row">
+    <!-- Dashboard Box -->
+    <div class="col-xl-12">
+        <div class="dashboard-box margin-top-0">
+            <!-- Headline -->
+            <div class="headline mt-5">
+                <div class="d-flex bd-highlight">
+                    <div class="p-2 flex-grow-1 bd-highlight">
+                        <h3><i class="icon-material-outline-account-circle"></i>My Professional Data</h3>
+                    </div>
+                    <div class="p-2 bd-highlight">
+                        <button pButton pRipple type="button"
+                            class="p-button-rounded p-button-info p-button-outlined icon-line-awesome-pencil"
+                            (click)="showModalDialog()"> </button>
+                    </div>
+                </div>
+                <div class="content with-padding padding-bottom-0">
+                    <div class="row">
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde commodi alias temporibus
+                            quisquam
+                            mollitia ipsam aliquam optio quasi labore sint corrupti excepturi, veritatis, tempore
+                            voluptatibus explicabo est non ullam neque!</p>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde commodi alias temporibus
+                            quisquam
+                            mollitia ipsam aliquam optio quasi labore sint corrupti excepturi, veritatis, tempore
+                            voluptatibus explicabo est non ullam neque!</p>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde commodi alias temporibus
+                            quisquam
+                            mollitia ipsam aliquam optio quasi labore sint corrupti excepturi, veritatis, tempore
+                            voluptatibus explicabo est non ullam neque!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <p-dialog class='custom-close-button' [(visible)]="displayModal" [modal]="true" [style]="{width: '50vw'}"
+        [baseZIndex]="10000" [draggable]="true" [resizable]="true" [closable]="false">
+        <ng-template pTemplate="header">
+            <div class="p-dialog-title">Add Work Experience</div>
+        </ng-template>
+        <!--  put ur conetent here   -->
+        <div class="p-mb-5 mt-5">
+            <div class="grid mt-5">
+                <div class="container">
+                    <div class="col-md-3">
+                        <span class="p-float-label">
+
+                        </span>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <span class="p-float-label">
+                                <input type="text" id="currentJob" pInputText>
+                                <label for="currentJob">curent Job </label>
+                            </span>
+                        </div>
+                        <div class="col-md-3">
+                            <span class="p-float-label">
+                                <input type="text" id="period" pInputText>
+                                <label for="period">Période</label>
+                            </span>
+                        </div>
+                        <div class="col-md-3">
+                            <span class="p-float-label">
+                                <input type="text" id="until" pInputText>
+                                <label for="until">Jusqu'à</label>
+                            </span>
+                        </div>
+                    </div>
+                    <!-- Add more rows and columns for the remaining elements as needed -->
+                </div>
+
+            </div>
+        </div>
+        <ng-template pTemplate="footer">
+            <button pButton pRipple icon="pi pi-times" (click)="closeModal()" label="No"
+                class="p-button-outlined p-button-rounded p-button-secondary blue-hover"></button>
+            <button pButton pRipple icon="pi pi-check" (click)="displayModal=false" label="Save"
+                class="p-button-outlined p-button-rounded p-button-secondary blue-hover"></button>
+        </ng-template>
+    </p-dialog>
+    <p-dialog header="Are you sure you want to close this window?" [(visible)]="displayPosition" [modal]="true"
+        [style]="{width: '20vw'}" [baseZIndex]="10000" [draggable]="false" [resizable]="false">
+        <p> Your changes will be lost if you leave without saving.</p>
+        <ng-template pTemplate="footer">
+            <button pButton pRipple icon="pi pi-times" (click)="displayPosition=false" label="No"
+                class="p-button-outlined p-button-rounded p-button-secondary blue-hover"></button>
+            <button pButton pRipple icon="pi pi-check" (click)="closeAllModals()" label="Yes"
+                class="p-button-outlined p-button-rounded p-button-secondary blue-hover"></button>
+        </ng-template>
+    </p-dialog>

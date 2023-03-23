@@ -11,8 +11,12 @@ import { User } from '../models/user.model';
 })
 export class AuthService {
 
-  constructor(private router: Router, private http: HttpClient) { }
-
+  constructor(private router: Router, private http: HttpClient) {
+    this.loadToken();
+   this.decodeJwt()
+  }
+  public loggedUserId! :string;
+  public LoggedUserName ! :string;
   public loggedUser!: string;
   public isloggedIn: Boolean = false;
   public roles!: string;
@@ -20,21 +24,25 @@ export class AuthService {
   private apiURL = 'http://localhost:3000/auth';
   token!: string;
 
-  
+
+  getUserById(id: string): Observable<any> {
+    return this.http.get<any>(`${this.apiURL}/getUserById/${id}`);
+  }
+
   register(registerDTO: RegisterDTO): Observable<any> {
     const url = `${this.apiURL + '/register'}`;
-    console.log("url :"+url );
-    console.log("register dto" ,registerDTO);
+    //console.log("url :"+url );
+    //console.log("register dto" ,registerDTO);
     return this.http.post(url, registerDTO);
   }
-  
-  testingapi(){
-    const data = this.http.get(this.apiURL+ "/test");
-   
+
+  testingapi() {
+    const data = this.http.get(this.apiURL + "/test");
+
     return data;
   }
 
-  login(userlog : User) {
+  login(userlog: User) {
     return this.http.post<any>('http://localhost:3000/auth/login', userlog);
   }
 
@@ -49,17 +57,47 @@ export class AuthService {
     this.token = jwt;
     this.isloggedIn = true;
     this.decodeJwt();
+
   }
+
+  // In authService.ts
+  // In authService.ts
+
+  getLoggedInUserId(): string | null {
+    if (!this.loggedUserId) {
+      // Handle the case when the user is not logged in or their ID is not available
+      return null;
+    }
+    console.log(this.loggedUserId);
+    return this.loggedUserId;
+  }
+
+
+
+
+
+
   decodeJwt() {
     if (this.token == undefined) {
       return;
     }
     const decodedToken = this.helper.decodeToken(this.token);
-    console.log("decoded token ",decodedToken);
+    console.log("decoded token ", decodedToken);
     this.roles = decodedToken.role;
     console.log("roles ", this.roles);
     this.loggedUser = decodedToken.sub;
+    this.LoggedUserName = decodedToken.username
+    this.loggedUserId=decodedToken.id
+    //console.log(this.loggedUserId);
   }
+
+  // In authService.ts
+
+  isConnected(): boolean {
+    const token = this.getToken();
+    return token != null && token !== '';
+  }
+
 
   loadToken() {
     this.token = localStorage.getItem('jwt')!;
@@ -67,6 +105,7 @@ export class AuthService {
   }
 
   getToken(): string {
+
     return this.token;
   }
 
@@ -76,7 +115,7 @@ export class AuthService {
     return true;
   }
 
-  
+
   isConsultor(): Boolean {
     if (!this.roles)
       return false;
@@ -89,9 +128,9 @@ export class AuthService {
     return this.roles.indexOf('ENTREPRISE') >= 0;
   }
 
-  checkRole(type :string) {
-    if(this.roles === type) {
-      return true; 
+  checkRole(type: string) {
+    if (this.roles === type) {
+      return true;
     }
     return false;
   }
