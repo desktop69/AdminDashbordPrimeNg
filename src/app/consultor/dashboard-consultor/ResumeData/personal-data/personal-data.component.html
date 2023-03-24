@@ -1,0 +1,234 @@
+<!-- Row -->
+<p-toast></p-toast>
+<div class="row">
+    <!-- Dashboard Box -->
+    <div class="col-xl-12">
+        <div class="dashboard-box margin-top-0">
+            <!-- Headline -->
+            <div class="headline mt-5">
+                <div class="d-flex bd-highlight">
+                    <div class="p-2 flex-grow-1 bd-highlight">
+                        <h2><i></i><b>Personal Data</b></h2>
+                    </div>
+                    <br>
+                    <div *ngIf="personalData" class="p-2 bd-highlight">
+                        <button pButton pRipple type="button"
+                            class="p-button-rounded p-button-info p-button-outlined icon-line-awesome-pencil"
+                            (click)="openModalForUpdate()"> </button>
+                    </div>
+                    <div *ngIf="!personalData" class="p-2 bd-highlight">
+                        <button pButton pRipple type="button"
+                            class="p-button-rounded p-button-info p-button-outlined icon-line-awesome-plus"
+                            (click)="showModalDialog()"> </button>
+                    </div>
+                </div>
+                <div class="content with-padding padding-bottom-0">
+                    <div class="row">
+
+
+                        <form (ngSubmit)="onSubmit()">
+                            <div class="col-auto custom-avatarcol-auto mt-1 ">
+
+                                <div class="avatar-wrapper" data-tippy-placement="bottom" title="Change Avatar">
+                                    <img #profilePic class="profile-pic"
+                                        [src]="(image ? ('data:image/png;base64,' + image.data) : 'assets/avatar.png')"
+                                        alt="" />
+                                    <div class="upload-button" (click)="onUploadButtonClick()"></div>
+                                    <input #fileInput class="file-upload" (change)="onFileSelected($event)" id="image"
+                                        type="file" accept="image/*" />
+                                </div>
+                            </div>
+                            <div class="flex justify-content-center flex-wrap gap-2 mr-3 ">
+                                <p-button icon="pi pi-check" styleClass="p-button-success  p-button-outlined "
+                                    [disabled]="!selectedFile" (click)="onSubmit()"></p-button>
+                                <p-button icon="pi pi-pencil" styleClass="p-button-info  p-button-outlined "
+                                    [disabled]="!selectedFile" (click)="updateImageByUserId()"></p-button>
+                                <p-button icon="pi pi-trash" styleClass="p-button-danger  p-button-outlined "
+                                    [disabled]="!image" (click)="onDeleteImage()"></p-button>
+                            </div>
+                        </form>
+
+                        <div *ngIf=" !personalData; else show">
+
+                            <div class="card mt-1">
+                                <p-messages [(value)]="messages" [enableService]="false"
+                                    [closable]="false"></p-messages>
+
+                            </div>
+                        </div>
+                        <ng-template #show>
+                            <div *ngIf="personalData">
+                                <div class="filed"><b>Name :</b> {{personalData.Name}}</div>
+                                <div class="filed"><b>FirstName :</b> {{personalData.FirstName}}</div>
+                                <div class="filed"><b>Gender :</b> {{personalData.Gender}}</div>
+                                <div class="filed"><b>Dateofbirth :</b> {{personalData.Dateofbirth | date:"dd/MM/yyyy"}}
+                                </div>
+                                <div class="filed"><b>MaritalStatus :</b>{{personalData.MaritalStatus}}</div>
+                                <div class="filed"><b>Country :</b> {{personalData.Country}}</div>
+                                <div class="filed"><b>Address :</b> {{personalData.Address}}</div>
+                                <div class="filed"><b>Region :</b> {{personalData.Region}}</div>
+                                <div class="filed"><b>City :</b> {{personalData.City}}</div>
+                                <div class="filed"><b>phoneNumber :</b>{{personalData.phoneNumber}}</div>
+                                <div class="filed"><b>Nationality :</b>{{personalData.Nationality}}</div>
+                            </div>
+                        </ng-template>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <p-dialog class='custom-close-button ' [(visible)]="displayModal" [modal]="true"
+        [style]="{height :'38vw',width:'50vw'}" [baseZIndex]="10000" [draggable]="true" [resizable]="true"
+        [closable]="false">
+        <ng-template pTemplate="header">
+            <div class="p-dialog-title">Personal Information</div>
+        </ng-template>
+        <!--  put ur conetent here   -->
+        <div class="p-mb-5 mt-5">
+            <div class="grid mt-5">
+                <div class="container">
+
+                    <div class="row">
+                        <div hidden class="col-md-6">
+                            <label for="Name" class="required" name="Name">First Name </label>
+                            <input type="text" id="firstName" [(ngModel)]="newPersonalData.IdUser" pInputText required>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="Name" class="required" name="Name">First Name </label>
+                            <input type="text" id="firstName" [(ngModel)]="newPersonalData.Name" pInputText required>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="lastName" class="required">Last Name </label>
+                            <input type="text" id="lastName" [(ngModel)]="newPersonalData.FirstName" pInputText
+                                required>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="p-field-select">
+                                <label for="country" class="required">Country </label>
+                                <select id="country" name="country" [(ngModel)]="newPersonalData.Country">
+                                    <option value="">Select a country</option>
+                                    <option value="Tunisia">Tunisia</option>
+                                    <option value="CA">Canada</option>
+                                    <option value="MX">Mexico</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="p-field-select">
+                                <label for="region" class="required">Region </label>
+                                <select id="region" name="region" [(ngModel)]="newPersonalData.Region">
+                                    <option value="">Select a region</option>
+                                    <option value="NY">Nabeul</option>
+                                    <option value="CA">California</option>
+                                    <option value="TX">Texas</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="p-field-select">
+                                <label for="city" class="required">City </label>
+                                <select id="city" name="city" [(ngModel)]="newPersonalData.City">
+                                    <option value="">Select a city</option>
+                                    <option value="NYC">New York City</option>
+                                    <option value="LA">Los Angeles</option>
+                                    <option value="LA">Beni Khiar</option>
+
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label for="numtel" class="required">Phone Number </label>
+                            <div class="keywords-container">
+                                <div class="keyword-input-container" *ngFor="let input of inputs; let i = index">
+                                    <input type="text" class="keyword-input" placeholder="Add Keywords"
+                                        [(ngModel)]="input.value" pInputText />
+                                    <button class="keyword-input-button ripple-effect" (click)="addInput()"
+                                        *ngIf="i === 0"><i class="icon-material-outline-add"></i></button>
+                                    <button class="keyword-input-button reds  " (click)="deleteInput(i)"
+                                        *ngIf="i > 0"><i class="icon-material-outline-delete"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="nationalite" class="required">Nationality </label>
+                            <input type="text" id="nationalite" [(ngModel)]="newPersonalData.Nationality" pInputText>
+                        </div>
+
+                    </div>
+                    <div class="row ">
+                        <div class="col-md-6">
+                            <label for="dateOfBirth" class="required">Date of Birth </label>
+                            <input type="date" id="dateOfBirth" [(ngModel)]="newPersonalData.Dateofbirth" pInputText
+                                required>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="adresse" class="required">Adresse </label>
+                            <input type="text" id="adresse" [(ngModel)]="newPersonalData.Address" pInputText required>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 ">
+                            <label for="gender" class="form-label" class="required">Gender</label>
+                            <div class="form-check flex align-items-center ml-5">
+                                <input type="radio" class="form-check-input" id="female" name="gender"
+                                    [(ngModel)]="newPersonalData.Gender" value="female">
+                                <label for="female" class="form-check-label  flex align-items-center">Female</label>
+                            </div>
+                            <div class="form-check flex align-items-center ml-5">
+                                <input type="radio" class="form-check-input" id="male" name="gender"
+                                    [(ngModel)]="newPersonalData.Gender" value="male">
+                                <label for="male" class="form-check-label">Male</label>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 ">
+                            <label for="maritalStatus" class="form-label " class="required">Marital Status</label>
+                            <div class="form-check flex align-items-center">
+                                <input type="radio" class="form-check-input" id="married"
+                                    [(ngModel)]="newPersonalData.MaritalStatus" name="MaritalStatus" value="married">
+                                <label for="married" class="form-check-label">Married</label>
+                            </div>
+                            <div class="form-check flex align-items-center">
+                                <input type="radio" class="form-check-input" id="single"
+                                    [(ngModel)]="newPersonalData.MaritalStatus" name="MaritalStatus" value="single">
+                                <label for="single" class="form-check-label">Single</label>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <ng-template pTemplate="footer">
+            <button pButton pRipple icon="pi pi-times" (click)="closeModal()" label="No"
+                class="p-button-outlined p-button-rounded p-button-danger blue-hover"></button>
+            <button pButton pRipple icon="pi pi-check"
+                (click)="isEditing ? updatePersonalData() : createPersonalData(); displayModal=false" label="Save"
+                class="p-button-outlined p-button-rounded p-button-secondary blue-hover"></button>
+        </ng-template>
+    </p-dialog>
+    <p-dialog header="Are you sure you want to close this window?" [(visible)]="displayPosition" [modal]="true"
+        [style]="{width: '20vw'}" [baseZIndex]="10000" [draggable]="false" [resizable]="false">
+        <p> Your changes will be lost if you leave without saving.</p>
+        <ng-template pTemplate="footer">
+            <button pButton pRipple icon="pi pi-times" (click)="displayPosition=false" label="No"
+                class="p-button-outlined p-button-rounded p-button-danger blue-hover"></button>
+            <button pButton pRipple icon="pi pi-check" (click)="closeAllModals()" label="Yes"
+                class="p-button-outlined p-button-rounded  p-button-secondary blue-hover"></button>
+        </ng-template>
+    </p-dialog>
+
+
+
+    <!-- <div class="note-buttons mt-0 ">
+                                <a  title="Remove" data-tippy-placement="top"><i class="icon-feather-trash-2"></i></a>
+                                <a  title="Edit" data-tippy-placement="top"><i class="icon-feather-edit"></i></a>
+                            
+                              </div> -->

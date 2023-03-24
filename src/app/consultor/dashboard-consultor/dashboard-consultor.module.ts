@@ -18,7 +18,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { ButtonModule } from 'primeng/button';
 import { DialogModule } from 'primeng/dialog';
 import { SelectButtonModule } from 'primeng/selectbutton';
-
+import { ToastModule } from 'primeng/toast';
+import { PersonalDataComponent } from './ResumeData/personal-data/personal-data.component';
+import { MessagesModule } from 'primeng/messages';
+import { RadioButtonModule } from 'primeng/radiobutton';
 
 
 @NgModule({
@@ -36,6 +39,7 @@ import { SelectButtonModule } from 'primeng/selectbutton';
     ImageComponent,
     
     FilesComponent,
+         PersonalDataComponent,
   ],
   imports: [
     CommonModule,
@@ -46,7 +50,10 @@ import { SelectButtonModule } from 'primeng/selectbutton';
     DialogModule,
     ButtonModule,
     SelectButtonModule,
-    ButtonModule
+    ButtonModule,
+    ToastModule,
+    MessagesModule,
+    RadioButtonModule
     
   ]
 })

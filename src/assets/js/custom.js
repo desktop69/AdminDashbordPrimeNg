@@ -808,12 +808,12 @@ $(document).ready(function(){
 			}
 		});
 
-		// add via button
-		$('.keyword-input-button').on('click', function(){ 
-			if((keywordInput.val()!=="")){
-				addKeyword();
-			}
-		});
+		// // add via button
+		// $('.keyword-input-button').on('click', function(){ 
+		// 	if((keywordInput.val()!=="")){
+		// 		addKeyword();
+		// 	}
+		// });
 
 		// removing keyword
 		$(document).on("click",".keyword-remove", function(){

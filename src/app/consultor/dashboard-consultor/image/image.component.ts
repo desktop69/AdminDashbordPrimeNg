@@ -33,15 +33,7 @@ export class ImageComponent implements OnInit {
   }
   
 
-  addInput() {
-    if (this.inputs.length < this.maxInputs) {
-      this.inputs.push({ value: '' });
-    }
-  }
 
-  deleteInput(index: number) {
-    this.inputs.splice(index, 1);
-  }
 
   loadUserDataAndImage(): void {
     const loggedInUserId = this.authService.getLoggedInUserId();
@@ -81,6 +73,7 @@ export class ImageComponent implements OnInit {
       this.imageService.addImage(this.selectedFile).subscribe(
         (response) => {
           console.log('Image uploaded successfully:', response);
+    
         },
         (error) => {
           console.error('Error uploading image:', error);

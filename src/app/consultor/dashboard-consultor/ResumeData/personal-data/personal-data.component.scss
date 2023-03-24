@@ -1,0 +1,10 @@
+.keyword-input-buttonreds{
+    background-color: red !important;
+    color: red !important;
+}
+
+.required::after {
+    content: "*" !important;
+    color: red;
+  }
+  

@@ -24,7 +24,7 @@ const routes: Routes = [
   {
     path: 'admin', component: AppLayoutComponent,
     children: [
-      { path: 'dashboardadmin', component: TableComponent },
+      { path: 'table', component: TableComponent },
 
 
     ]

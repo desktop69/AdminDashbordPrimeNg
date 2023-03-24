@@ -39,28 +39,16 @@ export class DashbordHeaderComponent implements OnInit {
 
   loadUserDataAndImage(): void {
     const loggedInUserId = this.authService.getLoggedInUserId();
-
     if (!loggedInUserId) {
       console.error('No logged-in user found');
       return;
     }
-
-    this.authService.getUserById(loggedInUserId).subscribe(
-      (userData) => {
-        const userId = userData.id; // Assuming the user object has an 'id' property
-        this.imageService.loadImageByUserId(userId).subscribe(
-          (data) => {
-            this.image = data;
-          },
-          (error) => {
-            console.error('Error loading image:', error);
-          }
-        );
-      },
+    this.imageService.loadImageByUserId(loggedInUserId).subscribe((data) => {
+      this.image = data;
+    },
       (error) => {
-        console.error('Error fetching user data:', error);
-      }
-    );
+        console.error('Error loading image:', error);
+      });
   }
 
 

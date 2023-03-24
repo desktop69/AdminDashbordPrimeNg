@@ -50,7 +50,8 @@ import { HeaderLoggedInComponent } from './landingPage/header/header-logged-in/h
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    
   ]
 
 })

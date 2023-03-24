@@ -1,7 +1,7 @@
-<div *ngIf="image">
-    <img [src]="'data:image/png;base64,' + image.data" alt="User image" />
-  </div>
-
+<!-- <div *ngIf="image">
+  <img [src]="'data:image/png;base64,' + image.data" alt="User image" />
+</div>
+ -->
 
 
 <!-- 
@@ -32,36 +32,29 @@
 <!-- In image-upload.component.html -->
 
 <form (ngSubmit)="onSubmit()">
-  <div class="col-auto custom-avatar ">
+  <div class="col-auto custom-avatarcol-auto mt-1 " >
 
-    
     <div class="avatar-wrapper" data-tippy-placement="bottom" title="Change Avatar">
-      <img
-        #profilePic
-        class="profile-pic"
-        [src]="(image ? ('data:image/png;base64,' + image.data) : 'assets/avatar.png')"
-        alt=""
-      />
+      <img #profilePic class="profile-pic"
+        [src]="(image ? ('data:image/png;base64,' + image.data) : 'assets/avatar.png')" alt="" />
       <div class="upload-button" (click)="onUploadButtonClick()"></div>
       <input #fileInput class="file-upload" (change)="onFileSelected($event)" id="image" type="file" accept="image/*" />
     </div>
   </div>
-  <button type="button" [disabled]="!selectedFile" (click)="onSubmit()">Upload</button>
-
-  <!-- Add the new button -->
-  <button type="button" [disabled]="!selectedFile" (click)="updateImageByUserId()">
-    Update 
-  </button>
-  <button type="button" class="btn-icon" [disabled]="!image" (click)="onDeleteImage()">
-    <i class="icon-material-outline-delete"></i>
-    Delete 
-  </button>
+  <div class="flex justify-content-center flex-wrap gap-2 mr-3 ">
+    <p-button icon="pi pi-check" styleClass="p-button-success  p-button-outlined " [disabled]="!selectedFile"
+      (click)="onSubmit()"></p-button>
+    <p-button icon="pi pi-pencil" styleClass="p-button-info  p-button-outlined " [disabled]="!selectedFile"
+      (click)="updateImageByUserId()"></p-button>
+    <p-button icon="pi pi-trash" styleClass="p-button-danger  p-button-outlined " [disabled]="!image"
+      (click)="onDeleteImage()"></p-button>
+  </div>
 </form>
 
 
 
-
 <!-- 
+
 <div class="col-xl-6 col-md-6">
   <div class="section-headline margin-top-25 margin-bottom-12">
     <h5>Keywords input</h5>
@@ -71,8 +64,9 @@
     <div class="keyword-input-container"  *ngFor="let input of inputs; let i = index" >
       <input type="text" class="keyword-input" placeholder="Add Keywords" [(ngModel)]="input.value"/>
       <button class="keyword-input-button ripple-effect" (click)="addInput()"><i class="icon-material-outline-add"></i></button> 
+      <button class="keyword-input-button red ripple-effect " (click)="deleteInput(i)"><i class="icon-material-outline-delete"></i></button>
   </div>
-  <button class="keyword-input-button red ripple-effect " (click)="deleteInput(i)"><i class="icon-material-outline-delete"></i></button>
+
     <div class="keywords-list">
 
     </div>
