@@ -68,7 +68,7 @@
                                 <div class="filed"><b>Address :</b> {{personalData.Address}}</div>
                                 <div class="filed"><b>Region :</b> {{personalData.Region}}</div>
                                 <div class="filed"><b>City :</b> {{personalData.City}}</div>
-                                <div class="filed"><b>phoneNumber :</b>{{personalData.phoneNumber}}</div>
+                                <div class="filed"><b>PhoneNumbers :</b>{{personalData.phoneNumber}}</div>
                                 <div class="filed"><b>Nationality :</b>{{personalData.Nationality}}</div>
                             </div>
                         </ng-template>
@@ -90,7 +90,7 @@
 
                     <div class="row">
                         <div hidden class="col-md-6">
-                            <label for="Name" class="required" name="Name">First Name </label>
+                            <label for="Name" class="required" name="Name" >First Name </label>
                             <input type="text" id="firstName" [(ngModel)]="newPersonalData.IdUser" pInputText required>
                         </div>
                         <div class="col-md-6">
@@ -145,8 +145,8 @@
                             <label for="numtel" class="required">Phone Number </label>
                             <div class="keywords-container">
                                 <div class="keyword-input-container" *ngFor="let input of inputs; let i = index">
-                                    <input type="text" class="keyword-input" placeholder="Add Keywords"
-                                        [(ngModel)]="input.value" pInputText />
+                                    <input type="text" class="keyword-input" placeholder="Phone Number"
+                                        [ngModel]="input.value " (ngModelChange)="input.value = $event" pInputText />
                                     <button class="keyword-input-button ripple-effect" (click)="addInput()"
                                         *ngIf="i === 0"><i class="icon-material-outline-add"></i></button>
                                     <button class="keyword-input-button reds  " (click)="deleteInput(i)"
@@ -163,7 +163,7 @@
                     <div class="row ">
                         <div class="col-md-6">
                             <label for="dateOfBirth" class="required">Date of Birth </label>
-                            <input type="date" id="dateOfBirth" [(ngModel)]="newPersonalData.Dateofbirth" pInputText
+                            <input type="date" id="dateOfBirth" [ngModel]="newPersonalData.Dateofbirth  | date: 'yyyy-MM-dd'" (ngModelChange)="newPersonalData.Dateofbirth= $event" pInputText
                                 required>
                         </div>
 

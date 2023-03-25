@@ -1,4 +1,4 @@
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { ImageService } from 'src/app/consultor/services/image.service';
 import { AuthService } from 'src/app/auth/services/auth.service';
 import { PersonalDataDTO } from './../../../models/personal-data.model';
@@ -37,9 +37,10 @@ export class PersonalDataComponent {
     private router: Router,) { }
     @ViewChild('fileInput') fileInput!: ElementRef;
     @ViewChild('profilePic') profilePic!: ElementRef;
+
   ngOnInit() {
     this.messages = [
-      { severity: 'warn', summary: 'Waning', detail: '    You havent figured out your Personal Data' },
+      { severity: 'warn', summary: 'Waning', detail: 'You havent figured out your Personal Data' },
 
     ];
     this.primengConfig.ripple = true;
@@ -48,29 +49,16 @@ export class PersonalDataComponent {
   }
 
 
-  showModalDialogforUpdate() {
-    this.newPersonalData = {
-      IdUser: '',
-      Name: '',
-      FirstName: '',
-      Gender: '',
-      Dateofbirth: new Date(),
-      MaritalStatus: '',
-      Country: '',
-      Address: '',
-      Region: '',
-      City: '',
-      phoneNumber: [],
-      Nationality: ''
-      // Add any other properties with their default values
-    };
-    this.displayModal = true;
-  }
-
   openModalForUpdate() {
     this.isEditing = true;
-    this.newPersonalData = { ...this.personalData };
+    this.newPersonalData = {...this.personalData };
+    this.inputs = [];
+    for (let i = 0; i < this.newPersonalData.phoneNumber.length; i++) {
+      this.inputs.push({ value: this.newPersonalData.phoneNumber[i] });
+    }
     this.displayModal = true;
+
+
   }
 
 
@@ -212,7 +200,7 @@ export class PersonalDataComponent {
         this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Image deleted successfully', life: 3000 });
       },
       (error) => {
-        console.error('Error deleting image:', error);
+        this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Error Deleting  image', life: 3000 });
       }
     );
   }

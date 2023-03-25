@@ -1,5 +1,5 @@
 export class PersonalDataDTO {
-
+    
     IdUser!: string;
     Name!: string;
     FirstName!: string;
