@@ -39,6 +39,9 @@ export class TableComponent {
     this.submitted = false;
     this.productDialog = true;
   }
+
+
+  
   deleteSelectedProducts() {
     this.confirmationService.confirm({
       message: 'Are you sure you want to delete the selected products?',

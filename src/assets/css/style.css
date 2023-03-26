@@ -283,8 +283,8 @@ img { max-width: 100%; }
 }
 
 #logo img {
-	height: 42px;
-	width: auto;
+	height: 100px;
+	width: 100px;
 	top: 50%;
 	position: relative;
 	transform: translate3d(0,-50%,0);
@@ -13549,7 +13549,7 @@ a.dashboard-responsive-nav-trigger { display: none; }
 }
 
 .note-buttons a {
-	font-size: 33px;
+	font-size: 20px;
 	padding-left: 3px;
 	margin-top: 2px;
 	display: inline-block;

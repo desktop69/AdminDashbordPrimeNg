@@ -22,8 +22,10 @@ import { ToastModule } from 'primeng/toast';
 import { PersonalDataComponent } from './ResumeData/personal-data/personal-data.component';
 import { MessagesModule } from 'primeng/messages';
 import { RadioButtonModule } from 'primeng/radiobutton';
-
-
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { ConfirmationService, MessageService } from 'primeng/api';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BrowserModule } from '@angular/platform-browser';
 @NgModule({
   declarations: [
     DashboardConsultorComponent,
@@ -37,16 +39,18 @@ import { RadioButtonModule } from 'primeng/radiobutton';
     LanguageComponent,
     DashboardConsultorFooterComponent,
     ImageComponent,
-    
+
     FilesComponent,
-         PersonalDataComponent,
+    PersonalDataComponent,
   ],
   imports: [
+
     CommonModule,
     RouterModule,
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
+    ConfirmDialogModule, // Move this import up
     DialogModule,
     ButtonModule,
     SelectButtonModule,
@@ -54,7 +58,9 @@ import { RadioButtonModule } from 'primeng/radiobutton';
     ToastModule,
     MessagesModule,
     RadioButtonModule
-    
-  ]
+
+  ],
+  providers: [ConfirmationService, MessageService],
+  bootstrap: [TrainingsQualificationsComponent]
 })
 export class DashboardConsultorModule { }

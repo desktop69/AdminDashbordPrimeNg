@@ -1,0 +1,18 @@
+.card {
+    .card-header {
+      position: relative;
+      .note-buttons {
+        position: absolute;
+        top: 0;
+        right: 0;
+      }
+    }
+  }
+
+  
+  .required::after {
+    content: "*" !important;
+    color: red;
+  }
+
+

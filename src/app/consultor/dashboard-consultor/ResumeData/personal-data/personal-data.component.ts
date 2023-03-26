@@ -77,12 +77,14 @@ export class PersonalDataComponent {
     const token = this.authService.getToken();
     this.newPersonalData.phoneNumber = this.inputs.map(input => input.value);
     this.personalDataService.createPersonalData(this.newPersonalData, token).subscribe((newData) => {
+      this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Personal Data added Succsessfuly', life: 3000 });
       console.log(newData);
+      this.getPersonalDataByUserId()
 
     });
-    this.loadUserDataAndImage(); 
-    this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Personal Data added Succsessfuly', life: 3000 });
-    window.location.reload()
+
+    
+
   }
 
   loadUserDataAndImage(): void {
@@ -120,11 +122,10 @@ export class PersonalDataComponent {
       return;
     }
     this.newPersonalData.phoneNumber = this.inputs.map(input => input.value);
-
     this.personalDataService.updatePersonalDataByUserId(this.newPersonalData ,userId).subscribe((updatedData) => {
       console.log(updatedData);
       this.messageService.add({severity:'success', summary: 'Successful', detail:'Personal Data updated Successfully', life: 3000});
-      this.loadUserDataAndImage(); // Reload user data after updating personal data
+      this.getPersonalDataByUserId() // Reload user data after updating personal data
     });
   }
 

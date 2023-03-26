@@ -1,74 +1,179 @@
+<!-- Row -->
+<p-toast></p-toast>
+<div class="row">
+    <!-- Dashboard Box -->
+    <div class="col-xl-12">
+        <div class="dashboard-box margin-top-0">
+            <!-- Headline -->
+            <div class="headline ">
+                <div class="d-flex bd-highlight">
+                    <div class="p-2 flex-grow-1 bd-highlight">
+                        <!-- <a title="add" data-tippy-placement="top"><i class="icon-feather-plus"></i></a> -->
+                        <h2><i></i><b>Trainings and Qualifications</b></h2>
+                    </div>
+                    <div class="p-2 bd-highlight">
+                        <button pButton pRipple type="button"
+                            class=" p-button-rounded p-button-info p-button-outlined icon-line-awesome-plus"
+                            (click)="showModalDialog()"> </button>
+                    </div>
+                </div>
+             
+    
+                <div class="content padding-bottom-0">
+                    <div *ngIf=" !trainingsQualifications else show">
+                        <div class="card-body mt-1">
+                            <p-messages [(value)]="messages" [enableService]="false" [closable]="false"></p-messages>
+                        </div>
+                    </div>
+                    <ng-template #show>
+                        <div *ngFor="let item of trainingsQualifications">
 
-        			<!-- Row -->
-                    <div class="row">
+                
+                            <div class="card-body">
+                                <p class="card-text"></p>
+                                <div class="card ">
+                                    <div class="card-header padding-bottom-0 ">
+                                        <div class="note-buttons">
+                                            <button title="Remove" (click)="confirmDelete(item)"
+                                                data-tippy-placement="top"><i class="icon-feather-trash-2"></i></button>
 
-                        <!-- Dashboard Box -->
-                        <div class="col-xl-12">
-                            <div class="dashboard-box margin-top-0">
-        
-                                <!-- Headline -->
-                                <div class="headline">
-                                    <h3><i class="icon-material-outline-account-balance"></i>trainings-qualifications works!</h3>
-                                </div>
-        
-                                <div class="content with-padding padding-bottom-0">
-        
-                                    <div class="row">
-        
-                                        <div class="col-auto">
-                                            <div class="avatar-wrapper" data-tippy-placement="bottom" title="Change Avatar">
-                                                <img class="profile-pic" src="images/user-avatar-placeholder.png" alt="" />
-                                                <div class="upload-button"></div>
-                                                <input class="file-upload" type="file" accept="image/*"/>
-                                            </div>
-                                        </div>
-        
-                                        <div class="col">
-                                            <div class="row">
-        
-                                                <div class="col-xl-6">
-                                                    <div class="submit-field">
-                                                        <h5>First Name</h5>
-                                                        <input type="text" class="with-border" value="Tom">
-                                                    </div>
-                                                </div>
-        
-                                                <div class="col-xl-6">
-                                                    <div class="submit-field">
-                                                        <h5>Last Name</h5>
-                                                        <input type="text" class="with-border" value="Smith">
-                                                    </div>
-                                                </div>
-        
-                                                <div class="col-xl-6">
-                                                    <!-- Account Type -->
-                                                    <div class="submit-field">
-                                                        <h5>Account Type</h5>
-                                                        <div class="account-type">
-                                                            <div>
-                                                                <input type="radio" name="account-type-radio" id="freelancer-radio" class="account-type-radio" checked/>
-                                                                <label for="freelancer-radio" class="ripple-effect-dark"><i class="icon-material-outline-account-circle"></i> Freelancer</label>
-                                                            </div>
-        
-                                                            <div>
-                                                                <input type="radio" name="account-type-radio" id="employer-radio" class="account-type-radio"/>
-                                                                <label for="employer-radio" class="ripple-effect-dark"><i class="icon-material-outline-business-center"></i> Employer</label>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-        
-                                                <div class="col-xl-6">
-                                                    <div class="submit-field">
-                                                        <h5>Email</h5>
-                                                        <input type="text" class="with-border" value="tom@example.com">
-                                                    </div>
-                                                </div>
-        
-                                            </div>
+                                            <button title="Edit" (click)="openModalForUpdate(item)"
+                                                data-tippy-placement="top"><i class="icon-feather-edit"></i></button>
                                         </div>
                                     </div>
-        
+
+                                    <h3 class="card-title">{{item.degreeObtained}} | {{item.typeOfDegree}}</h3>
+                                    <h4 class="icon-line-awesome-graduation-cap card-title">{{ item.status }}&nbsp;<i
+                                            class="icon-material-outline-access-time"></i>{{item.periodStart| date:
+                                        'yyyy-MM-dd' }} TO <i class="icon-material-outline-access-time"></i>{{
+                                        item.periodEnd | date: 'yyyy-MM-dd'}} </h4>
+
+                                    <h4 class="icon-material-outline-location-on card-title ">{{item.institution}} In
+                                        {{item.country}}</h4>
+
                                 </div>
                             </div>
                         </div>
+                    </ng-template>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<p-dialog class='custom-close-button' [(visible)]="displayModal" [modal]="true" [style]="{height :'38vw',width:'50vw'}"
+    [baseZIndex]="10000" [draggable]="true" [resizable]="true" [closable]="false">
+    <ng-template pTemplate="header">
+        <div class="p-dialog-title">Add Work Experience</div>
+    </ng-template>
+    <!--  put ur conetent here   -->
+    <div class="p-mb-5 mt-5">
+        <div class="grid mt-5">
+            <div class="container">
+                <div class="row">
+                    <input name="id" hidden [(ngModel)]="newTrainingQualification._id" readonly>
+
+                    <div class="col-md-6">
+                        <label for="typeOfDegree">Type of Degree</label>
+                        <select id="typeOfDegree" [(ngModel)]="newTrainingQualification.typeOfDegree">
+                            <option value="">Select a Type</option>
+                            <option value="Training">Training</option>
+                            <option value="University">University</option>
+                            <option value="Secondary">Secondary</option>
+                            <option value="Online">Online</option>
+                            <option value="other">other</option>
+                            <!-- add more options as needed -->
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="degreeObtained">Degree Obtained</label>
+                        <input type="text" id="degreeObtained" [(ngModel)]="newTrainingQualification.degreeObtained"
+                            pInputText />
+                    </div>
+                    <div class="col-md-6">
+                        <label for="periodStart">Period Start</label>
+                        <input type="date" id="periodStart"
+                            [ngModel]="newTrainingQualification.periodStart| date: 'yyyy-MM-dd'"
+                            (ngModelChange)="newTrainingQualification.periodStart= $event" showTime="true" pInputText />
+                    </div>
+                    <div class="col-md-6">
+                        <label for="periodEnd">Period End</label>
+                        <input type="date" id="periodEnd"
+                            [ngModel]="newTrainingQualification.periodEnd| date: 'yyyy-MM-dd'"
+                            (ngModelChange)="newTrainingQualification.periodEnd= $event" showTime="true" pInputText />
+                    </div>
+                    <div class="col-md-6">
+                        <label for="country">Country</label>
+                        <select id="country" [(ngModel)]="newTrainingQualification.country">
+                            <option value="USA">USA</option>
+                            <option value="Canada">Canada</option>
+                            <option value="UK">UK</option>
+                            <!-- add more options as needed -->
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="institution">Institution</label>
+                        <select id="institution" [(ngModel)]="newTrainingQualification.institution">
+                            <option value="Harvard University">Harvard University</option>
+                            <option value="Stanford University">Stanford University</option>
+                            <option value="MIT">MIT</option>
+                            <!-- add more options as needed -->
+                        </select>
+                    </div>
+
+                    <div class=" col-md-6 d-flex">
+                        <label for="status">Status</label>
+                        <div class=" p-field-radiobutton flex align-items-center ml-5">
+                            <input type="radio" id="statusObtained" name="status"
+                                [(ngModel)]="newTrainingQualification.status" value="Obtained" />
+                            <label for="statusObtained">Obtained</label>
+                        </div>
+                        <div class="  p-field-radiobutton flex align-items-center ml-5">
+                            <input type="radio" id="statusNotValidated" name="status"
+                                [(ngModel)]="newTrainingQualification.status" value="Not validated" />
+                            <label for="statusNotValidated">Not validated</label>
+                        </div>
+                        <div class=" p-field-radiobutton flex align-items-center ml-5">
+                            <input type="radio" id="statusInProgress" name="status"
+                                [(ngModel)]="newTrainingQualification.status" value="In progress" />
+                            <label for="statusInProgress">In progress</label>
+                        </div>
+                    </div>
+
+
+
+                    <div class="col-md-6">
+                        <label for="grade">Grade</label>
+                        <input type="number" id="grade" [(ngModel)]="newTrainingQualification.grade" />
+                    </div>
+                    <div class="col-md-12">
+                        <label for="description">Description</label>
+                        <textarea id="description" [(ngModel)]="newTrainingQualification.description"></textarea>
+                    </div>
+
+                </div>
+
+                <!-- Add more rows and columns for the remaining elements as needed -->
+            </div>
+
+        </div>
+    </div>
+
+    <ng-template pTemplate="footer">
+        <button pButton pRipple icon="pi pi-times" (click)="closeModal()" label="No"
+            class="p-button-outlined p-button-rounded p-button-secondary blue-hover"></button>
+        <button pButton pRipple icon="pi pi-check"
+            (click)="isEditing ? updateTrainingQualification() :  createTrainingQualification(); displayModal=false"
+            label="Save" class="p-button-outlined p-button-rounded p-button-secondary blue-hover"></button>
+    </ng-template>
+</p-dialog>
+<p-dialog header="Are you sure you want to close this window?" [(visible)]="displayPosition" [modal]="true"
+    [style]="{width: '20vw'}" [baseZIndex]="10000" [draggable]="false" [resizable]="false">
+    <p> Your changes will be lost if you leave without saving.</p>
+    <ng-template pTemplate="footer">
+        <button pButton pRipple icon="pi pi-times" (click)="displayPosition=false" label="No"
+            class="p-button-outlined p-button-rounded p-button-secondary blue-hover"></button>
+        <button pButton pRipple icon="pi pi-check" (click)="closeAllModals()" label="Yes"
+            class="p-button-outlined p-button-rounded p-button-secondary blue-hover"></button>
+    </ng-template>
+</p-dialog>
+<p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>
