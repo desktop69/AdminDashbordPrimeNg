@@ -40,7 +40,7 @@ export class PersonalDataComponent {
 
   ngOnInit() {
     this.messages = [
-      { severity: 'warn', summary: 'Waning', detail: 'You havent figured out your Personal Data' },
+      { severity: 'info', summary: 'Info', detail: 'You havent figured out your Personal Data' },
 
     ];
     this.primengConfig.ripple = true;
@@ -57,8 +57,6 @@ export class PersonalDataComponent {
       this.inputs.push({ value: this.newPersonalData.phoneNumber[i] });
     }
     this.displayModal = true;
-
-
   }
 
 

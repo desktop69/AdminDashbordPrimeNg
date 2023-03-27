@@ -1,0 +1,125 @@
+.custom-form {
+    background-color: #fff;
+    box-shadow: 0 10px 60px rgb(218, 229, 255);
+    border: 1px solid rgb(159, 159, 160);
+    border-radius: 20px;
+    padding: 2rem .7rem .7rem .7rem;
+    text-align: center;
+    font-size: 1.125rem;
+    max-width: 320px;
+  
+    &-title {
+      color: #000000;
+      font-size: 1.8rem;
+      font-weight: 500;
+    }
+  
+    &-paragraph {
+      margin-top: 10px;
+      font-size: 0.9375rem;
+      color: rgb(105, 105, 105);
+    }
+  }
+  
+  .custom-drop-container {
+    background-color: #fff;
+    position: relative;
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    margin-top: 2.1875rem;
+    border-radius: 10px;
+    border: 2px dashed rgb(171, 202, 255);
+    color: #444;
+    cursor: pointer;
+    transition: background .2s ease-in-out, border .2s ease-in-out;
+  
+    &:hover {
+      background: rgba(0, 140, 255, 0.164);
+      border-color: rgba(17, 17, 17, 0.616);
+    }
+  
+    & .drop-title {
+      color: #444;
+      font-size: 20px;
+      font-weight: bold;
+      text-align: center;
+      transition: color .2s ease-in-out;
+    }
+  
+    &:hover .drop-title {
+      color: #222;
+    }
+
+  }
+  
+  #custom-file-input {
+    width: 350px;
+    max-width: 100%;
+    color: #444;
+    padding-bottom: 6px;
+
+    background: #fff;
+    border-radius: 10px;
+    border: 1px solid rgba(8, 8, 8, 0.288);
+
+    &::file-selector-button {
+    padding: auto;
+    margin-right: 20px;
+    justify-content: center;
+    align-items: center;
+        border: none;
+        background: #084cdf;
+        border-radius: 10px;
+        color: #fff;
+        cursor: pointer;
+        transition: background .2s ease-in-out;
+        height: 3.1rem;
+      }
+    
+  
+    &::file-selector-button:hover {
+      background: #0d45a5;
+      height: 3.1rem;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+  
+
+  .card {
+    .card-header {
+      position: relative;
+      .note-buttons {
+        position: absolute;
+        top: 0;
+        right: 0;
+      }
+    }
+  }
+
+  .note-buttons {
+    button {
+      font-size: 1.5rem; // Adjust the size as needed
+    }
+  
+    .delete-button {
+      color: red;
+    }
+  
+    .edit-button {
+      color: black;
+    }
+    .download-button {
+        color: rgb(22, 2, 134);
+      }
+  }
+  
+  
+  .required::after {
+    content: "*" !important;
+    color: red;
+  }

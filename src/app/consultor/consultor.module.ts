@@ -21,10 +21,6 @@ import { HeaderLoggedOutComponent } from './landingPage/header/header-logged-out
 import { HeaderLoggedInComponent } from './landingPage/header/header-logged-in/header-logged-in.component';
 
 
-
-
-
-
 @NgModule({
   declarations: [
     ConsultorComponent,
@@ -42,6 +38,7 @@ import { HeaderLoggedInComponent } from './landingPage/header/header-logged-in/h
     HeaderLoggedOutComponent,
     HeaderLoggedInComponent,
     HeaderComponent,
+   
 
   ],
   imports: [

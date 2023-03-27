@@ -26,6 +26,11 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
+import { ProExperienceComponent } from './ResumeData/pro-experience/pro-experience.component';
+import {InputSwitchModule} from 'primeng/inputswitch';
+import {TableModule} from 'primeng/table';
+import { SkillsComponent } from './ResumeData/skills/skills.component';
+import { AdditionalDataComponent } from './ResumeData/additional-data/additional-data.component';
 @NgModule({
   declarations: [
     DashboardConsultorComponent,
@@ -39,9 +44,11 @@ import { BrowserModule } from '@angular/platform-browser';
     LanguageComponent,
     DashboardConsultorFooterComponent,
     ImageComponent,
-
     FilesComponent,
     PersonalDataComponent,
+    ProExperienceComponent,
+    SkillsComponent,
+    AdditionalDataComponent,
   ],
   imports: [
 
@@ -57,7 +64,9 @@ import { BrowserModule } from '@angular/platform-browser';
     ButtonModule,
     ToastModule,
     MessagesModule,
-    RadioButtonModule
+    InputSwitchModule,
+    RadioButtonModule,
+    TableModule
 
   ],
   providers: [ConfirmationService, MessageService],

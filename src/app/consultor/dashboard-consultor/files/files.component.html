@@ -1,25 +1,115 @@
-<div class="container">
-    <h2>Upload File</h2>
-    <form (ngSubmit)="onSubmit()">
-      <div class="form-group">
-        <label for="file">Choose File:</label>
-        <input type="file" id="file" (change)="onFileSelected($event)" />
+<!-- Row -->
+<p-toast></p-toast>
+<div class="row">
+  <!-- Dashboard Box -->
+  <div class="col-xl-12">
+    <div class="dashboard-box margin-top-0">
+      <!-- Headline -->
+      <div class="headline mt-5">
+        <div class="d-flex bd-highlight">
+          <div class="p-2 flex-grow-1 bd-highlight">
+            <!-- <a title="add" data-tippy-placement="top"><i class="icon-feather-plus"></i></a> -->
+            <h2><i></i><b>
+                My Documents</b></h2>
+          </div>
+          <div class="p-2 bd-highlight">
+            <button pButton pRipple type="button"
+              class="p-button-rounded p-button-info p-button-outlined icon-line-awesome-plus"
+              (click)="showModalDialog()"> </button>
+          </div>
+        </div>
+        <div class="content with-padding padding-bottom-0">
+          <p-table  [value]="file" [resizableColumns]="true" styleClass="p-datatable-gridlines  ">
+            <ng-template pTemplate="header">
+              <tr>
+                <th pResizableColumn>Name</th>
+                <th pResizableColumn>Type</th>
+            
+                <th pResizableColumn>Action</th>
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-file>
+              <tr>
+                <td> {{ file.name }}</td>
+                <td>{{ file.contentType }}</td>
+             
+                <td>
+                  <div class="note-buttons">
+                    <button class="delete-button" title="Remove" (click)="confirmDelete(file) " data-tippy-placement="top">
+                      <i class="icon-feather-trash-2"></i>
+                    </button>
+
+                  
+                    <button class="edit-button" title="Edit" (click)="openModalForUpdate(file)" data-tippy-placement="top">
+                      <i class="icon-feather-edit"></i>
+                    </button>
+
+                    <button class="download-button" title="Download" (click)="downloadFile(file)" data-tippy-placement="top">
+                      <i class="icon-feather-download"></i>
+                    </button>
+                    
+                  </div>
+                </td>
+              </tr>
+            </ng-template>
+          </p-table>
+
+        </div>
       </div>
-      <button type="submit" [disabled]="!selectedFile" class="btn btn-primary">Upload</button>
-    </form>
+    </div>
   </div>
+  <p-dialog class='custom-close-button' [(visible)]="displayModal" [modal]="true" [style]="{width: '25vw',height: '25v'}"
+    [baseZIndex]="10000" [draggable]="true" [resizable]="true" [closable]="false">
+    <ng-template pTemplate="header">
+      <div class="p-dialog-title">Add Work Experience</div>
+    </ng-template>
+    <!--  put ur conetent here   -->
+    <div class="p-mb-5 mt-5">
+      <div class="grid mt-5">
+        <div class="container">
+          <div class="col-md-3">
+            <span class="p-float-label">
 
+            </span>
+          </div>
+          <div class="row justify-content-center">
+            <form class="custom-form" (ngSubmit)="onSubmit()">
+              <span class="custom-form-title">Upload your file</span>
+              <p class="custom-form-paragraph">
+                File should be an PDF
+              </p>
+              <!-- <p *ngIf="isEditing && newFile">Current file: {{ newFile.name }}</p> -->
+              <label for="custom-file-input" class="custom-drop-container custom-file-input">
+                <span class="drop-title">Drop files here</span>
+                or
+                <input type="file" accept="image/*" required=""  id="custom-file-input"
+                  (change)="onFileSelected($event)">
+              </label>
+              <!-- [(ngModel)]="newFile.data"  -->
+            </form>
+            <hr>
 
-<hr>
+          </div>
+          <!-- Add more rows and columns for the remaining elements as needed -->
+        </div>
 
-  <div *ngIf="file">
-    <h3>File Details:</h3>
-    <p>File Name: {{ file.name }}</p>
-    <p>Content Type: {{ file.contentType }}</p>
-    <a [href]="'data:' + file.contentType + ';base64,' + file.data" [download]="file.name">
-      Download File
-    </a>
-  </div>
-  
-
-  
+      </div>
+    </div>
+    <ng-template pTemplate="footer">
+      <button pButton pRipple icon="pi pi-times" (click)="closeModal()" label="No"
+        class="p-button-outlined p-button-rounded p-button-secondary blue-hover"></button>
+      <button pButton pRipple icon="pi pi-check"[disabled]="!selectedFile" (click)=" isEditing ? updateImageByUserId() : onSubmit(); displayModal=false" label="Save"
+        class="p-button-outlined p-button-rounded p-button-secondary blue-hover"></button>
+    </ng-template>
+  </p-dialog>
+  <p-dialog header="Are you sure you want to close this window?" [(visible)]="displayPosition" [modal]="true"
+    [style]="{width: '20vw'}" [baseZIndex]="10000" [draggable]="false" [resizable]="false">
+    <p> Your changes will be lost if you leave without saving.</p>
+    <ng-template pTemplate="footer">
+      <button pButton pRipple icon="pi pi-times" (click)="displayPosition=false" label="No"
+        class="p-button-outlined p-button-rounded p-button-secondary blue-hover"></button>
+      <button pButton pRipple icon="pi pi-check" (click)="closeAllModals()" label="Yes"
+        class="p-button-outlined p-button-rounded p-button-secondary blue-hover"></button>
+    </ng-template>
+  </p-dialog>
+  <p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>

@@ -29,7 +29,7 @@ export class TrainingsQualificationsComponent implements OnInit {
   ngOnInit() {
 
     this.messages = [
-      { severity: 'warn', summary: 'Waning', detail: 'You havent figured out your Trainings ' },
+      { severity: 'info', summary: 'Info', detail: 'You havent figured out your Trainings ' },
 
     ];
     this.primengConfig.ripple = true;
@@ -105,16 +105,11 @@ export class TrainingsQualificationsComponent implements OnInit {
     this.trainingQualificationService.createTrainingQualification(this.newTrainingQualification,token).subscribe((createdTrainingQualification) => {
         console.log(createdTrainingQualification);
         this.messageService.add({severity:'success', summary: 'Successful', detail:'Training qualification created Successfully', life: 3000});
-        this.loadTrainingsQualifications(); // Reload trainings qualifications after creating new one
+        this.loadTrainingsQualifications(); 
+        this.newTrainingQualification = new TrainingsQualificationsDTO();
       },
     );
   }
-
-
-
-
-  
-
 
   showModalDialog() {
     this.displayModal = true;
@@ -124,6 +119,8 @@ export class TrainingsQualificationsComponent implements OnInit {
     this.displayPosition = true;
   }
   closeModal() {
+    this.isEditing=false;
+    this.newTrainingQualification= new TrainingsQualificationsDTO()
     //  this.displayModal = false;
     this.showPositionDialog('bottom');
   }

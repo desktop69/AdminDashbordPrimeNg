@@ -1,16 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { SkillsDTO } from './../../../models/skills.model';
+import { Component } from '@angular/core';
 import { ConfirmationService, Message, MessageService, PrimeNGConfig } from 'primeng/api';
 import { AuthService } from 'src/app/auth/services/auth.service';
-import { LanguageDTO } from 'src/app/consultor/models/langues.model';
-import { LanguagesService } from 'src/app/consultor/services/languages.service';
+import { SkillsService } from 'src/app/consultor/services/skills.service';
 
 @Component({
-  selector: 'app-language',
-  templateUrl: './language.component.html',
-  styleUrls: ['./language.component.scss']
+  selector: 'app-skills',
+  templateUrl: './skills.component.html',
+  styleUrls: ['./skills.component.scss']
 })
-export class LanguageComponent implements OnInit {
-
+export class SkillsComponent {
   isEditing: boolean = false;
   displayModal!: boolean;
   displayPosition!: boolean;
@@ -19,10 +18,10 @@ export class LanguageComponent implements OnInit {
   messages!: Message[];
   value1: string = "off";
   value2!: number;
-  languages: LanguageDTO[] = [];
-  newLanguages= new LanguageDTO();
+  skills: SkillsDTO[] = [];
+  newSkills= new SkillsDTO();
 
-  constructor(private primengConfig: PrimeNGConfig,private LanguageService: LanguagesService,
+  constructor(private primengConfig: PrimeNGConfig,private skillsService: SkillsService,
     private authService :AuthService,private messageService: MessageService,
     private confirmationService: ConfirmationService) { }
 
@@ -33,34 +32,34 @@ export class LanguageComponent implements OnInit {
 
     ];
     this.primengConfig.ripple = true;
-    this.loadLaguages()
+    this.loadSkills()
   }
 
 
-  openModalForUpdate(item: LanguageDTO) {
+  openModalForUpdate(item: SkillsDTO) {
     // console.log('Selected item id:', item._id);
      this.isEditing = true;
-     this.newLanguages = { ...item };
+     this.newSkills = { ...item };
      this.displayModal = true;
    }
   
-  confirmDelete(item: LanguageDTO) {
+  confirmDelete(item: SkillsDTO) {
     this.confirmationService.confirm({
-      message: 'Are you sure you want to delete this Languages ?',
+      message: 'Are you sure you want to delete this Skill ?',
       header: 'Confirm',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
-        this.deletelangue(item);
-        this.loadLaguages()
+        this.deleteSkills(item);
+        this.loadSkills()
       }
     });
   }
 
-  deletelangue(item: LanguageDTO) {
-    this.LanguageService.deleteLanguage(item._id).subscribe(
+  deleteSkills(item: SkillsDTO) {
+    this.skillsService.deleteSkill(item._id).subscribe(
       () => {
-        this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'langue deleted Successfully', life: 3000 });
-        this.loadLaguages(); 
+        this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'skill deleted Successfully', life: 3000 });
+        this.loadSkills(); 
       },
       (error) => {
         console.error(error);
@@ -72,14 +71,13 @@ export class LanguageComponent implements OnInit {
   
   
 
-  updateLanguages() {
-    const id= this.newLanguages._id;
+  updateskill() {
+    const id= this.newSkills._id;
     //console.log("the id is "+id);
-    this.LanguageService.updateLanguage(this.newLanguages, id).subscribe(
-      (updatedLangue) => {
-        console.log(updatedLangue);
-        this.messageService.add({severity:'success', summary: 'Successful', detail:'Training qualification updated Successfully', life: 3000});
-        this.loadLaguages(); 
+    this.skillsService.updateSkill(this.newSkills, id).subscribe(
+      (updatedSkill) => {
+        this.messageService.add({severity:'success', summary: 'Successful', detail:'Skill updated Successfully', life: 3000});
+        this.loadSkills(); 
       },
       (error) => {
         console.error(error);
@@ -88,25 +86,28 @@ export class LanguageComponent implements OnInit {
   }
 
 
-  loadLaguages() {
+  loadSkills() {
     const userId = this.authService.getLoggedInUserId();
     if (!userId) {
       console.error('No logged-in user found');
       return;
     }
-    this.LanguageService.getAllLanguageDTOByUserId(userId).subscribe((data) => {
-      this.languages=data; 
-      console.log(this.languages)
+    this.skillsService.getAllSkillsDTOByUserId(userId).subscribe((data) => {
+      this.skills=data; 
+      //console.log(this.skills)
       },
     );
   }
 
-  createLangue() {
+  createskill() {
     const token = this.authService.getToken();
-    this.LanguageService.createLanguageDTO(this.newLanguages,token).subscribe((createdLangue) => {
+    this.skillsService.createSkill(this.newSkills,token).subscribe((createdskilll) => {
         //console.log(createdLangue);
         this.messageService.add({severity:'success', summary: 'Successful', detail:'Langue created Successfully', life: 3000});
-        this.loadLaguages(); // Reload trainings qualifications after creating new one
+        this.loadSkills();
+      //hedhy besh ki tokhroj w ma taamelsh ajout wela update yreseti linputs
+      //zedtha fl classet lkol 
+        this.newSkills = new SkillsDTO();
       },
     );
     }
@@ -122,11 +123,13 @@ export class LanguageComponent implements OnInit {
       this.displayPosition = true;
     }
     closeModal() {
-      this.isEditing=false;
-
-      this.newLanguages = new LanguageDTO();
-      //  this.displayModal = false;
       
+
+      //hedhy besh ki tokhroj w ma taamelsh ajout wela update yreseti linputs
+      //zedtha fl classet lkol 
+      this.newSkills = new SkillsDTO();
+      //  this.displayModal = false;
+      this.isEditing=false;
       this.showPositionDialog('bottom');
   
     }

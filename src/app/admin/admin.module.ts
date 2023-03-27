@@ -72,6 +72,6 @@ import { AppComponent } from '../app.component';
     AppLayoutModule,
   ],
   providers: [ProductService, ConfirmationService, MessageService],
-  bootstrap: [AppComponent]
+  bootstrap: [TableComponent]
 })
 export class AdminModule { }

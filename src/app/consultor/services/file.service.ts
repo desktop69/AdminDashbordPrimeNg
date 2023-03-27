@@ -26,9 +26,21 @@ export class FileService {
   }
 
   
-  getFileByUserId(userId: string): Observable<FileDTO> {
-    return this.http.get<FileDTO>(`${this.apiUrl}/getFileByUserId/${userId}`);
+  deletefile(userId: string): Observable<any> {
+    return this.http.delete<any>(`${this.apiUrl}/deleteFileById/${userId}`);
   }
 
+  
+  getFileByUserId(userId: string): Observable<FileDTO[]> {
+    return this.http.get<FileDTO[]>(`${this.apiUrl}/getAllFilesByUserId/${userId}`);
+  }
+
+
+  updateFileById(id: string, file: File): Observable<any> {
+    const formData = new FormData();
+    formData.append('file', file);
+
+    return this.http.patch(`${this.apiUrl}/updateFileById/${id}`, formData);
+  }
 
 }

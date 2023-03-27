@@ -9,10 +9,22 @@
     }
   }
 
+  .note-buttons {
+    button {
+      font-size: 1.5rem; // Adjust the size as needed
+    }
+  
+    .delete-button {
+      color: red;
+    }
+  
+    .edit-button {
+      color: black;
+    }
+  }
+  
   
   .required::after {
     content: "*" !important;
     color: red;
   }
-
-

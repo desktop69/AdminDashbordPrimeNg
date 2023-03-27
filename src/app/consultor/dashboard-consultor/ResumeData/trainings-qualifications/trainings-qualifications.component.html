@@ -20,26 +20,30 @@
              
     
                 <div class="content padding-bottom-0">
-                    <div *ngIf=" !trainingsQualifications else show">
-                        <div class="card-body mt-1">
-                            <p-messages [(value)]="messages" [enableService]="false" [closable]="false"></p-messages>
+                    <div *ngIf="!(trainingsQualifications?.length ?? 0); else show">
+                        <div class="card">
+                            <div class="card-body mt-1">
+                                <p-messages [(value)]="messages" [enableService]="false" [closable]="false"></p-messages>
+                            </div>
                         </div>
                     </div>
                     <ng-template #show>
                         <div *ngFor="let item of trainingsQualifications">
-
+                             <div *ngIf="trainingsQualifications">
                 
                             <div class="card-body">
                                 <p class="card-text"></p>
                                 <div class="card ">
                                     <div class="card-header padding-bottom-0 ">
                                         <div class="note-buttons">
-                                            <button title="Remove" (click)="confirmDelete(item)"
-                                                data-tippy-placement="top"><i class="icon-feather-trash-2"></i></button>
-
-                                            <button title="Edit" (click)="openModalForUpdate(item)"
-                                                data-tippy-placement="top"><i class="icon-feather-edit"></i></button>
-                                        </div>
+                                            <button class="delete-button" title="Remove" (click)="confirmDelete(item)" data-tippy-placement="top">
+                                              <i class="icon-feather-trash-2"></i>
+                                            </button>
+                                          
+                                            <button class="edit-button" title="Edit" (click)="openModalForUpdate(item)" data-tippy-placement="top">
+                                              <i class="icon-feather-edit"></i>
+                                            </button>
+                                          </div>
                                     </div>
 
                                     <h3 class="card-title">{{item.degreeObtained}} | {{item.typeOfDegree}}</h3>
@@ -53,6 +57,7 @@
 
                                 </div>
                             </div>
+                        </div>
                         </div>
                     </ng-template>
                 </div>
@@ -73,8 +78,8 @@
                     <input name="id" hidden [(ngModel)]="newTrainingQualification._id" readonly>
 
                     <div class="col-md-6">
-                        <label for="typeOfDegree">Type of Degree</label>
-                        <select id="typeOfDegree" [(ngModel)]="newTrainingQualification.typeOfDegree">
+                        <label for="typeOfDegree" class="required">Type of Degree</label>
+                        <select id="typeOfDegree" [(ngModel)]="newTrainingQualification.typeOfDegree" required>
                             <option value="">Select a Type</option>
                             <option value="Training">Training</option>
                             <option value="University">University</option>
@@ -85,9 +90,10 @@
                         </select>
                     </div>
                     <div class="col-md-6">
-                        <label for="degreeObtained">Degree Obtained</label>
+                        <label for="degreeObtained"  class="required">Degree Obtained</label>
                         <input type="text" id="degreeObtained" [(ngModel)]="newTrainingQualification.degreeObtained"
                             pInputText />
+                            
                     </div>
                     <div class="col-md-6">
                         <label for="periodStart">Period Start</label>
@@ -138,9 +144,6 @@
                             <label for="statusInProgress">In progress</label>
                         </div>
                     </div>
-
-
-
                     <div class="col-md-6">
                         <label for="grade">Grade</label>
                         <input type="number" id="grade" [(ngModel)]="newTrainingQualification.grade" />
@@ -160,7 +163,7 @@
 
     <ng-template pTemplate="footer">
         <button pButton pRipple icon="pi pi-times" (click)="closeModal()" label="No"
-            class="p-button-outlined p-button-rounded p-button-secondary blue-hover"></button>
+            class="p-button-outlined p-button-rounded p-button-danger blue-hover"></button>
         <button pButton pRipple icon="pi pi-check"
             (click)="isEditing ? updateTrainingQualification() :  createTrainingQualification(); displayModal=false"
             label="Save" class="p-button-outlined p-button-rounded p-button-secondary blue-hover"></button>
@@ -171,9 +174,8 @@
     <p> Your changes will be lost if you leave without saving.</p>
     <ng-template pTemplate="footer">
         <button pButton pRipple icon="pi pi-times" (click)="displayPosition=false" label="No"
-            class="p-button-outlined p-button-rounded p-button-secondary blue-hover"></button>
+            class="p-button-outlined p-button-rounded p-button-danger blue-hover"></button>
         <button pButton pRipple icon="pi pi-check" (click)="closeAllModals()" label="Yes"
             class="p-button-outlined p-button-rounded p-button-secondary blue-hover"></button>
     </ng-template>
 </p-dialog>
-<p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>

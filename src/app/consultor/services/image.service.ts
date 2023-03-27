@@ -48,6 +48,4 @@ export class ImageService {
 
     return this.http.patch<any>(`${this.apiUrl}/updateImageByUserId/${IdUser}`, formData, httpOptions);
   }
-
-
 }

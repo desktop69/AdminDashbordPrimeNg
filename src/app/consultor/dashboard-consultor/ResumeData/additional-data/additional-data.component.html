@@ -1,0 +1,111 @@
+<!-- Row -->
+<p-toast></p-toast>
+<div class="row">
+    <!-- Dashboard Box -->
+    <div class="col-xl-12">
+        <div class="dashboard-box margin-top-0">
+            <!-- Headline -->
+            <div class="headline ">
+                <div class="d-flex bd-highlight">
+                    <div class="p-2 flex-grow-1 bd-highlight">
+                        <!-- <a title="add" data-tippy-placement="top"><i class="icon-feather-plus"></i></a> -->
+                        <h2><i></i><b>Addtional Information </b></h2>
+                    </div>
+                    <div class="p-2 bd-highlight">
+                        <button pButton pRipple type="button"
+                            class=" p-button-rounded p-button-info p-button-outlined icon-line-awesome-plus"
+                            (click)="showModalDialog()"> </button>
+                    </div>
+                </div>
+
+
+                <div class="content padding-bottom-0">
+                    <div *ngIf="!(additionaldata?.length ?? 0); else show">
+                        <div class="card">
+                            <div class="card-body mt-1">
+                                <p-messages [(value)]="messages" [enableService]="false"
+                                    [closable]="false"></p-messages>
+                            </div>
+                        </div>
+                    </div>
+                    <ng-template #show>
+                        <div *ngFor="let item of additionaldata">
+
+
+                            <div class="card-body">
+                                <p class="card-text"></p>
+                                <div class="card ">
+                                    <div class="card-header padding-bottom-0 ">
+                                        <div class="note-buttons">
+                                            <button class="delete-button" title="Remove" (click)="confirmDelete(item)"
+                                                data-tippy-placement="top">
+                                                <i class="icon-feather-trash-2"></i>
+                                            </button>
+
+                                            <button class="edit-button" title="Edit" (click)="openModalForUpdate(item)"
+                                                data-tippy-placement="top">
+                                                <i class="icon-feather-edit"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                    <h3 class="icon-line-awesome-star-half-o">{{item.interests}} </h3>
+                                      
+                                    <h3 >{{item.strengths}}</h3>
+
+                                </div>
+                            </div>
+                        </div>
+                    </ng-template>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<p-dialog class='custom-close-button' [(visible)]="displayModal" [modal]="true" [style]="{height :'30vw',width:'35vw'}"
+    [baseZIndex]="10000" [draggable]="true" [resizable]="true" [closable]="false">
+    <ng-template pTemplate="header">
+        <div class="p-dialog-title">Add Work Experience</div>
+    </ng-template>
+    <!--  put ur conetent here   -->
+    <div class="p-mb-5 mt-5">
+        <div class="grid mt-5">
+
+            <div class="container">
+                <div class="row">
+
+                    <input name="id" hidden [(ngModel)]="newadditionalData._id" readonly>
+                    <div class="col-md-12">
+                        <label for="competence">Interests</label>
+                        <input type="text" id="competence" [(ngModel)]="newadditionalData.interests"/>
+                    </div>
+                    <div class="col-md-12">
+                        <label for="competence">Strengths</label>
+                        <input type="text" id="competence" [(ngModel)]="newadditionalData.strengths"/>
+                    </div>
+                </div>
+                <!-- Add more rows and columns for the remaining elements as needed -->
+            </div>
+
+        </div>
+    </div>
+
+    <ng-template pTemplate="footer">
+        <button pButton pRipple icon="pi pi-times" (click)="closeModal()" label="No"
+            class="p-button-outlined p-button-rounded p-button-danger blue-hover"></button>
+        <button pButton pRipple icon="pi pi-check"
+            (click)="isEditing ? updateAdiitionalInfo() : createAdiitionalInfo(); displayModal=false" label="Save"
+            class="p-button-outlined p-button-rounded p-button-secondary blue-hover"></button>
+    </ng-template>
+</p-dialog>
+<p-dialog header="Are you sure you want to close this window?" [(visible)]="displayPosition" [modal]="true"
+    [style]="{width: '20vw'}" [baseZIndex]="10000" [draggable]="false" [resizable]="false">
+    <p> Your changes will be lost if you leave without saving.</p>
+    <ng-template pTemplate="footer">
+        <button pButton pRipple icon="pi pi-times" (click)="displayPosition=false" label="No"
+            class="p-button-outlined p-button-rounded p-button-danger blue-hover"></button>
+        <button pButton pRipple icon="pi pi-check" (click)="closeAllModals()" label="Yes"
+            class="p-button-outlined p-button-rounded p-button-secondary blue-hover"></button>
+    </ng-template>
+</p-dialog>

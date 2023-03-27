@@ -9,7 +9,7 @@
                 <div class="d-flex bd-highlight">
                     <div class="p-2 flex-grow-1 bd-highlight">
                         <!-- <a title="add" data-tippy-placement="top"><i class="icon-feather-plus"></i></a> -->
-                        <h2><i></i><b>Languages </b></h2>
+                        <h2><i></i><b>Skills </b></h2>
                     </div>
                     <div class="p-2 bd-highlight">
                         <button pButton pRipple type="button"
@@ -19,8 +19,8 @@
                 </div>
 
 
-                <div class="content padding-bottom-0"> 
-                    <div *ngIf="!(languages?.length ?? 0); else show">
+                <div class="content padding-bottom-0">
+                    <div *ngIf="!(skills?.length ?? 0); else show">
                         <div class="card">
                             <div class="card-body mt-1">
                                 <p-messages [(value)]="messages" [enableService]="false"
@@ -29,7 +29,7 @@
                         </div>
                     </div>
                     <ng-template #show>
-                        <div *ngFor="let item of languages">
+                        <div *ngFor="let item of skills">
 
 
                             <div class="card-body">
@@ -37,24 +37,27 @@
                                 <div class="card ">
                                     <div class="card-header padding-bottom-0 ">
                                         <div class="note-buttons">
-                                            <button class="delete-button" title="Remove" (click)="confirmDelete(item)" data-tippy-placement="top">
-                                              <i class="icon-feather-trash-2"></i>
+                                            <button class="delete-button" title="Remove" (click)="confirmDelete(item)"
+                                                data-tippy-placement="top">
+                                                <i class="icon-feather-trash-2"></i>
                                             </button>
-                                          
-                                            <button class="edit-button" title="Edit" (click)="openModalForUpdate(item)" data-tippy-placement="top">
-                                              <i class="icon-feather-edit"></i>
+
+                                            <button class="edit-button" title="Edit" (click)="openModalForUpdate(item)"
+                                                data-tippy-placement="top">
+                                                <i class="icon-feather-edit"></i>
                                             </button>
-                                          </div>
+                                        </div>
                                     </div>
 
-                                    <h3 class="card-text icon-material-outline-language">{{item.language}} | {{item.level}}</h3>
-                                    
+                                    <h3 class="card-text icon-material-outline-language">{{item.competence}} |
+                                        {{item.level}}</h3>
+                                    <h3 >{{item.description}}</h3>
 
                                 </div>
                             </div>
                         </div>
                     </ng-template>
-                </div> 
+                </div>
             </div>
         </div>
     </div>
@@ -72,66 +75,42 @@
             <div class="container">
                 <div class="row">
 
-                    <input name="id" hidden [(ngModel)]="newLanguages._id" readonly>
+                    <input name="id" hidden [(ngModel)]="newSkills._id" readonly>
+
+
                     <div class="col-md-12">
-                        <label for="language" class="required">Language</label>
-                        <select id="language" [(ngModel)]="newLanguages.language" required>
-                            <option value="language">Anglais</option>
-                            <option value="Français">Français</option>
-                            <option value="Espagnol">Espagnol</option>
-                            <option value="Mandarin">Mandarin</option>
-                            <option value="Arabe">Arabe</option>
-                            <option value="Hindi">Hindi</option>
-                            <option value="Russe">Russe</option>
-                            <option value="Allemand">Allemand</option>
-                            <option value="Polonais">Polonais</option>
-                            <option value="Chinois">Chinois</option>
-                            <option value="Japonais">Japonais</option>
-                            <option value="Portogais">Portogais</option>
-                            <option value="Italien">Italien</option>
-                        </select>
+                        <label for="competence">Skill</label>
+                        <input type="text" id="competence" [(ngModel)]="newSkills.competence"/>
                     </div>
-<div class="col-md-12">
-    <label for="gender"  class="required">Level </label>
-</div>
-                
+                    <div class="col-md-12">
+                        <label for="gender"  class="required">Level </label>
+                    </div>
+
                     <div class="form-check flex align-items-center ml-5 col-md-3">
                         <input type="radio" class="form-check-input" id="Intermediate" name="Intermediate"
-                            [(ngModel)]="newLanguages.level" value="Intermediate">
+                            [(ngModel)]="newSkills.level" value="Intermediate">
                         <label for="Intermediate" class="form-check-label  flex align-items-center">Intermediate</label>
                     </div>
                     <div class="form-check flex align-items-center ml-5 col-md-3">
                         <input type="radio" class="form-check-input" id="male" name="Beginner"
-                            [(ngModel)]="newLanguages.level" value="Beginner">
+                            [(ngModel)]="newSkills.level" value="Beginner">
                         <label for="male" class="form-check-label">Beginner</label>
                     </div>
 
                     <div class="form-check flex align-items-center col-md-3">
-                        <input type="radio" class="form-check-input" id="Advance" [(ngModel)]="newLanguages.level"
+                        <input type="radio" class="form-check-input" id="Advance" [(ngModel)]="newSkills.level"
                             name="MaritalStatus" value="Advance">
                         <label for="Advance" class="form-check-label">Advance</label>
                     </div>
                     <div class="form-check flex align-items-center col-md-">
-                        <input type="radio" class="form-check-input" id="fluent" [(ngModel)]="newLanguages.level"
+                        <input type="radio" class="form-check-input" id="fluent" [(ngModel)]="newSkills.level"
                             name="fluent" value="fluent">
                         <label for="fluent" class="form-check-label">Fluent</label>
-                    </div>
-
-
-
+                    </div>       
 
                     <div class="col-md-12">
-                        <label for="fluent" class="form-check-label">Certificate</label>
-                        <select id="certification" [(ngModel)]="newLanguages.certificate">
-                            <option value="TOEIC">TOEIC</option>
-                            <option value="TOEFL">TOEFL</option>
-                            <option value="TCF">TCF</option>
-                        </select>
-                    </div>
-
-                    <div class="col-md-12">
-                        <label for="grade">Grade</label>
-                        <input type="number" id="grade" [(ngModel)]="newLanguages.score" />
+                        <label for="description">Description</label>
+                        <textarea type="text" id="description" [(ngModel)]="newSkills.description"></textarea>
                     </div>
 
 
@@ -154,7 +133,7 @@
         <button pButton pRipple icon="pi pi-times" (click)="closeModal()" label="No"
             class="p-button-outlined p-button-rounded p-button-danger blue-hover"></button>
         <button pButton pRipple icon="pi pi-check"
-            (click)="isEditing ? updateLanguages() : createLangue(); displayModal=false" label="Save"
+            (click)="isEditing ? updateskill() : createskill(); displayModal=false" label="Save"
             class="p-button-outlined p-button-rounded p-button-secondary blue-hover"></button>
     </ng-template>
 </p-dialog>
