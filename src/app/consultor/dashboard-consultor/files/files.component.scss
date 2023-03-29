@@ -29,7 +29,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 10px;
+    padding: 20px;
     margin-top: 2.1875rem;
     border-radius: 10px;
     border: 2px dashed rgb(171, 202, 255);
@@ -67,7 +67,7 @@
     border: 1px solid rgba(8, 8, 8, 0.288);
 
     &::file-selector-button {
-    padding: auto;
+   
     margin-right: 20px;
     justify-content: center;
     align-items: center;

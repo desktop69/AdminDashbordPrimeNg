@@ -262,6 +262,11 @@
 							<a (click)="toggleUserMenu()"><div class="user-avatar status-online"><img [src]="'data:image/png;base64,' + image.data" alt=""></div></a>
 						  </div>
 						</div>
+						<div class="header-notifications-trigger">
+							<div *ngIf="!image">
+							  <a (click)="toggleUserMenu()"><div class="user-avatar status-online"><img src="./assets/avatarifnot.jpg" alt=""></div></a>
+							</div>
+						  </div>
 					  
 						<!-- Dropdown -->
 						<div class="header-notifications-dropdown">

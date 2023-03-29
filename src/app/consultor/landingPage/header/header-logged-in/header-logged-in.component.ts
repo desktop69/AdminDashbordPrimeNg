@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/auth/services/auth.service';
 import { ImageDTO } from 'src/app/consultor/models/image.model';
@@ -10,6 +10,7 @@ import { ImageService } from 'src/app/consultor/services/image.service';
   styleUrls: ['./header-logged-in.component.scss']
 })
 export class HeaderLoggedInComponent {
+
 
 
   constructor(public authService: AuthService, private router: Router, private imageService: ImageService) { }
