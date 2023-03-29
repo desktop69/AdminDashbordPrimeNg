@@ -1,3 +1,4 @@
+
 import { ImageComponent } from './consultor/dashboard-consultor/image/image.component';
 import { DashbordIndexComponent } from './consultor/dashboard-consultor/dashbord-index/dashbord-index.component';
 import { FeaturesJobsComponent } from './consultor/landingPage/features-jobs/features-jobs.component';
@@ -18,6 +19,8 @@ import { IndexHomeComponent } from './consultor/landingPage/index-home/index-hom
 import { ResumeComponent } from './consultor/dashboard-consultor/ResumeData/resume/resume.component';
 import { SettingsComponent } from './consultor/dashboard-consultor/settings/settings.component';
 import { FilesComponent } from './consultor/dashboard-consultor/files/files.component';
+import { RequestPasswordResetComponent } from './auth/request-password-reset/request-password-reset.component';
+import { ResetPasswordComponent } from './auth/reset-password/reset-password.component';
 
 const routes: Routes = [
   { path: "", redirectTo: "consultor", pathMatch: "full" },
@@ -53,6 +56,8 @@ const routes: Routes = [
   },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
+ { path: 'request-password-reset', component: RequestPasswordResetComponent},
+ { path: 'password-reset', component: ResetPasswordComponent}
 ];
 
 @NgModule({

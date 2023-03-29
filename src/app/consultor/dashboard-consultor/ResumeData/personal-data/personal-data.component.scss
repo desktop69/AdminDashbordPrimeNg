@@ -11,3 +11,15 @@
 .b{
     color: black;
 }
+
+
+.card {
+    .card-header {
+      position: relative;
+      .note-buttons {
+        position: absolute;
+        top: 0;
+        right: 0;
+      }
+    }
+  }

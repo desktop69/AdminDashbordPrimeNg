@@ -31,6 +31,12 @@ import {InputSwitchModule} from 'primeng/inputswitch';
 import {TableModule} from 'primeng/table';
 import { SkillsComponent } from './ResumeData/skills/skills.component';
 import { AdditionalDataComponent } from './ResumeData/additional-data/additional-data.component';
+import { DropdownModule } from 'primeng/dropdown';
+import { InputNumberModule } from 'primeng/inputnumber';
+import { InputTextModule } from 'primeng/inputtext';
+import { MultiSelectModule } from 'primeng/multiselect';
+import { ConfirmPopupModule } from "primeng/confirmpopup";
+import { CardModule } from 'primeng/card';
 @NgModule({
   declarations: [
     DashboardConsultorComponent,
@@ -66,8 +72,15 @@ import { AdditionalDataComponent } from './ResumeData/additional-data/additional
     MessagesModule,
     InputSwitchModule,
     RadioButtonModule,
-    TableModule
+    TableModule,
+    ConfirmPopupModule,
+    DropdownModule,
+    InputTextModule,
+    CardModule,
+    MultiSelectModule,
+    InputNumberModule
 
+    
   ],
   providers: [ConfirmationService, MessageService],
   bootstrap: [TrainingsQualificationsComponent]

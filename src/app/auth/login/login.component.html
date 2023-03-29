@@ -61,7 +61,7 @@
               <input type="password" [(ngModel)]="user.password" class="input-text with-border" name="password"
                 id="password" placeholder="Password" required />
             </div>
-            <a href="#" class="forgot-password">Forgot Password?</a>
+            <a [routerLink]="['/request-password-reset']" routerLinkActive="router-link-active"  class="forgot-password">Forgot Password?</a>
 
             <!-- Button -->
             <button class="button full-width button-sliding-icon ripple-effect margin-top-10" type="submit"

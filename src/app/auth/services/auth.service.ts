@@ -156,4 +156,13 @@ export class AuthService {
   isTokenExpired(): Boolean {
     return this.helper.isTokenExpired(this.token);
   }
+
+
+  requestPasswordReset(emailOrUsername: string): Observable<any> {
+    return this.http.post(`${this.apiURL}/request-password-reset`, { email: emailOrUsername });
+  }
+
+  resetPassword(username: string, newPassword: string, token: string): Observable<any> {
+    return this.http.post(`${this.apiURL}/reset-password`, { username, newpassword: newPassword, token });
+  }
 }

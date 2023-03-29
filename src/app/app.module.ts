@@ -33,14 +33,16 @@ import { MessageService } from 'primeng/api';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { AdminModule } from './admin/admin.module';
 import { CommonModule } from '@angular/common';
-import { ResetPasswordComponent } from './auth/reset-password/reset-password.component';
+
+
+
 
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    ResetPasswordComponent,
+  
 
 
   ],

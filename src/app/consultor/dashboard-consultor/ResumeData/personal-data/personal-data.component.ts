@@ -6,6 +6,7 @@ import { Component, ElementRef, ViewChild } from '@angular/core';
 import { Message, MessageService, PrimeNGConfig } from 'primeng/api';
 import { PersonalDataService } from 'src/app/consultor/services/personal-data.service';
 import { ImageDTO } from 'src/app/consultor/models/image.model';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-personal-data',
@@ -28,17 +29,31 @@ export class PersonalDataComponent {
   numberOfPersonaldata: number = 0;
   newPersonalData = new PersonalDataDTO();
   isEditing = false;
-
+  submitted = false;
   constructor(private primengConfig: PrimeNGConfig,
     private personalDataService: PersonalDataService,
     private authService: AuthService,
     private imageService: ImageService,
     private messageService: MessageService,
-    private router: Router,) { }
+    private router: Router,
+    private formBuilder: FormBuilder) { }
     @ViewChild('fileInput') fileInput!: ElementRef;
     @ViewChild('profilePic') profilePic!: ElementRef;
 
+
+    form: FormGroup = new FormGroup({
+       Name: new FormControl(''),
+      FirstName: new FormControl(''),
+    });
+
+
   ngOnInit() {
+
+    this.form = this.formBuilder.group(
+      {
+        Name: ['', Validators.required],
+      }
+    );
     this.messages = [
       { severity: 'info', summary: 'Info', detail: 'You havent figured out your Personal Data' },
 
@@ -59,7 +74,9 @@ export class PersonalDataComponent {
     this.displayModal = true;
   }
 
-
+  get f(): { [key: string]: AbstractControl } {
+    return this.form.controls;
+  }
    //add another input for the phone number
   addInput() {
     if (this.inputs.length < this.maxInputs) {
@@ -72,6 +89,10 @@ export class PersonalDataComponent {
   }
 
   createPersonalData() {
+    this.submitted = true;
+    if (this.form.invalid) {
+      return;
+    }
     const token = this.authService.getToken();
     this.newPersonalData.phoneNumber = this.inputs.map(input => input.value);
     this.personalDataService.createPersonalData(this.newPersonalData, token).subscribe((newData) => {
@@ -123,7 +144,7 @@ export class PersonalDataComponent {
     this.personalDataService.updatePersonalDataByUserId(this.newPersonalData ,userId).subscribe((updatedData) => {
       console.log(updatedData);
       this.messageService.add({severity:'success', summary: 'Successful', detail:'Personal Data updated Successfully', life: 3000});
-      this.getPersonalDataByUserId() // Reload user data after updating personal data
+      this.getPersonalDataByUserId() 
     });
   }
 
@@ -155,6 +176,7 @@ export class PersonalDataComponent {
   //images upload delete and submit
   onSubmit(): void {
     // console.log('Token in Component:', this.authService.getToken());
+
     if (this.selectedFile) {
       this.imageService.addImage(this.selectedFile).subscribe(
         (response) => {

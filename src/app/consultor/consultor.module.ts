@@ -19,6 +19,9 @@ import { DialogComponent } from './landingPage/dialog/dialog.component';
 import { RegisterComponent } from '../auth/register/register.component';
 import { HeaderLoggedOutComponent } from './landingPage/header/header-logged-out/header-logged-out.component';
 import { HeaderLoggedInComponent } from './landingPage/header/header-logged-in/header-logged-in.component';
+import { RequestPasswordResetComponent } from '../auth/request-password-reset/request-password-reset.component';
+import { ResetPasswordComponent } from '../auth/reset-password/reset-password.component';
+import { ToastModule } from 'primeng/toast';
 
 
 @NgModule({
@@ -38,6 +41,8 @@ import { HeaderLoggedInComponent } from './landingPage/header/header-logged-in/h
     HeaderLoggedOutComponent,
     HeaderLoggedInComponent,
     HeaderComponent,
+    ResetPasswordComponent,
+    RequestPasswordResetComponent
    
 
   ],
@@ -48,7 +53,7 @@ import { HeaderLoggedInComponent } from './landingPage/header/header-logged-in/h
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
-    
+    ToastModule,
   ]
 
 })
