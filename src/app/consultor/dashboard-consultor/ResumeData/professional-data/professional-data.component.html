@@ -30,24 +30,27 @@
                     <div class="p-2 bd-highlight">
                         <ng-template #createButton>
                             <button pButton pRipple type="button"
-                                class="p-button-rounded p-button-info p-button-outlined icon-line-awesome-pencil"
-                                (click)="showModalDialogCReate()"><span> create</span> </button>
+                                class="p-button-rounded p-button-info p-button-outlined icon-line-awesome-plus"
+                                (click)="showModalDialogCReate()"><span> </span> </button>
                         </ng-template>
                     </div>
 
 
                 </div>
-                <div class="content with-padding padding-bottom-0">
-                    <div class="row">
-                        <div *ngIf=" !professionaldata; else show">
-
-                            <div class="card mt-1">
-                                <p-messages [(value)]="messages" [enableService]="false"
-                                    [closable]="false"></p-messages>
+                
+                    
+                     
+                        <div class="content padding-bottom-0">
+                            <div *ngIf=" !professionaldata; else show">
+                                <div class="card">
+                                    <div class="card-body mt-1">
+                                        <p-messages [(value)]="messages" [enableService]="false" [closable]="false"></p-messages>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
+                            <div class="row">
                         <ng-template #show>
-                            <div *ngIf="professionaldata">
+                            <div *ngIf="professionaldata" class="col-md-10">
                                 <div class="filed"><b>Professional Title : </b>{{professionaldata.Title}}</div>
                                 <div class="filed"><b>Level Of Education :  </b>  {{ professionaldata.LevelOfEducation}}</div>
                                 <div class="filed"><b>Level Of Experience : </b>{{ professionaldata.LevelOfExperience}}</div>

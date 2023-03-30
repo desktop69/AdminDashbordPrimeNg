@@ -28,7 +28,7 @@ export class AdditionalDataComponent {
   ngOnInit() {
 
     this.messages = [
-      { severity: 'info', summary: 'Info', detail: 'You havent figured out your Professionel Experience ' },
+      { severity: 'info', summary: 'Info', detail: 'You havent figured out your Additional Information ' },
 
     ];
     this.primengConfig.ripple = true;

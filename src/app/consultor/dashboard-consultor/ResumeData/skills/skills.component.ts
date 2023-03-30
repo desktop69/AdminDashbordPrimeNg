@@ -28,7 +28,7 @@ export class SkillsComponent {
   ngOnInit() {
 
     this.messages = [
-      { severity: 'info', summary: 'Info', detail: 'You havent figured out your Languages ' },
+      { severity: 'info', summary: 'Info', detail: 'You havent figured out your Skills ' },
 
     ];
     this.primengConfig.ripple = true;

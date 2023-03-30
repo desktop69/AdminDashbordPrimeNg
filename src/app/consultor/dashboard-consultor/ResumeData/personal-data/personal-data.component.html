@@ -24,7 +24,7 @@
                 </div>
                 <div class="content pl-5 padding-bottom-0">
                     <div class="row">
-              
+
 
                         <form (ngSubmit)="onSubmit()">
                             <div class="col-auto custom-avatarcol-auto mt-1 ">
@@ -47,17 +47,17 @@
                                     [disabled]="!image" (click)="onDeleteImage()"></p-button>
                             </div>
                         </form>
+                        <div class="col-md-10">
+                            <div *ngIf=" !personalData; else show">
 
-                        <div *ngIf=" !personalData; else show">
-
-                            <div class="card">
-                                <div class="card-body mt-1">
-                                <p-messages [(value)]="messages" [enableService]="false"
-                                    [closable]="false"></p-messages>
+                                <div class="card">
+                                    <div class="card-body mt-1">
+                                        <p-messages [(value)]="messages" [enableService]="false"
+                                            [closable]="false"></p-messages>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-
                         <ng-template #show>
                             <div *ngIf="personalData">
                                 <div class="filed"><b>Name :</b> {{personalData.Name}}</div>
@@ -74,7 +74,7 @@
                                 <div class="filed"><b>Nationality :</b>{{personalData.Nationality}}</div>
                             </div>
                         </ng-template>
-                             
+
 
                     </div>
 
@@ -93,18 +93,17 @@
         <!--  put ur conetent here   -->
         <div class="p-mb-5 mt-5">
             <div class="grid mt-5">
-          
+
                 <div class="container">
-                    <form >
+
                     <div class="row">
-                        <div hidden  >
-                            <label for="Name" class="required" name="Name" >Id User </label>
-                            <input type="text"  [(ngModel)]="newPersonalData.IdUser" pInputText required
-                            class="form-control"
-                           >
-                        
+                        <div hidden>
+                            <label for="Name" class="required" name="Name">Id User </label>
+                            <input type="text" [(ngModel)]="newPersonalData.IdUser" pInputText required
+                                class="form-control">
+
                         </div>
-                        <div [formGroup]="form"  class="col-md-6">
+                        <!-- <div [formGroup]="form"  class="col-md-6">
                             <label for="Name" class="required" name="Name">First Name </label>
                             <input type="text" id="Name" [(ngModel)]="newPersonalData.Name" pInputText required
                              [ngClass]="{ 'is-invalid': submitted && f['Name'].errors }"
@@ -112,15 +111,20 @@
                              <div *ngIf="submitted && f['Name'].errors" class="invalid-feedback">
                                 <div *ngIf="f['Name'].errors['required']" class="p-error">first Name is required</div>
                               </div>
+                        </div> -->
+                        <div class="col-md-6">
+                            <label for="Name" class="required" name="Name">First Name </label>
+                            <input type="text" id="Name" [(ngModel)]="newPersonalData.Name" pInputText required>
+
                         </div>
-                       
+
 
 
                         <div class="col-md-6">
                             <label for="lastName" class="required">Last Name </label>
                             <input type="text" id="lastName" [(ngModel)]="newPersonalData.FirstName" pInputText
                                 required>
-                                
+
                         </div>
                     </div>
                     <div class="row">
@@ -183,8 +187,9 @@
                     <div class="row ">
                         <div class="col-md-6">
                             <label for="dateOfBirth" class="required">Date of Birth </label>
-                            <input type="date" id="dateOfBirth" [ngModel]="newPersonalData.Dateofbirth  | date: 'yyyy-MM-dd'" (ngModelChange)="newPersonalData.Dateofbirth= $event" pInputText
-                                required>
+                            <input type="date" id="dateOfBirth"
+                                [ngModel]="newPersonalData.Dateofbirth  | date: 'yyyy-MM-dd'"
+                                (ngModelChange)="newPersonalData.Dateofbirth= $event" pInputText required>
                         </div>
 
                         <div class="col-md-6">
@@ -222,16 +227,16 @@
                             </div>
                         </div>
                     </div>
-                </form>
+
                 </div>
-         
+
             </div>
         </div>
         <ng-template pTemplate="footer">
             <button pButton pRipple icon="pi pi-times" (click)="closeModal()" label="No"
                 class="p-button-outlined p-button-rounded p-button-danger blue-hover"></button>
-            <button pButton pRipple icon="pi pi-check" 
-                (click)="isEditing ? updatePersonalData() : createPersonalData();  displayModal=false"  [disabled]="!form.valid"  label="Save"
+            <button pButton pRipple icon="pi pi-check"
+                (click)="isEditing ? updatePersonalData() : createPersonalData();  displayModal=false" label="Save"
                 class="p-button-outlined p-button-rounded p-button-secondary blue-hover"></button>
         </ng-template>
     </p-dialog>
@@ -245,4 +250,3 @@
                 class="p-button-outlined p-button-rounded  p-button-secondary blue-hover"></button>
         </ng-template>
     </p-dialog>
-

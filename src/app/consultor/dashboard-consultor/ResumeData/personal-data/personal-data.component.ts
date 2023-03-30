@@ -89,10 +89,10 @@ export class PersonalDataComponent {
   }
 
   createPersonalData() {
-    this.submitted = true;
-    if (this.form.invalid) {
-      return;
-    }
+    // this.submitted = true;
+    // if (this.form.invalid) {
+    //   return;
+    // }
     const token = this.authService.getToken();
     this.newPersonalData.phoneNumber = this.inputs.map(input => input.value);
     this.personalDataService.createPersonalData(this.newPersonalData, token).subscribe((newData) => {
@@ -188,7 +188,7 @@ export class PersonalDataComponent {
         }
       );
     } else {
-      this.messageService.add({ severity: 'warn', summary: 'Waning', detail: 'Image uploaded successfully', life: 3000 });
+      this.messageService.add({ severity: 'warn', summary: 'Waning', detail: 'No Image Selected', life: 3000 });
     }
   }
 
