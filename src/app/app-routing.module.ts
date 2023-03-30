@@ -1,3 +1,4 @@
+import { CVPlatformeComponent } from './consultor/dashboard-consultor/ResumeData/cvplatforme/cvplatforme.component';
 
 import { ImageComponent } from './consultor/dashboard-consultor/image/image.component';
 import { DashbordIndexComponent } from './consultor/dashboard-consultor/dashbord-index/dashbord-index.component';
@@ -43,7 +44,8 @@ const routes: Routes = [
       { path: 'Settings', component: SettingsComponent },
       { path: 'jobs', component: FeaturesJobsComponent },
       { path: 'image', component: ImageComponent },
-      { path: 'file', component: FilesComponent }
+      { path: 'file', component: FilesComponent },
+      { path: 'CVplatforme', component: CVPlatformeComponent }
 
     ]
   },

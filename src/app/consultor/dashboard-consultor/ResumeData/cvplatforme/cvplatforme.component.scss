@@ -1,0 +1,108 @@
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 5%;
+    padding: 5%;
+  
+
+}
+.container {
+    padding: 20px;
+    display: flex;
+}
+
+header {
+    background-color: #313b47;
+    color: white;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+}
+
+.profile-image {
+    width: 150px;
+    
+    margin-right: 35px;
+    border: 3px solid rgb(68, 147, 153);
+}
+.content{
+    padding-left: 0;
+}
+h1 {
+    color: rgb(68, 147, 153);
+    margin-bottom: 5px;
+}
+
+.title {
+    margin-bottom: 5px;
+}
+
+.description {
+    font-size: 16px;
+}
+
+.small-header {
+    background-color: black;
+    color: white;
+    padding: 5px;
+    text-align: center;
+}
+
+.container {
+    background-color: white;
+    padding: 20px;
+    border: 2px solid #333;
+    display: flex;
+}
+
+.left,
+.right {
+    margin-top: 35px;
+    flex: 1;
+    padding: 0 10px;
+}
+
+h2 {
+    color: rgb(68, 147, 153);
+    border-bottom: 2px solid rgb(68, 147, 153);
+    padding-bottom: 5px;
+}
+
+.section {
+    margin-bottom: 20px;
+}
+
+.skills,
+.interests,
+.languages {
+    display: inline;
+    margin: 0 5px;
+}
+
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+.uppercase {
+    text-transform: uppercase;
+}
+
+#downloadButton {
+    position: absolute;
+    margin-right: 120px;
+    margin-top: 45px;
+    top: 20px;
+    right: 10px;
+    background-color: #4CAF50;
+    color: white;
+    padding: 8px 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+  
+  #downloadButton:hover {
+    background-color: #45a049;
+  }

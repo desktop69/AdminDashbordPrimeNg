@@ -12,4 +12,5 @@ export class PersonalDataDTO {
     City!: string;
     phoneNumber!: string[];
     Nationality!: string;
+    about!:string;
 }

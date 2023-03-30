@@ -20,6 +20,7 @@ export class AuthService {
   public loggedUser!: string;
   public isloggedIn: Boolean = false;
   public roles!: string;
+  public emailUser!:string;
   private helper = new JwtHelperService();
   private apiURL = 'http://localhost:3000/auth';
   token!: string;
@@ -88,6 +89,7 @@ export class AuthService {
     this.loggedUser = decodedToken.sub;
     this.LoggedUserName = decodedToken.username
     this.loggedUserId=decodedToken.id
+    this.emailUser=decodedToken.email
     //console.log(this.loggedUserId);
   }
 

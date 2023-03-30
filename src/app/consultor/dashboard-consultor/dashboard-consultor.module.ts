@@ -37,6 +37,9 @@ import { InputTextModule } from 'primeng/inputtext';
 import { MultiSelectModule } from 'primeng/multiselect';
 import { ConfirmPopupModule } from "primeng/confirmpopup";
 import { CardModule } from 'primeng/card';
+import { CVPlatformeComponent } from './ResumeData/cvplatforme/cvplatforme.component';
+import { AuthService } from 'src/app/auth/services/auth.service';
+import { TagModule } from "primeng/tag";
 @NgModule({
   declarations: [
     DashboardConsultorComponent,
@@ -55,6 +58,7 @@ import { CardModule } from 'primeng/card';
     ProExperienceComponent,
     SkillsComponent,
     AdditionalDataComponent,
+    CVPlatformeComponent,
   ],
   imports: [
 
@@ -78,11 +82,11 @@ import { CardModule } from 'primeng/card';
     InputTextModule,
     CardModule,
     MultiSelectModule,
-    InputNumberModule
-
+    InputNumberModule,
+    TagModule
     
   ],
-  providers: [ConfirmationService, MessageService],
+  providers: [ConfirmationService, MessageService,AuthService],
   bootstrap: [TrainingsQualificationsComponent]
 })
 export class DashboardConsultorModule { }
