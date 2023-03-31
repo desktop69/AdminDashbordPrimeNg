@@ -1,56 +1,62 @@
+<div class="dashboard-sidebar-inner" data-simplebar>
+	<div class="dashboard-nav-container">
 
-	<div class="dashboard-sidebar-inner" data-simplebar>
-		<div class="dashboard-nav-container">
-
-			<!-- Responsive Navigation Trigger -->
-			<a href="#" class="dashboard-responsive-nav-trigger">
-				<span class="hamburger hamburger--collapse" >
-					<span class="hamburger-box">
-						<span class="hamburger-inner"></span>
-					</span>
+		<!-- Responsive Navigation Trigger -->
+		<a href="#" class="dashboard-responsive-nav-trigger">
+			<span class="hamburger hamburger--collapse">
+				<span class="hamburger-box">
+					<span class="hamburger-inner"></span>
 				</span>
-				<span class="trigger-title">Dashboard Navigation</span>
-			</a>
-			
-			<!-- Navigation -->
-			<div class="dashboard-nav">
-				<div class="dashboard-nav-inner">
+			</span>
+			<span class="trigger-title">Dashboard Navigation</span>
+		</a>
 
-					<ul data-submenu-title="Start">
-						<li><a routerLink="/dashboardConsultor/statistics"><i class="icon-material-outline-dashboard"></i> Dashboard</a></li>
-						<li><a routerLink="/dashboardConsultor/Resume"><i class="icon-material-outline-question-answer"></i>My Resume <span class="nav-tag">1</span></a></li>
-						<li><a routerLink="/dashboardConsultor/file"><i class="icon-line-awesome-file"></i> My Documents</a></li>
-						<li><a routerLink="/"><i class="icon-material-outline-rate-review"></i> Reviews</a></li>
-					</ul>
+		<!-- Navigation -->
+		<div class="dashboard-nav">
+			<div class="dashboard-nav-inner">
 
-					
-					<ul data-submenu-title="Organize and Manage">
-						<li><a href="#"><i class="icon-material-outline-business-center"></i> Jobs</a>
-							<ul>
-								<li><a routerLink="/dashboardConsultor/jobs">Manage Jobs <span class="nav-tag">3</span></a></li>
-								<li><a href="dashboard-manage-candidates.html">Manage Candidates</a></li>
-								<li><a href="dashboard-post-a-job.html">Post a Job</a></li>
-							</ul>	
-						</li>
-						<li><a href="#"><i class="icon-material-outline-assignment"></i> Tasks</a>
-							<ul>
-								<li><a href="dashboard-manage-tasks.html">Manage Tasks <span class="nav-tag">2</span></a></li>
-								<li><a href="dashboard-manage-bidders.html">Manage Bidders</a></li>
-								<li><a href="dashboard-my-active-bids.html">My Active Bids <span class="nav-tag">4</span></a></li>
-								<li><a href="dashboard-post-a-task.html">Post a Task</a></li>
-							</ul>	
-						</li>
-					</ul>
+				<ul data-submenu-title="Start">
+					<li><a routerLink="/dashboardConsultor/statistics"><i class="icon-material-outline-dashboard"></i>
+							Dashboard</a></li>
+					<li><a routerLink="/dashboardConsultor/Resume"><i
+								class="icon-material-outline-question-answer"></i>My Resume <span
+								class="nav-tag">1</span></a></li>
+					<li><a routerLink="/dashboardConsultor/file"><i class="icon-line-awesome-file"></i> My Documents</a>
+					</li>
+					<li><a routerLink="/dashboardConsultor/CVplatforme"><i class="icon-material-outline-rate-review"></i> Generated CV</a></li>
+				</ul>
 
-					<ul data-submenu-title="Account">
-						<li class="active"><a routerLink="/dashboardConsultor/Settings"><i class="icon-material-outline-settings"></i> Settings</a></li>
-						<li><a (click)="onLogout()"><i class="icon-material-outline-power-settings-new"></i> Logout</a></li>
-					</ul>
-					
-				</div>
+
+				<ul data-submenu-title="Organize and Manage">
+					<li><a href="#"><i class="icon-material-outline-business-center"></i> Jobs</a>
+						<ul>
+							<li><a routerLink="/dashboardConsultor/jobs">Manage Jobs <span class="nav-tag">3</span></a>
+							</li>
+							<li><a href="dashboard-manage-candidates.html">Manage Candidates</a></li>
+							<li><a href="dashboard-post-a-job.html">Post a Job</a></li>
+						</ul>
+					</li>
+					<li><a href="#"><i class="icon-material-outline-assignment"></i> Tasks</a>
+						<ul>
+							<li><a href="dashboard-manage-tasks.html">Manage Tasks <span class="nav-tag">2</span></a>
+							</li>
+							<li><a href="dashboard-manage-bidders.html">Manage Bidders</a></li>
+							<li><a href="dashboard-my-active-bids.html">My Active Bids <span
+										class="nav-tag">4</span></a></li>
+							<li><a href="dashboard-post-a-task.html">Post a Task</a></li>
+						</ul>
+					</li>
+				</ul>
+
+				<ul data-submenu-title="Account">
+					<li class="active"><a routerLink="/dashboardConsultor/Settings"><i
+								class="icon-material-outline-settings"></i> Settings</a></li>
+					<li><a (click)="onLogout()"><i class="icon-material-outline-power-settings-new"></i> Logout</a></li>
+				</ul>
+
 			</div>
-			<!-- Navigation / End -->
-
 		</div>
-	</div>
+		<!-- Navigation / End -->
 
+	</div>
+</div>
