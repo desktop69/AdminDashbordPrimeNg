@@ -69,15 +69,14 @@ export class LanguageComponent implements OnInit {
   }
   
  
-  
-  
-
   updateLanguages() {
     const id= this.newLanguages._id;
     //console.log("the id is "+id);
     this.LanguageService.updateLanguage(this.newLanguages, id).subscribe(
       (updatedLangue) => {
+
         console.log(updatedLangue);
+
         this.messageService.add({severity:'success', summary: 'Successful', detail:'Training qualification updated Successfully', life: 3000});
         this.loadLaguages(); 
       },
@@ -110,8 +109,6 @@ export class LanguageComponent implements OnInit {
       },
     );
     }
-
-
     showModalDialog() {
       this.isEditing = false;
       this.displayModal = true;

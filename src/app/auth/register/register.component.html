@@ -72,9 +72,9 @@
 								placeholder="Email Address" required />
 						</div>
 
-						<div alert alert-danger *ngIf="email.invalid && (email.dirty || email.touched)">
-							<div alert alert-danger *ngIf="email.errors?.required">Email is required.</div>
-							<div *ngIf="email.errors?.email">Email must be a valid email address.</div>
+						<div  alert alert-danger *ngIf="email.invalid && (email.dirty || email.touched)">
+							<div class="alert" alert alert-danger *ngIf="email.errors?.required">Email is required.</div>
+							<div class="alert" *ngIf="email.errors?.email">Email must be a valid email address.</div>
 						</div>
 
 						<div class="input-with-icon-left">
@@ -82,6 +82,10 @@
 							<input class="input-text with-border" name="emailaddress-register" type="text"
 								class="form-control" formControlName="username" placeholder="User Name" required />
 						</div>
+					
+						  
+						  
+						  
 
 						<div class="input-with-icon-left" title="Should be at least 8 characters long"
 							data-tippy-placement="bottom">
@@ -89,6 +93,19 @@
 							<input type="password" class="input-text with-border" name="password-register"
 								id="password-register" placeholder="Password" formControlName="password" required />
 						</div>
+						<div class="alert" *ngIf="registerForm.get('password').errors?.invalidPassword && (registerForm.get('password').dirty || registerForm.get('password').touched)">
+							Password must be at least 8 characters long and include numbers.
+						  </div>
+						<div class="input-with-icon-left" title="Should be at least 8 characters long" data-tippy-placement="bottom">
+							<i class="icon-material-outline-lock"></i>
+							<input type="password" class="input-text with-border" name="password-confirm" id="password-confirm" placeholder="Confirm Password" formControlName="confirmPassword" required />
+						  </div>
+						  <div class="alert" *ngIf="registerForm.errors?.notMatching && (registerForm.get('confirmPassword').dirty || registerForm.get('confirmPassword').touched)">
+							Passwords do not match.
+						  </div>
+						  
+						
+						  
 
 						<!-- Button -->
 						<div class="form-group">
