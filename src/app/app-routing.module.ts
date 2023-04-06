@@ -22,6 +22,12 @@ import { SettingsComponent } from './consultor/dashboard-consultor/settings/sett
 import { FilesComponent } from './consultor/dashboard-consultor/files/files.component';
 import { RequestPasswordResetComponent } from './auth/request-password-reset/request-password-reset.component';
 import { ResetPasswordComponent } from './auth/reset-password/reset-password.component';
+import { ProfileEntrepriseComponent } from './consultor/dashboard-consultor/entreprise/profile-entreprise/profile-entreprise.component';
+
+import { AddProfileComponent } from './consultor/dashboard-consultor/entreprise/add-profile/add-profile.component';
+import { EditProfileComponent } from './consultor/dashboard-consultor/entreprise/edit-profile/edit-profile.component';
+import { ForbiddenComponent } from './consultor/forbidden/forbidden.component';
+import { ProfileEntrepriseGuard } from './guards/profile-entreprise.guard';
 
 const routes: Routes = [
   { path: "", redirectTo: "consultor", pathMatch: "full" },
@@ -45,7 +51,10 @@ const routes: Routes = [
       { path: 'jobs', component: FeaturesJobsComponent },
       { path: 'image', component: ImageComponent },
       { path: 'file', component: FilesComponent },
-      { path: 'CVplatforme', component: CVPlatformeComponent }
+      { path: 'CVplatforme', component: CVPlatformeComponent },
+      { path: 'profile-entreprise', component: ProfileEntrepriseComponent, canActivate:[ProfileEntrepriseGuard] },
+      { path: 'add-profile', component: AddProfileComponent },
+      { path: 'edit-profile/:id', component: EditProfileComponent }
 
     ]
   },
@@ -58,12 +67,14 @@ const routes: Routes = [
   },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
- { path: 'request-password-reset', component: RequestPasswordResetComponent},
- { path: 'password-reset', component: ResetPasswordComponent}
+  { path: 'request-password-reset', component: RequestPasswordResetComponent},
+  { path: 'password-reset', component: ResetPasswordComponent},
+  { path: 'forbidden', component:ForbiddenComponent},
+
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

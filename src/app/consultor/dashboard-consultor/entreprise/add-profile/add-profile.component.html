@@ -1,0 +1,192 @@
+<p-toast></p-toast>
+<div class="mb-5">
+    <div class="container">
+        <h1 class="my-4">Add Company Information</h1>
+
+        <div class="card-container">
+            <form #addCompanyForm="ngForm">
+                <div class="row">
+                    <div class="col-md-12">
+
+                        <div hidden class="form-group">
+                            <input type="text" class="form-control " id="IdUser" name="IdUser"
+                                [(ngModel)]="entreprise.IdUser">
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <label for="nameE" class="required">Company Name</label>
+                        <div class="form-group">
+                            <input type="text" class="form-control " id="nameE" name="nameE"
+                                [(ngModel)]="entreprise.nameE" required #nameEField="ngModel">
+                            <div class="invalid-feedback alert" *ngIf="nameEField.invalid && nameEField.touched">
+                                Please enter a company name.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="row">
+
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="categoryE" class="required">Category</label>
+                            <select class="form-control" id="categoryE" name="categoryE"
+                                [(ngModel)]="entreprise.categoryE">
+                                <option value="Select a category" selected>Select a category</option>
+                                <option value=" Local private company" selected>Local private company</option>
+                                <option value="Foregin private company">Foregin private company</option>
+                                <option value=" Public Function"> Public Function </option>
+                                <!-- Add more options as needed -->
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+
+                        <div class="form-group">
+                            <label for="sizeE" class="required">Company Size</label>
+                            <select id="sizeE" name="sizeE" [(ngModel)]="entreprise.sizeE">
+                                <option value="less than 20 Employer">less than 20 Employer</option>
+                                <option value="Between 20 and 100 Employer"> Between 20 and 100 Employer</option>
+                                <option value="Between 100 and 200 Employer">Between 100 and 200 Employer</option>
+                                <option value="Between 200 and 500 Employer">Between 200 and 500 Employer</option>
+                                <option value="more than 500 Employer"> more than 500 Employer</option>
+                                <!-- add more options as needed -->
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="activitySectorE" class="required">Activity Area</label>
+                            <select class="form-control" id="activitySectorE" name="activitySectorE"
+                                [(ngModel)]="entreprise.activitySectorE" required>
+                                <option value="Select an Activity Area" selected>Select an Activity Area</option>
+                                <option value="technology" selected>Technology</option>
+                                <option value="healthcare">Healthcare</option>
+                                <option value="finance">Finance</option>
+                                <option value="manufacturing">Manufacturing</option>
+                                <option value="retail">Retail</option>
+                            </select>
+
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="p-field-select">
+                            <label for="countryE" class="required">Country </label>
+                            <select id="countryE" name="countryE" [(ngModel)]="entreprise.countryE">
+                                <option value="">Select a country</option>
+                                <option value="Tunisia">Tunisia</option>
+                                <option value="CA">Canada</option>
+                                <option value="MX">Mexico</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="p-field-select">
+                            <label for="regionE" class="required">Region </label>
+                            <select id="regionE" name="regionE" [(ngModel)]="entreprise.regionE">
+                                <option value="">Select a region</option>
+                                <option value="NY">Nabeul</option>
+                                <option value="CA">California</option>
+                                <option value="TX">Texas</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="p-field-select">
+                            <label for="city" class="required">City </label>
+                            <select id="city" name="villeE" [(ngModel)]="entreprise.villeE">
+                                <option value="">Select a city</option>
+                                <option value="NYC">New York City</option>
+                                <option value="LA">Los Angeles</option>
+                                <option value="LA">Beni Khiar</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="numtel" class="required">Phone Number</label>
+                        <div class="keywords-container">
+                            <div class="keyword-input-container" *ngFor="let input of inputs; let i = index">
+                                <input type="text" class="keyword-input" placeholder="Phone Number" name="telE"
+                                    [ngModel]="input.value" (ngModelChange)="input.value = $event" pInputText />
+                                <button class="keyword-input-button ripple-effect" (click)="addInput()"
+                                    *ngIf="i === 0"><i class="icon-material-outline-add"></i></button>
+                                <button class="keyword-input-button reds" (click)="deleteInput(i)" *ngIf="i > 0"><i
+                                        class="icon-material-outline-delete"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="adresse">Adresse: </label>
+                        <input type="text" id="adresse" name="adresse" [(ngModel)]="entreprise.adresse" pInputText>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="ZIPcodeE" class="required"> Tax registration number</label>
+                        <div class="form-group">
+
+                            <input type="text" class="form-control " id="ZIPcodeE" name="ZIPcodeE"
+                                [(ngModel)]="entreprise.ZIPcodeE" required #nameEField="ngModel"
+                                pTooltip="Please insert the scanned tax number to verify your company"
+                                tooltipPosition="top">
+                            <div class="invalid-feedback alert" *ngIf="nameEField.invalid && nameEField.touched">
+                                Please enter the Tax registration number of your company
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                    <div class="col-md-6">
+
+                        <label for="linkWebSite" class="required">Link Web Site</label>
+                        <div class="form-group">
+
+                            <input type="text" class="form-control " id="linkWebSite" name="linkWebSite"
+                                [(ngModel)]="entreprise.linkWebSite">
+
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2">
+                        <label for="data" class="required">Company Logo</label>
+                        <div class="avatar-wrapper" data-tippy-placement="bottom" title="Change Avatar">
+                            <img #profilePic class="profile-pic"
+                                [src]="(image ? ('data:image/png;base64,' + image.data) : './assets/avatar.png')"
+                                alt="" />
+                            <div class="upload-button" (click)="onUploadButtonClick()"></div>
+                            <input #fileInput class="file-upload" (change)="onFileSelected($event)" id="image"
+                                name="data" type="file" accept="image/*" />
+                        </div>
+                    </div>
+                    <div class="col-md-10">
+                        <label for="descriptionE">Description</label>
+                        <textarea type="text" id="descriptionE" name="descriptionE"
+                            [(ngModel)]="entreprise.descriptionE"></textarea>
+                    </div>
+                </div>
+
+            </form>
+            <button type="submit" class="add" [disabled]="!addCompanyForm.form.valid"
+                (click)="addCompanyAndUploadImage()">Add
+                Company</button>
+        </div>
+    </div>
+</div>

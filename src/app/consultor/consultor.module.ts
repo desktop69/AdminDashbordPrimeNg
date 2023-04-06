@@ -22,6 +22,7 @@ import { HeaderLoggedInComponent } from './landingPage/header/header-logged-in/h
 import { RequestPasswordResetComponent } from '../auth/request-password-reset/request-password-reset.component';
 import { ResetPasswordComponent } from '../auth/reset-password/reset-password.component';
 import { ToastModule } from 'primeng/toast';
+import { ForbiddenComponent } from './forbidden/forbidden.component';
 
 
 @NgModule({
@@ -42,7 +43,8 @@ import { ToastModule } from 'primeng/toast';
     HeaderLoggedInComponent,
     HeaderComponent,
     ResetPasswordComponent,
-    RequestPasswordResetComponent
+    RequestPasswordResetComponent,
+    ForbiddenComponent
    
 
   ],

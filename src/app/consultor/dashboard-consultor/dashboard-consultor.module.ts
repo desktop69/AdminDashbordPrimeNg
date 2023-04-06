@@ -27,8 +27,8 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { ProExperienceComponent } from './ResumeData/pro-experience/pro-experience.component';
-import {InputSwitchModule} from 'primeng/inputswitch';
-import {TableModule} from 'primeng/table';
+import { InputSwitchModule } from 'primeng/inputswitch';
+import { TableModule } from 'primeng/table';
 import { SkillsComponent } from './ResumeData/skills/skills.component';
 import { AdditionalDataComponent } from './ResumeData/additional-data/additional-data.component';
 import { DropdownModule } from 'primeng/dropdown';
@@ -40,6 +40,11 @@ import { CardModule } from 'primeng/card';
 import { CVPlatformeComponent } from './ResumeData/cvplatforme/cvplatforme.component';
 import { AuthService } from 'src/app/auth/services/auth.service';
 import { TagModule } from "primeng/tag";
+import { ProfileEntrepriseComponent } from './entreprise/profile-entreprise/profile-entreprise.component';
+import { AddProfileComponent } from './entreprise/add-profile/add-profile.component';
+import { TooltipModule } from 'primeng/tooltip';
+import { EditProfileComponent } from './entreprise/edit-profile/edit-profile.component';
+import { SharedService } from './entreprise/shared/shared';
 @NgModule({
   declarations: [
     DashboardConsultorComponent,
@@ -59,15 +64,17 @@ import { TagModule } from "primeng/tag";
     SkillsComponent,
     AdditionalDataComponent,
     CVPlatformeComponent,
+    ProfileEntrepriseComponent,
+    AddProfileComponent,
+    EditProfileComponent,
   ],
   imports: [
-
     CommonModule,
     RouterModule,
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
-    ConfirmDialogModule, // Move this import up
+    ConfirmDialogModule, // I Move this import up
     DialogModule,
     ButtonModule,
     SelectButtonModule,
@@ -83,10 +90,11 @@ import { TagModule } from "primeng/tag";
     CardModule,
     MultiSelectModule,
     InputNumberModule,
-    TagModule
-    
+    TagModule,
+    TooltipModule
+
   ],
-  providers: [ConfirmationService, MessageService,AuthService],
+  providers: [ConfirmationService, MessageService, AuthService, SharedService],
   bootstrap: [TrainingsQualificationsComponent]
 })
 export class DashboardConsultorModule { }

@@ -21,9 +21,12 @@
                 <div class="col-md-2 pl-4 pt-3" *ngIf="image">
                     <img [src]="'data:image/png;base64,' + image.data" alt="" class="profile-image">
                 </div>
+               
+                    
+              
 
                 <div class="col-md-2 pl-4 pt-3" *ngIf="!image">
-                    <img src="./assets/avatarifnot.jpg" alt="" class="profile-image">
+                   <a ><div class="user-avatar status-online" class="profile-image"><img src="./assets/avatarifnot.jpg" alt=""></div></a>
                 </div>
                 <div class="col-md-4 content" *ngIf="personalData || professionaldata">
                     <h1 class="">{{personalData.Name}}&nbsp;{{personalData.FirstName}}</h1>

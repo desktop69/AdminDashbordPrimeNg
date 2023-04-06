@@ -14,6 +14,7 @@ export class AuthService {
   constructor(private router: Router, private http: HttpClient) {
     this.loadToken();
    this.decodeJwt()
+ 
   }
   public loggedUserId! :string;
   public LoggedUserName ! :string;
@@ -69,7 +70,7 @@ export class AuthService {
       // Handle the case when the user is not logged in or their ID is not available
       return null;
     }
-    console.log(this.loggedUserId);
+   // console.log(this.loggedUserId);
     return this.loggedUserId;
   }
 
@@ -83,9 +84,9 @@ export class AuthService {
       return;
     }
     const decodedToken = this.helper.decodeToken(this.token);
-    console.log("decoded token ", decodedToken);
+    //console.log("decoded token ", decodedToken);
     this.roles = decodedToken.role;
-    console.log("roles ", this.roles);
+    //console.log("roles ", this.roles);
     this.loggedUser = decodedToken.sub;
     this.LoggedUserName = decodedToken.username
     this.loggedUserId=decodedToken.id

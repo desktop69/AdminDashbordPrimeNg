@@ -39,10 +39,8 @@ export class LoginComponent implements OnInit {
         this.message = response.res.message;
         this.authService.saveToken(token);
         
-        if (this.authService.checkRole("entreprise")) {
-          this.router.navigate(['/entreprise']);
-        } else if (this.authService.checkRole("consultor")){
-          this.router.navigate(['/consultor']);
+        if (this.authService.checkRole("entreprise") ||this.authService.checkRole("consultor")) {
+          this.router.navigate(['/consultor']); 
         } else {
           this.router.navigate(['/admin']);
         }

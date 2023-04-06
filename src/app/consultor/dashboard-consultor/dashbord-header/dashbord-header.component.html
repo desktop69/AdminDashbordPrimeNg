@@ -276,6 +276,9 @@
 										<div *ngIf="image">
 										<div class="user-avatar status-online"><img [src]="'data:image/png;base64,' + image.data"  alt=""></div>
 										</div>
+										<div *ngIf="!image">
+											<div class="user-avatar status-online"><img src="./assets/avatarifnot.jpg" alt=""></div>
+											</div>
 										<div class="user-name">
 											{{this.authService.LoggedUserName}} <span>{{this.authService.roles}}</span>
 										</div>
