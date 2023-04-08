@@ -9,7 +9,7 @@
     <h3><b>Offer Details</b></h3>
     <div class="filed"><b>Title :</b> {{ offerInfoData.titleO }}</div>
     <div class="filed"><b>Reference :</b> {{offerInfoData.referenceO}}</div>
-    <div class="filed"><b>Description :</b> {{offerInfoData.descriptionE }} </div> <br>
+    <div class="filed" [innerHTML]="'<b>Description:</b> ' + offerInfoData.descriptionE" ></div>
 
     <h3><b>Offer Info</b></h3>
     <div class="filed"><b>TypesOfPositions :</b> {{offerDetailsData.TypesOfPositions}}</div>

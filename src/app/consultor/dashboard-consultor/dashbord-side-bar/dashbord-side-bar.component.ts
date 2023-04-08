@@ -11,6 +11,12 @@ export class DashbordSideBarComponent implements OnInit {
 
   constructor(public authService:AuthService ,private router :Router) { }
 
+  activeSubmenu: string | null = null;
+
+  toggleSubmenu(submenu: string) {
+    this.activeSubmenu = this.activeSubmenu === submenu ? null : submenu;
+  }
+
   ngOnInit(
 
   ): void {

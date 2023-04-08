@@ -4,6 +4,7 @@ import { Offer } from '../../models/offer/offer.model';
 import { JobOfferService } from '../../services/offer/job-offer.service';
 import { AbstractControl, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { SelectItemGroup } from 'primeng/api';
+import { SharedService } from '../entreprise/shared/shared';
 interface City {
   name: string,
   code: string
@@ -23,7 +24,7 @@ export class EditJobOfferComponent {
   submitted: boolean = false;
   coverLetterForm!: FormGroup;
   liveContent: string = '';
-  groupedCities!: SelectItemGroup[];   
+  groupedCities!: SelectItemGroup[];
   cities!: City[];
 
   countries!: Country[];
@@ -32,7 +33,7 @@ export class EditJobOfferComponent {
 
   selectedCountries!: Country[];
 
-  constructor(private apiofferService: JobOfferService, private activatedRoute: ActivatedRoute, private router: Router) {
+  constructor(private sharedService: SharedService, private apiofferService: JobOfferService, private activatedRoute: ActivatedRoute, private router: Router) {
 
     this.coverLetterForm = new FormGroup({
       coverLetterText: new FormControl('',
@@ -42,55 +43,55 @@ export class EditJobOfferComponent {
         ])
     });
     this.cities = [
-      {name: 'New York', code: 'NY'},
-      {name: 'Rome', code: 'RM'},
-      {name: 'London', code: 'LDN'},
-      {name: 'Istanbul', code: 'IST'},
-      {name: 'Paris', code: 'PRS'}
-  ];
+      { name: 'New York', code: 'NY' },
+      { name: 'Rome', code: 'RM' },
+      { name: 'London', code: 'LDN' },
+      { name: 'Istanbul', code: 'IST' },
+      { name: 'Paris', code: 'PRS' }
+    ];
 
-  this.countries = [
-      {name: 'Australia', code: 'AU'},
-      {name: 'Brazil', code: 'BR'},
-      {name: 'China', code: 'CN'},
-      {name: 'Egypt', code: 'EG'},
-      {name: 'France', code: 'FR'},
-      {name: 'Germany', code: 'DE'},
-      {name: 'India', code: 'IN'},
-      {name: 'Japan', code: 'JP'},
-      {name: 'Spain', code: 'ES'},
-      {name: 'United States', code: 'US'}
-  ];
+    this.countries = [
+      { name: 'Australia', code: 'AU' },
+      { name: 'Brazil', code: 'BR' },
+      { name: 'China', code: 'CN' },
+      { name: 'Egypt', code: 'EG' },
+      { name: 'France', code: 'FR' },
+      { name: 'Germany', code: 'DE' },
+      { name: 'India', code: 'IN' },
+      { name: 'Japan', code: 'JP' },
+      { name: 'Spain', code: 'ES' },
+      { name: 'United States', code: 'US' }
+    ];
 
-  this.groupedCities = [
+    this.groupedCities = [
       {
-          label: 'Germany', value: 'de', 
-          items: [
-              {label: 'Berlin', value: 'Berlin'},
-              {label: 'Frankfurt', value: 'Frankfurt'},
-              {label: 'Hamburg', value: 'Hamburg'},
-              {label: 'Munich', value: 'Munich'}
-          ]
+        label: 'Germany', value: 'de',
+        items: [
+          { label: 'Berlin', value: 'Berlin' },
+          { label: 'Frankfurt', value: 'Frankfurt' },
+          { label: 'Hamburg', value: 'Hamburg' },
+          { label: 'Munich', value: 'Munich' }
+        ]
       },
       {
-          label: 'USA', value: 'us', 
-          items: [
-              {label: 'Chicago', value: 'Chicago'},
-              {label: 'Los Angeles', value: 'Los Angeles'},
-              {label: 'New York', value: 'New York'},
-              {label: 'San Francisco', value: 'San Francisco'}
-          ]
+        label: 'USA', value: 'us',
+        items: [
+          { label: 'Chicago', value: 'Chicago' },
+          { label: 'Los Angeles', value: 'Los Angeles' },
+          { label: 'New York', value: 'New York' },
+          { label: 'San Francisco', value: 'San Francisco' }
+        ]
       },
       {
-          label: 'Japan', value: 'jp', 
-          items: [
-              {label: 'Kyoto', value: 'Kyoto'},
-              {label: 'Osaka', value: 'Osaka'},
-              {label: 'Tokyo', value: 'Tokyo'},
-              {label: 'Yokohama', value: 'Yokohama'}
-          ]
+        label: 'Japan', value: 'jp',
+        items: [
+          { label: 'Kyoto', value: 'Kyoto' },
+          { label: 'Osaka', value: 'Osaka' },
+          { label: 'Tokyo', value: 'Tokyo' },
+          { label: 'Yokohama', value: 'Yokohama' }
+        ]
       }
-  ];
+    ];
 
   }
 
@@ -108,6 +109,7 @@ export class EditJobOfferComponent {
     if (this.currentOffer.titleO && this.currentOffer.referenceO && this.currentOffer.descriptionE) {
       this.apiofferService.updateOffer(this.currentOffer, this.activatedRoute.snapshot.params['id']).subscribe(entrep => {
         this.currentOffer = entrep;
+        this.sharedService.changeMessage({ severity: 'success', summary: 'Successful', detail: 'Offer Updated successfully ', life: 3000 });
         this.router.navigate(['/dashboardConsultor/offer-list']);
         return;
       });
@@ -117,22 +119,22 @@ export class EditJobOfferComponent {
   }
 
 
- //this for the editor
+  //this for the editor
   maxWordsValidator(maxWords: number) {
     return (control: AbstractControl): ValidationErrors | null => {
       const text = control.value || '';
-  
+
       const words = text.trim().split(/\s+/);
       const wordCount = words.filter((word: string | any[]) => word.length > 0).length;
-  
+
       if (wordCount > maxWords) {
         return { maxWords: { maxWords, actualWords: wordCount } };
       }
-  
+
       return null;
     };
   }
-  
+
 
   get maxWordsError() {
     return this.coverLetterForm.controls['coverLetterText'].errors?.['maxWords'];

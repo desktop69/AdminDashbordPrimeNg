@@ -29,28 +29,29 @@
 					<li><a routerLink="/dashboardConsultor/offer-list"><i class="icon-material-outline-business-center"></i>Manage Job Offers <span class="nav-tag">3</span></a>
 						<li><a routerLink="/dashboardConsultor/Job-offer"><i class="icon-line-awesome-plus"></i>Add Job Offer</a></li>
 				</ul>
-
-				
 				<ul data-submenu-title="Organize and Manage">
-					<li><a href="#"><i class="icon-material-outline-business-center"></i> Jobs</a>
-						<ul>
-							<li><a routerLink="/dashboardConsultor/offer-list">Manage Job Offers <span class="nav-tag">3</span></a>
-							</li>
-							<li><a href="dashboard-manage-candidates.html">Manage Candidates</a></li>
-							<li><a href="dashboard-post-a-job.html">Post a Job</a></li>
-						</ul>
+					<li (click)="toggleSubmenu('jobs'); $event.preventDefault();">
+					  <a href="#"><i class="icon-material-outline-business-center"></i> Jobs</a>
+					  <ul [ngClass]="{ open: activeSubmenu === 'jobs' }">
+						<li><a routerLink="/dashboardConsultor/offer-list">Manage Job Offers <span class="nav-tag">3</span></a></li>
+						<li><a href="dashboard-manage-candidates.html">Manage Candidates</a></li>
+						<li><a href="dashboard-post-a-job.html">Post a Job</a></li>
+					  </ul>
 					</li>
-					<li><a href="#"><i class="icon-material-outline-assignment"></i> Tasks</a>
-						<ul>
-							<li><a href="dashboard-manage-tasks.html">Manage Tasks <span class="nav-tag">2</span></a>
-							</li>
-							<li><a href="dashboard-manage-bidders.html">Manage Bidders</a></li>
-							<li><a href="dashboard-my-active-bids.html">My Active Bids <span
-										class="nav-tag">4</span></a></li>
-							<li><a href="dashboard-post-a-task.html">Post a Task</a></li>
-						</ul>
+					<li (click)="toggleSubmenu('tasks'); $event.preventDefault();">
+					  <a href="#"><i class="icon-material-outline-assignment"></i> Tasks</a>
+					  <ul [ngClass]="{ open: activeSubmenu === 'tasks' }">
+						<li><a href="dashboard-manage-tasks.html">Manage Tasks <span class="nav-tag">2</span></a></li>
+						<li><a href="dashboard-manage-bidders.html">Manage Bidders</a></li>
+						<li><a href="dashboard-my-active-bids.html">My Active Bids <span class="nav-tag">4</span></a></li>
+						<li><a href="dashboard-post-a-task.html">Post a Task</a></li>
+					  </ul>
 					</li>
-				</ul>
+				  </ul>
+				  
+				  
+				  
+				  
 
 				<ul data-submenu-title="Account">
 					<li class="active"><a routerLink="/dashboardConsultor/Settings"><i

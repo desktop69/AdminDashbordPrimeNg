@@ -17,7 +17,7 @@ export class ViewJobOfferComponent {
     this.apiofferService.getOfferId(this.activatedRoute.snapshot.params['id']).
       subscribe(offer => {
         this.currentOffer = offer;
-        console.log(this.currentOffer);
+        //console.log(this.currentOffer);
       });
   }
 

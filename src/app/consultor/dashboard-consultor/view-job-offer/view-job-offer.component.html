@@ -25,8 +25,9 @@
             <p><b>In:</b> {{ currentOffer.in }}</p>
             <p><b>Level of Education:</b> {{ currentOffer.LevelOfEducation }}</p>
             <p><b>Level of Experience:</b> {{ currentOffer.LevelOfExperience }}</p>
-            <p><b>Languages:</b> {{ currentOffer.languages.join(', ') }}</p>
-            <p><b>Job Category:</b> {{ currentOffer.JobCategorie.join(', ') }}</p>
+            <p *ngIf="currentOffer.languages"><b>Languages:</b> {{ currentOffer.languages.join(', ') }}</p>
+            <p *ngIf="currentOffer.JobCategorie"><b>Job Category:</b> {{ currentOffer.JobCategorie.join(', ') }}</p>
+            
           </div>
         </p-card>
       </div>
