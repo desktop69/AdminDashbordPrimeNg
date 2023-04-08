@@ -43,6 +43,8 @@ export class AddProfileComponent {
       this.router.navigate(['/dashboardConsultor/profile-entreprise']);
     });
   }
+
+
   
   
 

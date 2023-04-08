@@ -1,0 +1,7 @@
+.checkbox-spacing {
+    margin-right: 10px;
+  }
+  .required::after {
+    content: "*" !important;
+    color: red;
+  }

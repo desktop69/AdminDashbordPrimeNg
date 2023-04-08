@@ -1,0 +1,64 @@
+<p-toast></p-toast>
+
+<div class="card">
+    <p-toolbar styleClass="p-mb-4">
+        <ng-template pTemplate="left">
+            <h2><b>List Offers</b></h2>
+            <!-- <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success p-mr-2"></button>&nbsp;
+            <button pButton pRipple label="Delete" icon="pi pi-trash" class="p-button-danger" [disabled]="!selectedOffers || !selectedOffers.length"></button> -->
+        </ng-template>
+
+        <ng-template pTemplate="right">
+            <button pButton pRipple label="New Job Offer" routerLink="/dashboardConsultor/Job-offer" icon="pi pi-plus" class="add p-mr-2"></button>&nbsp;
+        </ng-template>
+    </p-toolbar>
+
+    <p-table #dt [value]="offers" [rows]="6" [paginator]="true" [globalFilterFields]="['titleO', 'date']"
+        [(selection)]="selectedOffers" [rowHover]="true" dataKey="IdUser"
+        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true">
+        <ng-template pTemplate="caption">
+            <div class="p-d-flex p-ai-center p-jc-between">
+                <h4 class="p-m-0 "><b>Manage Offers</b></h4>
+                <span class="p-input-icon-left mt-3">
+                    <i class="pi pi-search "></i>
+                    <input pInputText type="text" (input)="dt.filterGlobal($any($event.target).value, 'contains')"
+                        placeholder="Global Search" />
+                </span>
+            </div>
+        </ng-template>
+        <ng-template pTemplate="header">
+            <tr>
+                <th pSortableColumn="referenceO">Reference <p-sortIcon field="referenceO"></p-sortIcon></th>
+                <th pSortableColumn="titleO">Title <p-sortIcon field="titleO"></p-sortIcon></th>
+                <th pSortableColumn="date">Date <p-sortIcon field="date"></p-sortIcon></th>
+                <th pSortableColumn="isAccepted">Status <p-sortIcon field="Status"></p-sortIcon></th>
+                <th pSortableColumn="isAccepted">Action</th>
+                <th></th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-offer>
+            <tr>
+                <td>{{offer.referenceO}}</td>
+                <td>{{offer.titleO}}</td>
+                <td>{{offer.date | date: 'yyyy-MM-dd' }}</td>
+                <td>
+                    <span [ngClass]="{
+                        'badge-status-accepted': offer.isAccepted,
+                        'badge-status-not-accepted': !offer.isAccepted
+                      }">{{ offer.isAccepted ? 'Accepted' : 'Not Accepted' }}</span>
+                </td>
+          
+                <td>
+                    <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-primary mr-2"[routerLink]="['/dashboardConsultor/edit-job-offer', offer._id]" ></button>
+                    <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger mr-2" (click)="confirmDelete(offer)"></button>
+                    <button pButton pRipple icon="pi pi-eye" class="p-button-rounded p-button-secondary " [routerLink]="['/dashboardConsultor/view-job-offer', offer._id]"></button>
+                </td>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="summary">
+            <div class="p-d-flex p-ai-center p-jc-between">
+                In total there are {{offers ? offers.length : 0 }} offers.
+            </div>
+        </ng-template>
+    </p-table>
+</div><p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>

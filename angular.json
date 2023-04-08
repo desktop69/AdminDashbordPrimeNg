@@ -17,6 +17,14 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "allowedCommonJsDependencies": [
+              "canvg",
+              "core-js",
+              "raf",
+              "rgbcolor",
+              "quill",
+              "html2canvas"
+            ],
             "outputPath": "dist/dashbord",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -35,7 +43,9 @@
               "node_modules/primeflex/primeflex.css",
               "src/assets/css/bootstrap-grid.css",
               "src/assets/css/style.css",
-              "src/assets/css/colors/blue.css"
+              "src/assets/css/colors/blue.css",
+              "node_modules/quill/dist/quill.core.css",
+               "node_modules/quill/dist/quill.snow.css"
             ],
             "scripts": [
               "src/assets/js/jquery-3.3.1.min.js",
@@ -50,7 +60,8 @@
               "src/assets/js/counterup.min.js",
               "src/assets/js/magnific-popup.min.js",
               "src/assets/js/slick.min.js",
-              "src/assets/js/custom.js"
+              "src/assets/js/custom.js",
+              "node_modules/quill/dist/quill.js"
 
             ]
           },

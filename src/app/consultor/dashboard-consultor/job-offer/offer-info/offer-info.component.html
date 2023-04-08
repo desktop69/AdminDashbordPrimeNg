@@ -1,0 +1,78 @@
+<p-card>
+
+    <form (ngSubmit)="onSubmit()" #offerInfoForm="ngForm">
+
+        <div class="form-group">
+          <label for="titleO" class="required">Title</label>
+          <input
+          #titleO="ngModel"
+            type="text"
+            class="form-control"
+            id="titleO"
+            name="titleO"
+            [(ngModel)]="offerInfoData.titleO"
+            [ngClass]="{ 'ng-dirty': (titleO.invalid && submitted) || (titleO.dirty && titleO.invalid) }"
+            required
+          />
+        </div>
+        <small *ngIf="(titleO.invalid && submitted) || (titleO.dirty && titleO.invalid)" class="p-error">Title is required.</small>
+        <div class="form-group">
+            <label for="referenceO" class="required">Reference</label>
+            <input
+            #referenceO="ngModel"
+              type="text"
+              class="form-control"
+              id="referenceO"
+              name="referenceO"
+              [(ngModel)]="offerInfoData.referenceO"
+              [ngClass]="{ 'ng-dirty': (referenceO.invalid && submitted) || (referenceO.dirty && referenceO.invalid) }"
+              required
+            />
+          </div>
+          <small *ngIf="(referenceO.invalid && submitted) || (referenceO.dirty && referenceO.invalid)" class="p-error">Reference is required.</small>
+
+          <!-- <div class="form-group">
+            <label for="descriptionE" class="required">Description</label>
+            <textarea
+            #descriptionE="ngModel"
+              type="text"
+              class="form-control"
+              id="descriptionE"
+              name="descriptionE"
+              [(ngModel)]="offerInfoData.descriptionE"
+              [ngClass]="{ 'ng-dirty': (descriptionE.invalid && submitted) || (descriptionE.dirty && descriptionE.invalid) }"
+              required
+            ></textarea>
+          </div> -->
+
+
+            <form class="form-group" [formGroup]="coverLetterForm">
+              <label for="descriptionE" class="required">Description</label>
+                <div style="position: relative;">
+                    <p-editor formControlName="coverLetterText" [style]="{ height: '320px' }"    [(ngModel)]="offerInfoData.descriptionE"
+                     [ngClass]="{'ng-invalid ng-dirty': isFieldInvalid('coverLetterText')}"></p-editor>
+                </div>
+                  <div *ngIf="isFieldInvalid('coverLetterText')" class="p-error">
+                    <span>cover Letter Description is required </span>
+                </div>
+                <div *ngIf="maxWordsError" class="p-error">
+                    Maximum {{maxWordsError['maxWords']}} words allowed. You have {{actualWords}} words.
+                </div>
+            </form>
+     
+
+        
+          <!-- Add a new div to display the live content of the p-editor -->
+          <!-- <div class="live-preview">
+            <h3>Live Preview:</h3>
+            <div [innerHTML]="liveContent"></div>
+          </div> -->
+          <!-- <small *ngIf="(descriptionE.invalid && submitted) || (descriptionE.dirty && descriptionE.invalid)" class="p-error">Description is required.</small> -->
+            <div class="grid grid-nogutter justify-content-end mt-5">
+                <p-button   type="submit"  label="Next" [disabled]="!offerInfoForm.form.valid" icon="pi pi-angle-right" iconPos="right"></p-button>
+            </div>
+      </form> 
+</p-card>
+
+
+<app-dashboard-consultor-footer></app-dashboard-consultor-footer>

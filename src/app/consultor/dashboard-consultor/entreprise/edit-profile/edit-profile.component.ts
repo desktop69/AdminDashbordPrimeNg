@@ -53,8 +53,7 @@ export class EditProfileComponent {
       this.updateImageByUserId();
       this.sharedService.changeMessage({ severity: 'success', summary: 'Successful', detail: 'Profile Updated successfully ', life: 3000 });
       this.router.navigate(['/dashboardConsultor/profile-entreprise']);
-      
-
+    
     }
     );
   }

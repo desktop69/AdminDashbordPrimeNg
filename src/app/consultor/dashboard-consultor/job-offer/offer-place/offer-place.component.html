@@ -1,0 +1,92 @@
+<p-toast></p-toast>
+<p-card>
+    <form (ngSubmit)="onSubmit()" #offerDetailsForm="ngForm">
+
+        <div class="row">
+
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="Address" class="required">Country </label>
+                    <select id="Address" name="Address" [(ngModel)]="offerPlaceData.Address">
+                        <option value="">Select a country</option>
+                        <option value="Tunisia">Tunisia</option>
+                        <option value="Canada">Canada</option>
+                        <option value="Canada">Mexico</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="Region" class="required">Region </label>
+                    <select id="Region" name="Region" [(ngModel)]="offerPlaceData.Region">
+                        <option value="">Select a region</option>
+                        <option value="Nabeul">Nabeul</option>
+                        <option value="Tunis">Tunis</option>
+                        <option value="Mahdia">Mahdia</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="City" class="required">City </label>
+                    <select id="City" name="City" [(ngModel)]="offerPlaceData.City">
+                        <option value="">Select a city</option>
+                        <option value="bouargoub">bouargoub</option>
+                        <option value="dar chaaben">dar chaaben</option>
+                        <option value="Beni Khiar">Beni Khiar</option>
+                    </select>
+                </div>
+            </div>
+
+        </div>
+
+
+
+
+
+
+
+            
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="descriptionE" class="required">Mobility</label>
+                    <table>
+                        <tr>
+                            <td>
+                                <p-checkbox  class="checkbox-spacing" name="mobility"
+                                value=" With the possibility of local travel" [(ngModel)]="offerPlaceData.mobility"
+                                label="
+                                With the possibility of local travel ?"></p-checkbox>
+                            </td>
+                            <td>
+                                <p-checkbox  class="checkbox-spacing" name="mobility"
+                                value="  With the possibility of international travel" [(ngModel)]="offerPlaceData.mobility"
+                                label="
+                                With the possibility of international travel ?"></p-checkbox>
+                            </td>
+                          
+                        </tr>
+
+                     
+                      
+                    </table>
+                </div>
+            </div>
+
+
+        </div>
+
+
+
+
+        <div class="grid grid-nogutter justify-content-center mt-5">
+            <p-button type="button" icon="pi pi-angle-left" class="p-button-success mr-2" label="Back" (click)="onBack()"
+                iconPos="left"></p-button>
+            <p-button type="submit" label="Next" [disabled]="!offerDetailsForm.form.valid" icon="pi pi-angle-right"
+                iconPos="right"></p-button>
+
+        </div>
+    </form>
+</p-card>

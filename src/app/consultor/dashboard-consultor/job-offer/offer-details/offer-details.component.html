@@ -1,0 +1,253 @@
+<p-toast></p-toast>
+<p-card>
+    <form (ngSubmit)="onSubmit()" #offerDetailsForm="ngForm">
+
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="LevelOfEducation" class="required">Level of Education</label>
+                    <select id="LevelOfEducation" name="LevelOfEducation"
+                        [(ngModel)]="offerDetailsData.LevelOfEducation">
+                        <option value="Primary">Primary</option>
+                        <option value="Secondary">Secondary</option>
+                        <option value="Professional training">Professional training</option>
+                        <option value="Bac">Bac</option>
+                        <option value="Bac +3">Bac +3</option>
+                        <option value="Bac +5">Bac +5</option>
+                        <option value="PhD">PhD</option>
+                        <option value="Expert, Research">Expert, Research</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="LevelOfExperience" class="required">Level of Experience</label>
+                    <select id="LevelOfExperience" name="LevelOfExperience"
+                        [(ngModel)]="offerDetailsData.LevelOfExperience">
+                        <option value="No experience">No experience</option>
+                        <option value="Less than a year">Less than a year</option>
+                        <option value="Between 1 and 2 years">Between 1 and 2 years</option>
+                        <option value="Between 2 and 5 years">Between 2 and 5 years</option>
+                        <option value="Between 5 and 10 years">Between 5 and 10 years</option>
+                        <option value="More than 10 years">More than 10 years</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="Availability" class="required">Availability</label>
+                    <select id="Availability" name="Availability" [(ngModel)]="offerDetailsData.Availability">
+                        <option value="Part-time">Part-time</option>
+                        <option value="Full Time">Full Time</option>
+                        <option value="another">another</option>
+                    </select>
+                </div>
+            </div>
+
+        </div>
+
+
+
+
+        <div class="row">
+            <div class="col-md-4">
+                <label for="DesiredMinimumNetSalary" class="required">Desired Minimum Net Salary</label>
+                <p-inputNumber [size]="70" name="DesiredMinimumNetSalary"
+                    [(ngModel)]="offerDetailsData.DesiredMinimumNetSalary" [showButtons]="true"
+                    buttonLayout="horizontal" inputId="horizontal" spinnerMode="horizontal" [step]="100.000"
+                    decrementButtonClass="p-button-info" incrementButtonClass="p-button-info"
+                    incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus" [min]="300" mode="currency"
+                    currency="TND">
+                </p-inputNumber>
+            </div>
+
+
+            <div class="col-md-4">
+                <label for="currentNetSalary" class="required">Desired Maximum Net Salary</label>
+                <p-inputNumber [size]="70" name="DesiredMaximumNetSalary"
+                    [(ngModel)]="offerDetailsData.DesiredMaximumNetSalary" [showButtons]="true"
+                    buttonLayout="horizontal" inputId="horizontal" spinnerMode="horizontal" [step]="100.000"
+                    decrementButtonClass="p-button-info" incrementButtonClass="p-button-info"
+                    incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus" [min]="300" mode="currency"
+                    currency="TND">
+                </p-inputNumber>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="in" class="required">In</label>
+                    <select id="in" name="in" [(ngModel)]="offerDetailsData.in">
+                        <option value="Part-time">Monthly</option>
+                        <option value="Full Time">weekly</option>
+                        <option value="another">another</option>
+                    </select>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="row">
+
+            <div class="col-md-4">
+
+                <label for="descriptionE" class="required">Jobs</label>
+                <p-listbox [options]="groupedCities" name="selectedCountries" [group]="true" [(ngModel)]="selectedCountries"
+                    [metaKeySelection]="false" [checkbox]="true" [filter]="true" [multiple]="true"
+                    [listStyle]="{'max-height':'150px'}" [style]="{'width':'36rem'}">
+                    <ng-template let-group pTemplate="group">
+                        <div class="flex align-items-center">
+                            <span>{{group.label}}</span>
+                        </div>
+                    </ng-template>
+                </p-listbox>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="descriptionE" class="required">Types Of Positions</label>
+                    <table>
+                        <tr>
+                            <td>
+                                <p-checkbox  class="checkbox-spacing" name="TypesOfPositions"
+                                    value="CDI" [(ngModel)]="offerDetailsData.TypesOfPositions"
+                                    label="CDI"></p-checkbox>
+                            </td>
+                            <td>
+                                <p-checkbox  class="checkbox-spacing" name="TypesOfPositions"
+                                    value="CDD" [(ngModel)]="offerDetailsData.TypesOfPositions"
+                                    label="CDD"></p-checkbox>
+                            </td>
+                            <td>
+                                <p-checkbox  class="checkbox-spacing" name="TypesOfPositions"
+                                    value="SIVP" [(ngModel)]="offerDetailsData.TypesOfPositions"
+                                    label="SIVP"></p-checkbox>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <p-checkbox  class="checkbox-spacing" name="TypesOfPositions"
+                                    value="Public Sector" [(ngModel)]="offerDetailsData.TypesOfPositions"
+                                    label="Public Sector"></p-checkbox>
+                            </td>
+                            <td>
+                                <p-checkbox  class="checkbox-spacing" name="TypesOfPositions"
+                                    value="Independent/Freelance" [(ngModel)]="offerDetailsData.TypesOfPositions"
+                                    label="Independent/Freelance"></p-checkbox>
+                            </td>
+                            <td>
+                                <p-checkbox  class="checkbox-spacing" name="TypesOfPositions"
+                                    value="Temporary" [(ngModel)]="offerDetailsData.TypesOfPositions"
+                                    label="Temporary"></p-checkbox>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p-checkbox  class="checkbox-spacing" name="TypesOfPositions"
+                                    value="Internship/PFE" [(ngModel)]="offerDetailsData.TypesOfPositions"
+                                    label="Internship/PFE"></p-checkbox>
+                            </td>
+                            <td>
+                                <p-checkbox  class="checkbox-spacing" name="TypesOfPositions"
+                                    value="Internship" [(ngModel)]="offerDetailsData.TypesOfPositions"
+                                    label="Internship"></p-checkbox>
+                            </td>
+                            <td>
+                                <p-checkbox  class="checkbox-spacing" name="TypesOfPositions"
+                                    value="Seasonal" [(ngModel)]="offerDetailsData.TypesOfPositions"
+                                    label="Seasonal"></p-checkbox>
+                            </td>
+                        </tr>
+                      
+                    </table>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="descriptionE" class="required">Languages</label>
+                    <table>
+                        <tr>
+                            <td>
+                                <p-checkbox  class="checkbox-spacing" name="languages"
+                                    value="French" [(ngModel)]="offerDetailsData.languages" label="French"></p-checkbox>
+                            </td>
+                            <td>
+                                <p-checkbox  class="checkbox-spacing" name="languages"
+                                    value="English" [(ngModel)]="offerDetailsData.languages"
+                                    label="English"></p-checkbox>
+                            </td>
+                            <td>
+                                <p-checkbox  class="checkbox-spacing" name="languages"
+                                    value="Arabic" [(ngModel)]="offerDetailsData.languages" label="Arabic"></p-checkbox>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p-checkbox  class="checkbox-spacing" name="languages"
+                                    value="Italien" [(ngModel)]="offerDetailsData.languages"
+                                    label="Italien"></p-checkbox>
+
+                            </td>
+                            <td>
+                                <p-checkbox  class="checkbox-spacing" name="languages"
+                                    value="Hinidi" [(ngModel)]="offerDetailsData.languages" label="Hinidi"></p-checkbox>
+                            <td>
+                                <p-checkbox  class="checkbox-spacing" name="languages"
+                                    value="Japanese" [(ngModel)]="offerDetailsData.languages"
+                                    label="Japanese"></p-checkbox>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p-checkbox  class="checkbox-spacing" name="languages"
+                                    value="Russian" [(ngModel)]="offerDetailsData.languages"
+                                    label="Russian"></p-checkbox>
+
+                            </td>
+                            <td>
+                                <p-checkbox  class="checkbox-spacing" name="languages"
+                                    value="Portuguese" [(ngModel)]="offerDetailsData.languages"
+                                    label="Portuguese"></p-checkbox>
+                            <td>
+                                <p-checkbox  class="checkbox-spacing" name="languages"
+                                    value="Chinese" [(ngModel)]="offerDetailsData.TypesOfPositions"
+                                    label="Chinese"></p-checkbox>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p-checkbox  class="checkbox-spacing" name="languages" value="Dutch"
+                                    [(ngModel)]="offerDetailsData.languages" label="Dutch"></p-checkbox>
+
+                            </td>
+                            <td>
+                                <p-checkbox  class="checkbox-spacing" name="languages"
+                                    value=" Czech" [(ngModel)]="offerDetailsData.languages" label="Czech"></p-checkbox>
+                            <td>
+                                <p-checkbox  class="checkbox-spacing" name="languages"
+                                    value="Polish" [(ngModel)]="offerDetailsData.languages" label="Polish"></p-checkbox>
+                        </tr>
+
+
+
+
+
+                
+                    </table>
+                </div>
+            </div>
+
+        </div>
+
+
+
+
+        <div class="grid grid-nogutter justify-content-center mt-5">
+            <p-button type="button" icon="pi pi-angle-left" class="p-button-success mr-2" label="Back" (click)="onBack()"
+                iconPos="left"></p-button>
+            <p-button type="submit" label="Next" [disabled]="!offerDetailsForm.form.valid" icon="pi pi-angle-right"
+                iconPos="right"></p-button>
+
+        </div>
+    </form>
+</p-card>

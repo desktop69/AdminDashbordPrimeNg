@@ -28,6 +28,15 @@ import { AddProfileComponent } from './consultor/dashboard-consultor/entreprise/
 import { EditProfileComponent } from './consultor/dashboard-consultor/entreprise/edit-profile/edit-profile.component';
 import { ForbiddenComponent } from './consultor/forbidden/forbidden.component';
 import { ProfileEntrepriseGuard } from './guards/profile-entreprise.guard';
+import { JobOfferComponent } from './consultor/dashboard-consultor/job-offer/job-offer.component';
+import { OfferDetailsComponent } from './consultor/dashboard-consultor/job-offer/offer-details/offer-details.component';
+import { OfferInfoComponent } from './consultor/dashboard-consultor/job-offer/offer-info/offer-info.component';
+import { OfferPlaceComponent } from './consultor/dashboard-consultor/job-offer/offer-place/offer-place.component';
+import { OfferSettingsComponent } from './consultor/dashboard-consultor/job-offer/offer-settings/offer-settings.component';
+import { OfferConfirmationComponent } from './consultor/dashboard-consultor/job-offer/offer-confirmation/offer-confirmation.component';
+import { ListJobOfferComponent } from './consultor/dashboard-consultor/list-job-offer/list-job-offer.component';
+import { ViewJobOfferComponent } from './consultor/dashboard-consultor/view-job-offer/view-job-offer.component';
+import { EditJobOfferComponent } from './consultor/dashboard-consultor/edit-job-offer/edit-job-offer.component';
 
 const routes: Routes = [
   { path: "", redirectTo: "consultor", pathMatch: "full" },
@@ -52,9 +61,26 @@ const routes: Routes = [
       { path: 'image', component: ImageComponent },
       { path: 'file', component: FilesComponent },
       { path: 'CVplatforme', component: CVPlatformeComponent },
-      { path: 'profile-entreprise', component: ProfileEntrepriseComponent, canActivate:[ProfileEntrepriseGuard] },
+      { path: 'profile-entreprise', component: ProfileEntrepriseComponent, canActivate: [ProfileEntrepriseGuard] },
       { path: 'add-profile', component: AddProfileComponent },
-      { path: 'edit-profile/:id', component: EditProfileComponent }
+      { path: 'edit-profile/:id', component: EditProfileComponent },
+      {
+        path: 'Job-offer',
+        component: JobOfferComponent,
+        children: [
+          { path: '', redirectTo: 'offer-info', pathMatch: 'full' },
+          { path: 'offer-info', component: OfferInfoComponent },
+          { path: 'offer-details', component: OfferDetailsComponent },
+          { path: 'offer-settings', component: OfferSettingsComponent },
+          { path: 'offer-place', component: OfferPlaceComponent },
+          { path: 'offer-confirmation', component: OfferConfirmationComponent },
+        ],
+      },
+      { path: 'offer-list', component: ListJobOfferComponent },
+      { path: 'view-job-offer/:id', component: ViewJobOfferComponent },
+      { path: 'edit-job-offer/:id', component: EditJobOfferComponent },
+
+
 
     ]
   },
@@ -67,9 +93,9 @@ const routes: Routes = [
   },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'request-password-reset', component: RequestPasswordResetComponent},
-  { path: 'password-reset', component: ResetPasswordComponent},
-  { path: 'forbidden', component:ForbiddenComponent},
+  { path: 'request-password-reset', component: RequestPasswordResetComponent },
+  { path: 'password-reset', component: ResetPasswordComponent },
+  { path: 'forbidden', component: ForbiddenComponent },
 
 ];
 
@@ -77,4 +103,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

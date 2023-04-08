@@ -23,7 +23,7 @@ import { PersonalDataComponent } from './ResumeData/personal-data/personal-data.
 import { MessagesModule } from 'primeng/messages';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
-import { ConfirmationService, MessageService } from 'primeng/api';
+import { ConfirmationService, MessageService, MenuItem } from 'primeng/api';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { ProExperienceComponent } from './ResumeData/pro-experience/pro-experience.component';
@@ -45,6 +45,22 @@ import { AddProfileComponent } from './entreprise/add-profile/add-profile.compon
 import { TooltipModule } from 'primeng/tooltip';
 import { EditProfileComponent } from './entreprise/edit-profile/edit-profile.component';
 import { SharedService } from './entreprise/shared/shared';
+import { JobOfferComponent } from './job-offer/job-offer.component';
+import { StepsModule } from 'primeng/steps';
+import { OfferInfoComponent } from './job-offer/offer-info/offer-info.component';
+import { OfferDetailsComponent } from './job-offer/offer-details/offer-details.component';
+import { OfferSettingsComponent } from './job-offer/offer-settings/offer-settings.component';
+import { OfferPlaceComponent } from './job-offer/offer-place/offer-place.component';
+import { OfferConfirmationComponent } from './job-offer/offer-confirmation/offer-confirmation.component';
+import { CheckboxModule } from 'primeng/checkbox';
+import { ListboxModule } from 'primeng/listbox';
+import { ListJobOfferComponent } from './list-job-offer/list-job-offer.component';
+import { ToolbarModule } from 'primeng/toolbar';
+import { EditorModule } from 'primeng/editor';
+import { EditJobOfferComponent } from './edit-job-offer/edit-job-offer.component';
+import { ViewJobOfferComponent } from './view-job-offer/view-job-offer.component';
+//import {MenuItem} from 'primeng/api';
+
 @NgModule({
   declarations: [
     DashboardConsultorComponent,
@@ -67,6 +83,15 @@ import { SharedService } from './entreprise/shared/shared';
     ProfileEntrepriseComponent,
     AddProfileComponent,
     EditProfileComponent,
+    JobOfferComponent,
+    OfferInfoComponent,
+    OfferDetailsComponent,
+    OfferSettingsComponent,
+    OfferPlaceComponent,
+    OfferConfirmationComponent,
+    ListJobOfferComponent,
+    EditJobOfferComponent,
+    ViewJobOfferComponent,
   ],
   imports: [
     CommonModule,
@@ -91,8 +116,13 @@ import { SharedService } from './entreprise/shared/shared';
     MultiSelectModule,
     InputNumberModule,
     TagModule,
-    TooltipModule
+    TooltipModule,
+    StepsModule,
+    CheckboxModule,
+    ListboxModule,
+    ToolbarModule,
 
+    EditorModule
   ],
   providers: [ConfirmationService, MessageService, AuthService, SharedService],
   bootstrap: [TrainingsQualificationsComponent]

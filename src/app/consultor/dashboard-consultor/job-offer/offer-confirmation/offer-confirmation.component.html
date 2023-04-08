@@ -1,0 +1,52 @@
+
+  <p-card>
+    <div class="card-body">
+
+   
+ <div class="row">
+    <div class="col-md-6">
+
+    <h3><b>Offer Details</b></h3>
+    <div class="filed"><b>Title :</b> {{ offerInfoData.titleO }}</div>
+    <div class="filed"><b>Reference :</b> {{offerInfoData.referenceO}}</div>
+    <div class="filed"><b>Description :</b> {{offerInfoData.descriptionE }} </div> <br>
+
+    <h3><b>Offer Info</b></h3>
+    <div class="filed"><b>TypesOfPositions :</b> {{offerDetailsData.TypesOfPositions}}</div>
+    <div class="filed"><b>Availability :</b> {{offerDetailsData.Availability}}</div>
+    <div class="filed"><b>DesiredMinimumNetSalary :</b> {{offerDetailsData.DesiredMinimumNetSalary}}</div>
+    <div class="filed"><b>DesiredMaximumNetSalary :</b> {{offerDetailsData.DesiredMaximumNetSalary}}</div>
+    <div class="filed"><b>In :</b>{{offerDetailsData.in}}</div>
+    <div class="filed"><b>LevelOfEducation :</b> {{offerDetailsData.LevelOfEducation}}</div>
+    <div class="filed"><b>Address :</b>{{offerDetailsData.LevelOfExperience}}</div>
+    <div class="filed"><b>languages : </b> {{ offerDetailsData.languages?.join(', ') }}</div>
+    <div class="filed"><b>Job Categorie:</b>{{ offerDetailsData.JobCategorie?.join(', ') }}</div>
+    </div>
+    <div class="col-md-6">
+        <h3><b>Offer Place</b></h3>
+        <div class="filed"><b>Country :</b>{{ offerPlaceData.Address }}</div>
+        <div class="filed"><b>Region :</b>{{ offerPlaceData.Region }}</div>
+        <div class="filed"><b>City :</b>{{ offerPlaceData.City }}</div>
+        <div class="filed"><b>mobility :</b>{{ offerPlaceData.mobility }}</div> <br>
+    
+        <h3><b>Offer Settings</b></h3>
+        <div class="filed"><b>Date:</b>{{ offerSettingsData.date | date: 'yyyy-MM-dd' }}</div>
+        <div class="filed"><b>responable:</b>{{ offerSettingsData.responable }}</div>
+        <div class="filed"><b>email for send mails:</b>{{ offerSettingsData.emailforsendmails }}</div>
+    </div>
+ </div>
+
+</div>
+
+
+
+
+
+    <div class="grid grid-nogutter justify-content-center mt-5">
+        <p-button type="button" icon="pi pi-angle-left" class="p-button-success mr-2" label="Back" (click)="onBack()"
+        iconPos="left"></p-button>
+        <button pButton type="button" label="Confirm" class="p-button-success   " (click)="addOffer()" iconPos="right"></button>
+    </div>
+ 
+  </p-card>
+  
