@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { AuthService } from 'src/app/auth/services/auth.service';
 import { ImageDTO } from '../../models/image.model';
 import { ImageService } from '../../services/image.service';
+import { OfferFormDataService } from '../../services/offer/shared/offer-form-data.service';
 
 @Component({
   selector: 'app-dashbord-header',
@@ -11,7 +12,7 @@ import { ImageService } from '../../services/image.service';
 })
 export class DashbordHeaderComponent implements OnInit {
 
-  constructor(public authService: AuthService, private router: Router, private imageService: ImageService) { }
+  constructor(public authService: AuthService, private router: Router, private imageService: ImageService,private offerFormDataService: OfferFormDataService,) { }
 
   image!: ImageDTO;
   selectedFile: File | null = null;
@@ -55,5 +56,6 @@ export class DashbordHeaderComponent implements OnInit {
 
   onLogout() {
     this.authService.logout();
+    this.offerFormDataService.resetFormData();
   }
 }

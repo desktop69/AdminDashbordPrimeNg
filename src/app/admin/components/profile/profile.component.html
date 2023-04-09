@@ -1,0 +1,20 @@
+<div class="surface-card p-4 shadow-2 border-round">
+    <div class="text-3xl font-medium text-900 mb-3">User profile </div>
+    <div class="font-medium text-500 mb-3">Vivamus id nisl interdum, blandit augue sit amet, eleifend mi.</div>
+    <div class="border-2 surface-border">
+        <div class="row">
+            <div class="col">
+                <h5>Preview</h5>
+                <p-image [src]="(image ? ('data:image/png;base64,' + image.data) : 'assets/avatar.png')" alt="Image"
+                    width="250" [preview]="true"></p-image>
+            </div>
+            <div class="col">
+                <span>username : </span> {{username}} <br>
+                <span>user email : </span> {{useremail}} <br>
+                <span>user role  : </span> <p-tag styleClass="mr-2" severity="info" value="{{userroles}}" [rounded]="true"></p-tag>
+                <br>
+            </div>
+        </div>
+
+    </div>
+</div>

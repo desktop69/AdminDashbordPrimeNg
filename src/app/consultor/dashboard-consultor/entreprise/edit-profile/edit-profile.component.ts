@@ -7,6 +7,7 @@ import { ImageDTO } from 'src/app/consultor/models/image.model';
 import { EntrepriseProfileService } from 'src/app/consultor/services/entreprise/entreprise-profile.service';
 import { ImageService } from 'src/app/consultor/services/image.service';
 import { SharedService } from '../shared/shared';
+import { data } from 'src/app/utils/data';
 
 @Component({
   selector: 'app-edit-profile',
@@ -14,6 +15,7 @@ import { SharedService } from '../shared/shared';
   styleUrls: ['./edit-profile.component.scss']
 })
 export class EditProfileComponent {
+  countries = data;
   inputs = [{ value: '' }];
   maxInputs = 2;
   currentProfile = new EntrepriseDTO();
@@ -104,6 +106,22 @@ export class EditProfileComponent {
   //delete an input for the phone number
   deleteInput(index: number) {
     this.inputs.splice(index, 1);
+  }
+
+  keys(obj: object): string[] {
+    return Object.keys(obj);
+  }
+  onSelectCountry(): void {
+    if (this.currentProfile.countryE !== 'Tunisia') {
+      this.currentProfile.regionE = '';
+      this.currentProfile.villeE = '';
+    }
+  }
+
+
+  getCities(country: string, region: string): string[] {
+    const countryData = (this.countries as {[key: string]: any})[country];
+    return countryData?.[region]?.cities || [];
   }
 
 }

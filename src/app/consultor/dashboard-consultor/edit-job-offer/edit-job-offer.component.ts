@@ -5,6 +5,7 @@ import { JobOfferService } from '../../services/offer/job-offer.service';
 import { AbstractControl, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { SelectItemGroup } from 'primeng/api';
 import { SharedService } from '../entreprise/shared/shared';
+import { data } from 'src/app/utils/data';
 interface City {
   name: string,
   code: string
@@ -24,14 +25,16 @@ export class EditJobOfferComponent {
   submitted: boolean = false;
   coverLetterForm!: FormGroup;
   liveContent: string = '';
-  groupedCities!: SelectItemGroup[];
-  cities!: City[];
+  groupedCities1!: SelectItemGroup[];
+  cities1!: City[];
+  countries = data;
 
-  countries!: Country[];
 
-  selectedCity!: City;
+  countries1!: Country[];
 
-  selectedCountries!: Country[];
+  selectedCity1!: City;
+
+  selectedCountries1!: Country[];
 
   constructor(private sharedService: SharedService, private apiofferService: JobOfferService, private activatedRoute: ActivatedRoute, private router: Router) {
 
@@ -42,7 +45,7 @@ export class EditJobOfferComponent {
           this.maxWordsValidator(400)
         ])
     });
-    this.cities = [
+    this.cities1 = [
       { name: 'New York', code: 'NY' },
       { name: 'Rome', code: 'RM' },
       { name: 'London', code: 'LDN' },
@@ -50,7 +53,7 @@ export class EditJobOfferComponent {
       { name: 'Paris', code: 'PRS' }
     ];
 
-    this.countries = [
+    this.countries1 = [
       { name: 'Australia', code: 'AU' },
       { name: 'Brazil', code: 'BR' },
       { name: 'China', code: 'CN' },
@@ -63,7 +66,7 @@ export class EditJobOfferComponent {
       { name: 'United States', code: 'US' }
     ];
 
-    this.groupedCities = [
+    this.groupedCities1 = [
       {
         label: 'Germany', value: 'de',
         items: [
@@ -158,5 +161,23 @@ export class EditJobOfferComponent {
     } else {
       console.log('Cover letter form is not valid');
     }
+  }
+
+
+//hedha mtaa lcountries meni fahem menou chy
+  keys(obj: object): string[] {
+    return Object.keys(obj);
+  }
+  onSelectCountry(): void {
+    if (this.currentOffer.Address !== 'Tunisia') {
+      this.currentOffer.Region = '';
+      this.currentOffer.City = '';
+    }
+  }
+
+
+  getCities(country: string, region: string): string[] {
+    const countryData = (this.countries as {[key: string]: any})[country];
+    return countryData?.[region]?.cities || [];
   }
 }

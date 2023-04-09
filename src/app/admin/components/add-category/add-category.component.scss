@@ -1,0 +1,66 @@
+.p-inputtext {
+    display: block;
+    position: relative;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    background-color: #f8f9fa;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.06);
+  
+    &:focus-within {
+      box-shadow: 0 4px 6px rgba(0, 120, 255, 0.25),
+        0 2px 4px rgba(0, 120, 255, 0.1);
+    }
+  }
+  
+  .p-inputtext label {
+    position: absolute;
+    top: 0.5rem;
+    left: 0.75rem;
+    color: #333;
+    font-size: 1rem;
+    font-weight: 600;
+    pointer-events: none;
+    transition: all 0.2s ease-in-out;
+  }
+  
+  .p-inputtext input:focus ~ label,
+  .p-inputtext input:not(:placeholder-shown) ~ label {
+    top: -0.75rem;
+    left: 0.5rem;
+    font-size: 0.85rem;
+    color: #007ad9;
+    font-weight: 600;
+  }
+  
+  .p-inputtext input {
+    border: none;
+    background-color: transparent;
+    padding: 0.5rem 0.75rem;
+    // width: 100%;
+    font-size: 1rem;
+  }
+  
+  .p-inputtext input:focus {
+    outline: none;
+  }
+  
+  .blue-hover.p-button:not(:disabled):hover {
+      background-color: #5ca7e0;
+      color: #fff;
+    }
+    
+    .blue-hover.p-button:not(:disabled):hover .p-button-icon {
+      color: #fff;
+    }
+
+    .custom-category-item {
+      display: flex;
+      align-items: center;
+    }
+    
+    .custom-category-item i {
+      margin-right: 8px;
+    }
+
+  

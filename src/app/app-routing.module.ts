@@ -37,6 +37,9 @@ import { OfferConfirmationComponent } from './consultor/dashboard-consultor/job-
 import { ListJobOfferComponent } from './consultor/dashboard-consultor/list-job-offer/list-job-offer.component';
 import { ViewJobOfferComponent } from './consultor/dashboard-consultor/view-job-offer/view-job-offer.component';
 import { EditJobOfferComponent } from './consultor/dashboard-consultor/edit-job-offer/edit-job-offer.component';
+import { AddCategoryComponent } from './admin/components/add-category/add-category.component';
+import { CategorylayoutComponent } from './admin/components/categorylayout/categorylayout.component';
+import { ProfileComponent } from './admin/components/profile/profile.component';
 
 const routes: Routes = [
   { path: "", redirectTo: "consultor", pathMatch: "full" },
@@ -44,6 +47,10 @@ const routes: Routes = [
     path: 'admin', component: AppLayoutComponent,
     children: [
       { path: 'table', component: TableComponent },
+      { path: 'category', component: CategorylayoutComponent },
+      { path: 'profile', component: ProfileComponent },
+      { path: 'newcategory', component: AddCategoryComponent },
+    
 
 
     ]

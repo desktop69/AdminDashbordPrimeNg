@@ -81,36 +81,46 @@
                 <div class="row">
                     <div class="col-md-4">
                         <div class="p-field-select">
-                            <label for="countryE" class="required">Country </label>
-                            <select id="countryE" name="countryE" [(ngModel)]="entreprise.countryE">
+                            <label for="country" class="required">Country</label>
+                            <select id="country" name="country" [(ngModel)]="entreprise.countryE"
+                                (change)="onSelectCountry()">
                                 <option value="">Select a country</option>
-                                <option value="Tunisia">Tunisia</option>
-                                <option value="CA">Canada</option>
-                                <option value="MX">Mexico</option>
+                                <option *ngFor="let country of keys(countries)" [value]="country">{{country}}</option>
                             </select>
                         </div>
                     </div>
+        
                     <div class="col-md-4">
                         <div class="p-field-select">
-                            <label for="regionE" class="required">Region </label>
-                            <select id="regionE" name="regionE" [(ngModel)]="entreprise.regionE">
-                                <option value="">Select a region</option>
-                                <option value="NY">Nabeul</option>
-                                <option value="CA">California</option>
-                                <option value="TX">Texas</option>
-                            </select>
+                            <label for="region" class="required">Region</label>
+                            <ng-container *ngIf="entreprise.countryE === 'Tunisia'">
+                                <select id="region" name="region" [(ngModel)]="entreprise.regionE">
+                                    <option value="">Select a region</option>
+                                    <option *ngFor="let region of keys(countries[entreprise.countryE])" [value]="region">
+                                        {{region}}</option>
+                                </select>
+                            </ng-container>
+                            <ng-container *ngIf="entreprise.countryE !== 'Tunisia'">
+                                <input id="region" name="region" [(ngModel)]="entreprise.regionE"
+                                    placeholder="Enter region" />
+                            </ng-container>
                         </div>
                     </div>
-
+        
                     <div class="col-md-4">
                         <div class="p-field-select">
-                            <label for="city" class="required">City </label>
-                            <select id="city" name="villeE" [(ngModel)]="entreprise.villeE">
-                                <option value="">Select a city</option>
-                                <option value="NYC">New York City</option>
-                                <option value="LA">Los Angeles</option>
-                                <option value="LA">Beni Khiar</option>
-                            </select>
+                            <label for="city" class="required">City</label>
+                     
+                            <ng-container *ngIf="entreprise.countryE === 'Tunisia' && entreprise.regionE">
+                                <select id="city" name="city" [(ngModel)]="entreprise.villeE">
+                                    <option value="">Select a city</option>
+                                    <option *ngFor="let city of getCities(entreprise.countryE, entreprise.regionE)"
+                                        [value]="city">{{city}}</option>
+                                </select>
+                            </ng-container>
+                            <ng-container *ngIf="entreprise.countryE !== 'Tunisia' || !entreprise.regionE">
+                                <input id="city" name="city" [(ngModel)]="entreprise.villeE" placeholder="Enter city" />
+                            </ng-container>
                         </div>
                     </div>
                 </div>

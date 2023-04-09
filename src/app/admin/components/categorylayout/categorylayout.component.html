@@ -1,0 +1,43 @@
+<p-card header="Add categories" [style]="{width: 'width'}" Class="p-mb-5 mt-3">
+    <app-add-category (categoryAdded)="fetchCategories()"></app-add-category>
+</p-card>
+<p-card header="Liste of Categories" [style]="{'width': '100%', 'margin-top': '50px'}" Class="p-mb-5 mt-3">
+    <p-treeTable #tt [value]="categoryTreeNodes" [columns]="cols" [paginator]="true" [rows]="10">
+        <ng-template pTemplate="caption">
+            <div style="text-align: right">
+                <span class="p-input-icon-left">
+                    <input type="text" pInputText size="50" placeholder="Global Filter"
+                        (input)="tt.filterGlobal($any($event.target).value, 'contains')" style="width:auto" />
+                </span>
+            </div>
+        </ng-template>
+        <ng-template pTemplate="header" let-columns>
+            <tr>
+                <th *ngFor="let col of columns">
+                    {{ col.header }}
+                </th>
+            </tr>
+            <tr>
+                <th *ngFor="let col of columns">
+                    <input *ngIf="col.field !== 'delete'" pInputText type="text"
+                        (input)="tt.filter($any($event.target).value, col.field, col.filterMatchMode)"
+                        placeholder="search... " />
+                </th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-rowNode let-rowData="rowData" let-columns="columns">
+            <tr>
+                <td *ngFor="let col of columns; let i = index">
+                    <p-treeTableToggler [rowNode]="rowNode" *ngIf="i == 0"></p-treeTableToggler>
+                    {{ rowData[col.field] }}
+                    <button *ngIf="col.field === 'delete'" pButton pRipple type="button" icon="pi pi-trash"
+                        (click)="OnconfirmForDelete($event, rowData._id, rowData.title)"
+                        class="p-button-danger"></button> &nbsp;&nbsp;
+                    <button *ngIf="col.field === 'delete'" pButton pRipple type="button" icon="pi pi-pencil"
+                        (click)="onUpdateClick(rowData)" class="p-button-warning"></button>
+                </td>
+            </tr>
+        </ng-template>
+    </p-treeTable>
+</p-card>
+<p-confirmPopup></p-confirmPopup>

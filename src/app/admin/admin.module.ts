@@ -35,11 +35,27 @@ import { SidebarModule } from 'primeng/sidebar';
 // template imports 
 import { AppLayoutModule } from './layout/app.layout.module';
 import { AppComponent } from '../app.component';
+import { CategorylayoutComponent } from './components/categorylayout/categorylayout.component';
+import { ProfileComponent } from './components/profile/profile.component';
+import { ImageModule } from 'primeng/image';
+import { TagModule } from 'primeng/tag';
+import { AddCategoryComponent } from './components/add-category/add-category.component';
+import { CardModule } from 'primeng/card';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MessageModule } from 'primeng/message';
+import { MessagesModule } from 'primeng/messages';
+import { TreeTableModule } from 'primeng/treetable';
+import { TreeNode } from 'primeng/api';
+import { ConfirmPopupModule } from 'primeng/confirmpopup';
 
 @NgModule({
   declarations: [
     TableComponent,
+    CategorylayoutComponent,
+    ProfileComponent,
+    AddCategoryComponent
   ],
+
   imports: [
     CommonModule,
     BrowserModule,
@@ -70,6 +86,16 @@ import { AppComponent } from '../app.component';
     InputTextareaModule,
     SidebarModule,
     AppLayoutModule,
+    ImageModule,
+    TagModule,
+    CardModule,
+    ReactiveFormsModule,
+    MessageModule,
+    MessagesModule,
+    TreeTableModule,
+    ConfirmPopupModule
+
+
   ],
   providers: [ProductService, ConfirmationService, MessageService],
   bootstrap: [TableComponent]

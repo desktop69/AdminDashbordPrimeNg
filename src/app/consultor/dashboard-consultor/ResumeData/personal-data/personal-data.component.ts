@@ -7,12 +7,16 @@ import { Message, MessageService, PrimeNGConfig } from 'primeng/api';
 import { PersonalDataService } from 'src/app/consultor/services/personal-data.service';
 import { ImageDTO } from 'src/app/consultor/models/image.model';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { data } from 'src/app/utils/data';
 
 @Component({
   selector: 'app-personal-data',
   templateUrl: './personal-data.component.html',
   styleUrls: ['./personal-data.component.scss']
 })
+
+
+
 export class PersonalDataComponent {
   displayModal!: boolean;
   displayPosition!: boolean;
@@ -30,6 +34,7 @@ export class PersonalDataComponent {
   newPersonalData = new PersonalDataDTO();
   isEditing = false;
   submitted = false;
+  countries = data;
   constructor(private primengConfig: PrimeNGConfig,
     private personalDataService: PersonalDataService,
     private authService: AuthService,
@@ -242,6 +247,23 @@ export class PersonalDataComponent {
 
   onUploadButtonClick(): void {
     this.fileInput.nativeElement.click();
+  }
+
+  keys(obj: object): string[] {
+    return Object.keys(obj);
+  }
+  
+  onSelectCountry(): void {
+    if (this.newPersonalData.Country !== 'Tunisia') {
+      this.newPersonalData.Region = '';
+      this.newPersonalData.City = '';
+    }
+  }
+
+
+  getCities(country: string, region: string): string[] {
+    const countryData = (this.countries as {[key: string]: any})[country];
+    return countryData?.[region]?.cities || [];
   }
 
 }

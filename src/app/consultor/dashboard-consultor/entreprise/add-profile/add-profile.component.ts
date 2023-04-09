@@ -7,6 +7,7 @@ import { ImageDTO } from 'src/app/consultor/models/image.model';
 import { EntrepriseProfileService } from 'src/app/consultor/services/entreprise/entreprise-profile.service';
 import { ImageService } from 'src/app/consultor/services/image.service';
 import { SharedService } from '../shared/shared';
+import { data } from 'src/app/utils/data';
 
 @Component({
   selector: 'app-add-profile',
@@ -14,6 +15,7 @@ import { SharedService } from '../shared/shared';
   styleUrls: ['./add-profile.component.scss']
 })
 export class AddProfileComponent {
+  countries = data;
   image!: ImageDTO;
   selectedFile: File | null = null;
   entreprise: EntrepriseDTO = new EntrepriseDTO();
@@ -131,5 +133,21 @@ export class AddProfileComponent {
           console.error('Error updating image:', error);
         }
       );
+    }
+
+    keys(obj: object): string[] {
+      return Object.keys(obj);
+    }
+    onSelectCountry(): void {
+      if (this.entreprise.countryE !== 'Tunisia') {
+        this.entreprise.regionE = '';
+        this.entreprise.villeE = '';
+      }
+    }
+  
+  
+    getCities(country: string, region: string): string[] {
+      const countryData = (this.countries as {[key: string]: any})[country];
+      return countryData?.[region]?.cities || [];
     }
 }

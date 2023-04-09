@@ -2,7 +2,7 @@
 <p-card>
     <form (ngSubmit)="onSubmit()" #offerDetailsForm="ngForm">
 
-        <div class="row">
+        <!-- <div class="row">
 
             <div class="col-md-4">
                 <div class="form-group">
@@ -39,15 +39,54 @@
                 </div>
             </div>
 
+        </div> -->
+
+        <div class="row">
+            <div class="col-md-4">
+                <div class="p-field-select">
+                    <label for="country" class="required">Country</label>
+                    <select id="country" name="country" [(ngModel)]="offerPlaceData.Address"
+                        (change)="onSelectCountry()">
+                        <option value="">Select a country</option>
+                        <option *ngFor="let country of keys(countries)" [value]="country">{{country}}</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="p-field-select">
+                    <label for="region" class="required">Region</label>
+                    <ng-container *ngIf="offerPlaceData.Address === 'Tunisia'">
+                        <select id="region" name="region" [(ngModel)]="offerPlaceData.Region">
+                            <option value="">Select a region</option>
+                            <option *ngFor="let region of keys(countries[offerPlaceData.Address])" [value]="region">
+                                {{region}}</option>
+                        </select>
+                    </ng-container>
+                    <ng-container *ngIf="offerPlaceData.Address !== 'Tunisia'">
+                        <input id="region" name="region" [(ngModel)]="offerPlaceData.Region"
+                            placeholder="Enter region" />
+                    </ng-container>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="p-field-select">
+                    <label for="city" class="required">City</label>
+             
+                    <ng-container *ngIf="offerPlaceData.Address === 'Tunisia' && offerPlaceData.Region">
+                        <select id="city" name="city" [(ngModel)]="offerPlaceData.City">
+                            <option value="">Select a city</option>
+                            <option *ngFor="let city of getCities(offerPlaceData.Address, offerPlaceData.Region)"
+                                [value]="city">{{city}}</option>
+                        </select>
+                    </ng-container>
+                    <ng-container *ngIf="offerPlaceData.Address !== 'Tunisia' || !offerPlaceData.Region">
+                        <input id="city" name="city" [(ngModel)]="offerPlaceData.City" placeholder="Enter city" />
+                    </ng-container>
+                </div>
+            </div>
         </div>
-
-
-
-
-
-
-
-            
         <div class="row">
             <div class="col-md-6">
                 <div class="form-group">
@@ -55,22 +94,22 @@
                     <table>
                         <tr>
                             <td>
-                                <p-checkbox  class="checkbox-spacing" name="mobility"
-                                value=" With the possibility of local travel" [(ngModel)]="offerPlaceData.mobility"
-                                label="
+                                <p-checkbox class="checkbox-spacing" name="mobility"
+                                    value=" With the possibility of local travel" [(ngModel)]="offerPlaceData.mobility"
+                                    label="
                                 With the possibility of local travel ?"></p-checkbox>
                             </td>
                             <td>
-                                <p-checkbox  class="checkbox-spacing" name="mobility"
-                                value="  With the possibility of international travel" [(ngModel)]="offerPlaceData.mobility"
-                                label="
+                                <p-checkbox class="checkbox-spacing" name="mobility"
+                                    value="  With the possibility of international travel"
+                                    [(ngModel)]="offerPlaceData.mobility" label="
                                 With the possibility of international travel ?"></p-checkbox>
                             </td>
-                          
+
                         </tr>
 
-                     
-                      
+
+
                     </table>
                 </div>
             </div>
@@ -82,8 +121,8 @@
 
 
         <div class="grid grid-nogutter justify-content-center mt-5">
-            <p-button type="button" icon="pi pi-angle-left" class="p-button-success mr-2" label="Back" (click)="onBack()"
-                iconPos="left"></p-button>
+            <p-button type="button" icon="pi pi-angle-left" class="p-button-success mr-2" label="Back"
+                (click)="onBack()" iconPos="left"></p-button>
             <p-button type="submit" label="Next" [disabled]="!offerDetailsForm.form.valid" icon="pi pi-angle-right"
                 iconPos="right"></p-button>
 

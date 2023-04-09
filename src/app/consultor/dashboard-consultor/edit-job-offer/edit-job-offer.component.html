@@ -144,49 +144,57 @@
 
     </div>
     <div class="row">
-
         <div class="col-md-4">
-            <div class="form-group">
-                <label for="Address" class="required">Country </label>
-                <select id="Address" name="Address" [(ngModel)]="currentOffer.Address">
+            <div class="p-field-select">
+                <label for="country" class="required">Country</label>
+                <select id="country" name="country" [(ngModel)]="currentOffer.Address"
+                    (change)="onSelectCountry()">
                     <option value="">Select a country</option>
-                    <option value="Tunisia">Tunisia</option>
-                    <option value="Canada">Canada</option>
-                    <option value="Canada">Mexico</option>
-                </select>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="form-group">
-                <label for="Region" class="required">Region </label>
-                <select id="Region" name="Region" [(ngModel)]="currentOffer.Region">
-                    <option value="">Select a region</option>
-                    <option value="Nabeul">Nabeul</option>
-                    <option value="Tunis">Tunis</option>
-                    <option value="Mahdia">Mahdia</option>
+                    <option *ngFor="let country of keys(countries)" [value]="country">{{country}}</option>
                 </select>
             </div>
         </div>
 
         <div class="col-md-4">
-            <div class="form-group">
-                <label for="City" class="required">City </label>
-                <select id="City" name="City" [(ngModel)]="currentOffer.City">
-                    <option value="">Select a city</option>
-                    <option value="bouargoub">bouargoub</option>
-                    <option value="dar chaaben">dar chaaben</option>
-                    <option value="Beni Khiar">Beni Khiar</option>
-                </select>
+            <div class="p-field-select">
+                <label for="region" class="required">Region</label>
+                <ng-container *ngIf="currentOffer.Address === 'Tunisia'">
+                    <select id="region" name="region" [(ngModel)]="currentOffer.Region">
+                        <option value="">Select a region</option>
+                        <option *ngFor="let region of keys(countries[currentOffer.Address])" [value]="region">
+                            {{region}}</option>
+                    </select>
+                </ng-container>
+                <ng-container *ngIf="currentOffer.Address !== 'Tunisia'">
+                    <input id="region" name="region" [(ngModel)]="currentOffer.Region"
+                        placeholder="Enter region" />
+                </ng-container>
             </div>
         </div>
 
+        <div class="col-md-4">
+            <div class="p-field-select">
+                <label for="city" class="required">City</label>
+         
+                <ng-container *ngIf="currentOffer.Address === 'Tunisia' && currentOffer.Region">
+                    <select id="city" name="city" [(ngModel)]="currentOffer.City">
+                        <option value="">Select a city</option>
+                        <option *ngFor="let city of getCities(currentOffer.Address, currentOffer.Region)"
+                            [value]="city">{{city}}</option>
+                    </select>
+                </ng-container>
+                <ng-container *ngIf="currentOffer.Address !== 'Tunisia' || !currentOffer.Region">
+                    <input id="city" name="city" [(ngModel)]="currentOffer.City" placeholder="Enter city" />
+                </ng-container>
+            </div>
+        </div>
     </div>
     <div class="row">
 
         <div class="col-md-4">
 
             <label for="descriptionE" class="required">Jobs</label>
-            <p-listbox [options]="groupedCities" name="selectedCountries" [group]="true" [(ngModel)]="selectedCountries"
+            <p-listbox [options]="groupedCities1" name="selectedCountries1" [group]="true" [(ngModel)]="selectedCountries1"
                 [metaKeySelection]="false" [checkbox]="true" [filter]="true" [multiple]="true"
                 [listStyle]="{'max-height':'150px'}" [style]="{'width':'36rem'}">
                 <ng-template let-group pTemplate="group">

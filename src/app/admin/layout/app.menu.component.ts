@@ -42,10 +42,10 @@ export class AppMenuComponent implements OnInit {
                 ]
             },
             {
-                label: 'Prime Blocks',
+                label: 'Categories management',
                 items: [
-                    { label: 'Free Blocks', icon: 'pi pi-fw pi-eye', routerLink: ['/blocks'], badge: 'NEW' },
-                    { label: 'All Blocks', icon: 'pi pi-fw pi-globe', url: ['https://www.primefaces.org/primeblocks-ng'], target: '_blank' },
+                    { label: 'Liste of categorie', icon: 'pi pi-fw pi-eye', routerLink: 'category', badge: 'NEW' },
+                    { label: 'Add categorie', icon: 'pi pi-fw pi-globe', routerLink: 'newcategory' },
                 ]
             },
             {
