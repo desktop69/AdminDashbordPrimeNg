@@ -89,18 +89,21 @@
         <div class="row">
 
             <div class="col-md-4">
-
-                <label for="descriptionE" class="required">Jobs</label>
-                <p-listbox [options]="groupedCities" name="selectedCountries" [group]="true" [(ngModel)]="selectedCountries"
+                <div class="form-group">
+                  <label for="descriptionE" class="required">Jobs</label>
+                  <p-listbox [options]="groupedJobs" name="selectedJobs" [group]="true" [(ngModel)]="offerDetailsData.JobCategorie"
                     [metaKeySelection]="false" [checkbox]="true" [filter]="true" [multiple]="true"
                     [listStyle]="{'max-height':'150px'}" [style]="{'width':'36rem'}">
                     <ng-template let-group pTemplate="group">
-                        <div class="flex align-items-center">
-                            <span>{{group.label}}</span>
-                        </div>
+                      <div class="flex align-items-center">
+                        <span>{{group.label}}</span>
+                      </div>
                     </ng-template>
-                </p-listbox>
-            </div>
+                  </p-listbox>
+                </div>
+              </div>
+              
+              
             <div class="col-md-4">
                 <div class="form-group">
                     <label for="descriptionE" class="required">Types Of Positions</label>

@@ -8,10 +8,10 @@
             <div class="headline mt-5">
                 <div class="d-flex bd-highlight">
                     <div class="p-2 flex-grow-1 bd-highlight">
-                
-                     
-                            <h2><i></i><b>My Professional Data</b></h2>
-                
+
+
+                        <h2><i></i><b>My Professional Data</b></h2>
+
                     </div>
                     <!-- <div class="p-2 bd-highlight">
                         <button pButton pRipple type="button"
@@ -37,31 +37,40 @@
 
 
                 </div>
-                
-                    
-                     
-                        <div class="content padding-bottom-0">
-                            <div *ngIf=" !professionaldata; else show">
-                                <div class="card">
-                                    <div class="card-body mt-1">
-                                        <p-messages [(value)]="messages" [enableService]="false" [closable]="false"></p-messages>
-                                    </div>
-                                </div>
+
+
+
+                <div class="content padding-bottom-0">
+                    <div *ngIf=" !professionaldata; else show">
+                        <div class="card">
+                            <div class="card-body mt-1">
+                                <p-messages [(value)]="messages" [enableService]="false"
+                                    [closable]="false"></p-messages>
                             </div>
-                            <div class="row">
+                        </div>
+                    </div>
+                    <div class="row">
                         <ng-template #show>
                             <div *ngIf="professionaldata" class="col-md-10">
                                 <div class="filed"><b>Professional Title : </b>{{professionaldata.Title}}</div>
-                                <div class="filed"><b>Level Of Education :  </b>  {{ professionaldata.LevelOfEducation}}</div>
-                                <div class="filed"><b>Level Of Experience : </b>{{ professionaldata.LevelOfExperience}}</div>
-                                <div class="filed"><b>CurrentNetSalary : </b>{{ professionaldata.LevelOfExperience}}</div>
-                                <div class="filed"><b>ProfessionalSituation : </b>{{ professionaldata.ProfessionalSituation}}</div>
-                                <div class="filed"><b>DesiredMinimumNetSalary  : </b> {{ professionaldata.DesiredMinimumNetSalary}}</div>
-                                <div class="filed"><b>DesiredMinimumNetSalary  : </b> {{ professionaldata.CurrentNetSalary}}</div>
+                                <div class="filed"><b>Level Of Education : </b> {{ professionaldata.LevelOfEducation}}
+                                </div>
+                                <div class="filed"><b>Level Of Experience : </b>{{ professionaldata.LevelOfExperience}}
+                                </div>
+                                <div class="filed"><b>CurrentNetSalary : </b>{{ professionaldata.LevelOfExperience}}
+                                </div>
+                                <div class="filed"><b>ProfessionalSituation : </b>{{
+                                    professionaldata.ProfessionalSituation}}</div>
+                                <div class="filed"><b>DesiredMinimumNetSalary : </b> {{
+                                    professionaldata.DesiredMinimumNetSalary}}</div>
+                                <div class="filed"><b>DesiredMinimumNetSalary : </b> {{
+                                    professionaldata.CurrentNetSalary}}</div>
                                 <div class="filed"><b>Availability : </b> {{ professionaldata.Availability}}</div>
                                 <div class="filed"><b>job category : </b>{{ professionaldata.JobCategorie}}</div>
-                                <div class="filed"><b>Types Of Positions : </b> {{ professionaldata.TypesOfPositions}}</div>
-                                <div class="filed"><b>DesiredWorkLocations : </b>  {{ professionaldata.DesiredWorkLocations}}</div>
+                                <div class="filed"><b>Types Of Positions : </b> {{ professionaldata.TypesOfPositions}}
+                                </div>
+                                <div class="filed"><b>DesiredWorkLocations : </b> {{
+                                    professionaldata.DesiredWorkLocations}}</div>
                             </div>
                         </ng-template>
                     </div>
@@ -175,19 +184,26 @@
                         <div class="row justify-content-between pt-5">
                             <div class="col-md-4">
                                 <label>JobCategorie groups</label>
-                                <p-multiSelect formControlName="JobCategorie" [options]="JobCategorie" [group]="true"
-                                    defaultLabel="Select a JobCategorie" scrollHeight="250px" display="chip"
-                                    [ngClass]="{'ng-invalid ng-dirty': isFieldInvalidUpdate('JobCategorie')}">
-                                    <ng-template let-group pTemplate="group">
-                                        <div class="flex align-items-center">
-                                            <span>{{group.label}}</span>
-                                        </div>
-                                    </ng-template>
+                                <p-multiSelect formControlName="JobCategorie" width=" 70"[options]="JobCategorie" [group]="true"
+                                  defaultLabel="Select a JobCategorie" scrollHeight="250px" display="chip"
+                                  [ngClass]="{'ng-invalid ng-dirty': isFieldInvalidUpdate('JobCategorie')}">
+                                  <ng-template let-group pTemplate="group">
+                                    <div class="flex align-items-center">
+                                      <span>{{group.label}}</span>
+                                    </div>
+                                  </ng-template>
+                                  <ng-template let-item pTemplate="item">
+                                    <div class="flex align-items-center">
+                                      <span>{{item.label}}</span>
+                                    </div>
+                                  </ng-template>
                                 </p-multiSelect>
                                 <div *ngIf="isFieldInvalidUpdate('JobCategorie')" class="p-error">
-                                    <span>JobCategorie is required </span>
+                                  <span>JobCategorie is required </span>
                                 </div>
-                            </div>
+                              </div>
+                              
+                              
                             <!-- Types of Positions -->
                             <div class="col-md-4">
                                 <label for="typesOfPositions">Types of Positions</label>

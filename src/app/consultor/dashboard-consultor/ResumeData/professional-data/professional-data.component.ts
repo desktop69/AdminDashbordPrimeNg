@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ConfirmationService, Message, MessageService, PrimeNGConfig, SelectItemGroup } from 'primeng/api';
+import { CategoryService } from 'src/app/admin/services/category.service';
 import { ProfessionalData } from 'src/app/consultor/models/ProfessionalData.model';
 import { ProfessionalDataService } from 'src/app/consultor/services/professional-data.service';
 
@@ -18,13 +19,15 @@ export class ProfessionalDataComponent implements OnInit {
   messages!: Message[];
   professionalDataForm!: FormGroup;
   newprofessionalDataForm!: FormGroup;
-  JobCategorie!: SelectItemGroup[];
+
+  JobCategorie: any[] = [];
+  
   typesOfPositions: any[] = []; // Initialize the array with an empty array as a default value.
   // Example dropdown options
   educationLevels = [{ name: 'High School' }, { name: 'Bachelor' }, { name: 'Master' }, { name: 'PhD' }];
   experienceLevels = [{ name: 'Junior' }, { name: 'Intermediate' }, { name: 'Senior' }];
   professionalSituations = [{ name: 'Employed' }, { name: 'Unemployed' }, { name: 'Student' }];
-  availabilities = [{ name: 'Immediately' }, { name: '1 week' }, { name: '2 weeks' }, { name: '1 month' }, { name: '3 months' }];
+  availabilities = [{ name: 'Immediately' }, { name: 'Part Time' }, { name: 'Full Time' }];
   //  desiredWorkLocations = [{ name: 'Tunis' }, { name: 'Nabeul' }, { name: 'Sousse' },]
   desiredWorkLocations = [{
     label: 'Tunis', value: 'tn',
@@ -40,30 +43,39 @@ export class ProfessionalDataComponent implements OnInit {
     private prosevices: ProfessionalDataService,
     private messageService: MessageService,
     private confirmationService: ConfirmationService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private categoryService: CategoryService
   ) {
     this.messages = [
       { severity: 'info', summary: 'Info', detail: '    You havent figured out your Personal Data' },
 
     ];
     this.CreateFormForUPdate();
-    this.JobCategorie = [
-      {
-        label: 'IT', value: 'de',
-        items: [
-          { label: 'Devlopmment', value: 'dev' },
-          { label: 'Testing', value: 'tes' },
-          { label: 'Ai', value: 'ai' },
-          { label: 'Clowd', value: 'cl' }
-        ]
-      }]
+
   }
   ngOnInit() {
     this.primengConfig.ripple = true;
     this.DataCharger();
     this.CreateForm();
+    this.fetchCategories();
     this.typesOfPositions = [{ name: 'Full-time' }, { name: 'Part-time' }, { name: 'Contract' }, { name: 'Internship' }, { name: 'Freelance' }];
   }
+
+  fetchCategories(): void {
+    this.categoryService.getAllCategories().subscribe((data) => {
+      const categories = data.filter(category => !category.Parent);
+      this.JobCategorie = categories.map(category => {
+        const group = {
+          label: category.title,
+          value: category.title,
+          items: category.childrens?.map(child => ({ label: child.title, value: child.title })) || []
+        };
+        return group;
+      });
+    });
+  }
+  
+  
   showModalDialogUpdate() {
     this.displayModal = true;
   }

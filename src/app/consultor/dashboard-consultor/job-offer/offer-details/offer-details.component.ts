@@ -2,18 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { SelectItemGroup } from 'primeng/api';
 import { MultiSelectFilterOptions } from 'primeng/multiselect';
+import { CategorieDto } from 'src/app/admin/interface/categorie.dto';
+import { CategoryService } from 'src/app/admin/services/category.service';
 import { Offer } from 'src/app/consultor/models/offer/offer.model';
 import { OfferFormDataService } from 'src/app/consultor/services/offer/shared/offer-form-data.service';
 
-interface City {
-  name: string,
-  code: string
-}
 
-interface Country {
-  name: string,
-  code: string
-}
 @Component({
   selector: 'app-offer-details',
   templateUrl: './offer-details.component.html',
@@ -23,85 +17,42 @@ interface Country {
 
 export class OfferDetailsComponent implements OnInit {
   offerDetailsData: Partial<Offer> = this.offerFormDataService.getStepData('offerDetails');
-  
-  groupedCities!: SelectItemGroup[];
-    
-    cities!: City[];
+  selectedJobs: string[] = [];
 
-    countries!: Country[];
 
-    selectedCity!: City;
-
-    selectedCountries!: Country[];
-    
+  categories: CategorieDto[] = [];
+  groupedCategories: SelectItemGroup[] = [];
+  groupedJobs: any[] = [];
   constructor(
     private offerFormDataService: OfferFormDataService,
-    private router: Router
+    private router: Router, private categoryService: CategoryService
   ) {
-    this.cities = [
-      {name: 'New York', code: 'NY'},
-      {name: 'Rome', code: 'RM'},
-      {name: 'London', code: 'LDN'},
-      {name: 'Istanbul', code: 'IST'},
-      {name: 'Paris', code: 'PRS'}
-  ];
-
-  this.countries = [
-      {name: 'Australia', code: 'AU'},
-      {name: 'Brazil', code: 'BR'},
-      {name: 'China', code: 'CN'},
-      {name: 'Egypt', code: 'EG'},
-      {name: 'France', code: 'FR'},
-      {name: 'Germany', code: 'DE'},
-      {name: 'India', code: 'IN'},
-      {name: 'Japan', code: 'JP'},
-      {name: 'Spain', code: 'ES'},
-      {name: 'United States', code: 'US'}
-  ];
-
-  this.groupedCities = [
-      {
-          label: 'Germany', value: 'de', 
-          items: [
-              {label: 'Berlin', value: 'Berlin'},
-              {label: 'Frankfurt', value: 'Frankfurt'},
-              {label: 'Hamburg', value: 'Hamburg'},
-              {label: 'Munich', value: 'Munich'}
-          ]
-      },
-      {
-          label: 'USA', value: 'us', 
-          items: [
-              {label: 'Chicago', value: 'Chicago'},
-              {label: 'Los Angeles', value: 'Los Angeles'},
-              {label: 'New York', value: 'New York'},
-              {label: 'San Francisco', value: 'San Francisco'}
-          ]
-      },
-      {
-          label: 'Japan', value: 'jp', 
-          items: [
-              {label: 'Kyoto', value: 'Kyoto'},
-              {label: 'Osaka', value: 'Osaka'},
-              {label: 'Tokyo', value: 'Tokyo'},
-              {label: 'Yokohama', value: 'Yokohama'}
-          ]
-      }
-  ];
-}
-
-  ngOnInit(): void {
 
   }
-    
 
+  ngOnInit(): void {
+    this.fetchCategories();
+  }
+
+  fetchCategories(): void {
+    this.categoryService.getAllCategories().subscribe((data) => {
+      const categories = data.filter(category => !category.Parent);
+      this.groupedJobs = categories.map(category => {
+        const group = {
+          label: category.title,
+          items: category.childrens?.map(child => ({ label: child.title, value: child.title })) || []
+        };
+        return group;
+      });
+    });
+  }
+  
 
 
   onSubmit(): void {
-    this.offerFormDataService.updateStepData('offerDetails', this.offerDetailsData);
-    this.router.navigate(['/dashboardConsultor/Job-offer/offer-place']);
+    this.offerFormDataService.updateStepData('offerDetails', this.offerDetailsData);    this.router.navigate(['/dashboardConsultor/Job-offer/offer-place']);
   }
   onBack(): void {
-    this.router.navigate(['/dashboardConsultor/Job-offer/offer-info']); 
+    this.router.navigate(['/dashboardConsultor/Job-offer/offer-info']);
   }
 }
