@@ -1,0 +1,157 @@
+<p-toast></p-toast>
+
+<div class="card">
+  <p-toolbar styleClass="p-mb-4">
+    <ng-template pTemplate="left">
+      <h2><b>List Users</b></h2>
+    </ng-template>
+    <ng-template pTemplate="right">
+      <button pButton pRipple label="Add User" (click)="showModalDialog()" icon="pi pi-plus"
+        class="add p-mr-2"></button>&nbsp;
+    </ng-template>
+  </p-toolbar>
+
+  <p-table #dt [value]="users" [rows]="10" [paginator]="true"
+    [globalFilterFields]="['email', 'username', 'role', 'is_confirmed']" [rowHover]="true" dataKey="_id"
+    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true">
+    <ng-template pTemplate="caption">
+      <div class="p-d-flex p-ai-center p-jc-between">
+        <h4 class="p-m-0"><b>Manage Users</b></h4>
+        <span class="p-input-icon-left mt-3">
+          <input pInputText type="text" (input)="dt.filterGlobal($any($event.target).value, 'contains')"
+            placeholder="Global Search" />
+        </span>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="header">
+      <tr>
+        <th pSortableColumn="email">Email <p-sortIcon field="email"></p-sortIcon></th>
+        <th pSortableColumn="_id">_id <p-sortIcon field="_id"></p-sortIcon></th>
+        <th pSortableColumn="username">Username <p-sortIcon field="username"></p-sortIcon></th>
+        <th pSortableColumn="role">Role <p-sortIcon field="role"></p-sortIcon></th>
+        <th pSortableColumn="is_confirmed">Confirmed <p-sortIcon field="is_confirmed"></p-sortIcon></th>
+        <th>Actions</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-user>
+      <tr>
+        <td>{{user.email}}</td>
+        <td>{{user._id}}</td>
+
+        <td>{{user.username}}</td>
+        <td>{{user.role}}</td>
+        <td>
+          <p-inputSwitch [(ngModel)]="user.is_confirmed" (onChange)="updateUserswitch(user)" onLabel="Confirmed"
+            offLabel="Not Confirmed"></p-inputSwitch>
+        </td>
+        <td>
+          <button pButton pRipple type="button" icon="pi pi-trash"
+            (click)="OnconfirmForDelete($event, user._id, user.username)" class="p-button-danger"></button>
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="summary">
+      <div class="p-d-flex p-ai-center p-jc-between">
+        In total there are {{users ? users.length : 0 }} users.
+      </div>
+    </ng-template>
+  </p-table>
+</div>
+<p-dialog header="Are you sure you want to close this window?" [(visible)]="displayPosition" [modal]="true"
+  [style]="{width: '20vw'}" [baseZIndex]="10000" [draggable]="false" [resizable]="false">
+  <p> Your changes will be lost if you leave without saving.</p>
+  <ng-template pTemplate="footer">
+    <button pButton pRipple icon="pi pi-times" (click)="displayPosition=false" label="No"
+      class="p-button-outlined p-button-rounded p-button-secondary blue-hover"></button>
+    <button pButton pRipple icon="pi pi-check" (click)="closeAllModals()" label="Yes"
+      class="p-button-outlined p-button-rounded p-button-secondary blue-hover"></button>
+  </ng-template>
+</p-dialog>
+<!-- crate new dialoge for post request ? -->
+<p-dialog class='custom-close-button' header="Add user" [(visible)]="displayModal" [modal]="true"
+[style]="{height :'38vw',width:'50vw'}" [baseZIndex]="10000" [draggable]="true" [resizable]="true"
+  [closable]="false">
+  <!--  put ur conetent here   -->
+  <div class="container" #container>
+    <div class="container">
+      <!-- begin card-->
+      <form [formGroup]="userForm">
+        <div class="row" #row>
+          <div class="col">
+            <label for="email">Email</label>
+            <input id="email" type="text" formControlName="email" pInputText
+              [ngClass]="{'ng-invalid ng-dirty': isFieldInvalid('email')}" />
+            <div *ngIf="isFieldInvalid('email')" class="p-error"><span>
+                email is required.</span></div>
+          </div>
+          <div class="col">
+            <label for="username">Username</label>
+            <input id="username" type="text" formControlName="username" pInputText
+              [ngClass]="{'ng-invalid ng-dirty': isFieldInvalid('username')}" />
+            <div *ngIf="isFieldInvalid('username')" class="p-error"><span>
+                username is required.</span></div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <label for="password">Password:</label>
+            <p-password id="password" formControlName="password" [style]="{'minWidth':'100%'}">
+              <ng-template pTemplate="header">
+                <h6>Pick a password</h6>
+              </ng-template>
+              <ng-template pTemplate="footer">
+              
+                <p class="mt-2">Suggestions</p>
+                <ul class="pl-2 ml-2 mt-0" style="line-height: 1.5">
+                  <li>At least one lowercase</li>
+                  <li>At least one uppercase</li>
+                  <li>At least one numeric</li>
+                  <li>Minimum 8 characters</li>
+                </ul>
+              </ng-template>
+            </p-password>
+          </div>
+          <div class="col">
+            <label for="confirmPassword">Confirm Password</label>
+            <input type="password" class="form-control" formControlName="confirmPassword" />
+            <small
+              *ngIf="userForm.get('confirmPassword')!.hasError('required') && userForm.get('confirmPassword')!.touched"
+              class="p-error">
+              Confirm Password is required.
+            </small>
+            <small *ngIf="userForm.hasError('passwordMismatch') && userForm.get('confirmPassword')!.touched"
+              class="p-error">
+              Passwords do not match.
+            </small>
+          </div>
+        </div>
+        <div class="row" >
+          <div class="col">
+            <label for="role">Role</label>
+     <div >
+  <p-dropdown formControlName="role" [options]="roleOptions" [filter]="true" [showClear]="true"
+              [ngClass]="{'ng-invalid ng-dirty': isFieldInvalid('role')}" [style]="{'minWidth':'100%'}"
+            ></p-dropdown>
+       </div>
+
+            <div *ngIf="isFieldInvalid('role')" class="p-error"><span>
+                role is required.</span></div>
+          </div>
+          <div class="col">
+            <label>{{ userForm.get('is_confirmed')!.value ? confirmedLabel : notConfirmedLabel }}</label>
+            <p-inputSwitch formControlName="is_confirmed" onLabel="confirmedLabel"
+              offLabel="notConfirmedLabel"></p-inputSwitch>
+          </div>
+        </div>
+      </form>
+      <!--end of card -->
+    </div>
+  </div>
+  <ng-template pTemplate="footer">
+    <button pButton pRipple icon="pi pi-times" (click)="closeModal()" label="No"
+      class="p-button-outlined p-button-rounded p-button-secondary blue-hover"></button>
+    <button pButton pRipple icon="pi pi-check" (click)="onSubmit()" label="Save"
+      class="p-button-outlined p-button-rounded p-button-secondary blue-hover"></button>
+  </ng-template>
+</p-dialog>
+<p-confirmPopup></p-confirmPopup>

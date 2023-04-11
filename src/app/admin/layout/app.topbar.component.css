@@ -1,0 +1,13 @@
+.profile-photo {
+    width: 30px; /* Adjust the width as needed */
+    height: 30px; /* Adjust the height as needed */
+    border-radius: 50%; /* Creates a circular photo */
+    object-fit: cover; /* Ensures the image is properly scaled */
+  }
+
+  .header-notifications-trigger a {
+    cursor: pointer;
+  }
+  .cur{
+    cursor: pointer; 
+}

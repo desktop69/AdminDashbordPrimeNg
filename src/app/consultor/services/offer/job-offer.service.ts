@@ -23,6 +23,10 @@ export class JobOfferService {
     return this.http.post<Offer>(`${this.apiUrl}/createOffer`, dto, httpOptions);
   }
 
+  getAllOffers(): Observable<Offer[]> {
+    return this.http.get<Offer[]>(`${this.apiUrl}/getAlloffers`);
+  }
+
   getAllOfferByUserId(IdUser: string): Observable<Offer[]> {
     return this.http.get<Offer[]>(`${this.apiUrl}/findAllOfferByIdUser/${IdUser}`);
   }

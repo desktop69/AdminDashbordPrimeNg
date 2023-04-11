@@ -275,7 +275,7 @@ img { max-width: 100%; }
 ------------------------------------- */
 #logo { 
 	display: inline-block;
-	border-right: 1px solid #e0e0e0;
+
 	height: 100%;
 	vertical-align: top;
 	padding-right: 35px;

@@ -5,6 +5,7 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 import { Observable } from 'rxjs';
 import { RegisterDTO } from '../models/register.model';
 import { User } from '../models/user.model';
+import { Users } from '../models/Admin-users.model';
 
 @Injectable({
   providedIn: 'root'
@@ -36,6 +37,11 @@ export class AuthService {
     //console.log("url :"+url );
     //console.log("register dto" ,registerDTO);
     return this.http.post(url, registerDTO);
+  }
+  AddUsers(user: Users): Observable<any> {
+    const url = `${this.apiURL + '/register'}`;
+    console.log(" user from services ", user);
+    return this.http.post(url, user);
   }
 
   testingapi() {
@@ -167,5 +173,22 @@ export class AuthService {
 
   resetPassword(username: string, newPassword: string, token: string): Observable<any> {
     return this.http.post(`${this.apiURL}/reset-password`, { username, newpassword: newPassword, token });
+  }
+
+
+  resetPasswordAdminwithUserName(username: string, newPassword: string): Observable<any> {
+    return this.http.post<any>(`${this.apiURL}/reset-password-admin`, { username, newpassword: newPassword });
+  }
+  getAllUsers(): Observable<Users[]> {
+    return this.http.get<Users[]>(`${this.apiURL}/getAllUSers`);
+  }
+  delteUser(id: string): Observable<Users> {
+    return this.http.delete<Users>(`${this.apiURL}/DeleteUser/${id}`);
+  }
+  updateUser(usr: Users): Observable<Users> {
+    //console.log("object from the updatee service data thisss  ", usr);
+    const res = this.http.put<Users>(`${this.apiURL}/UpdateUser`, usr);
+    //console.log(" result is ", res)
+    return res;
   }
 }

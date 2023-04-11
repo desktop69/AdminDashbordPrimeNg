@@ -1,0 +1,58 @@
+
+<div *ngIf="currentOffer">
+    <div class="row">
+      <div class="col-md-12">
+        <p-card>
+          <h3 class="card-header">Offer Details</h3>
+          <div class="card-body">
+            <p><b>Title:</b> {{ currentOffer.titleO }}</p>
+            <p><b>Reference:</b> {{ currentOffer.referenceO }}</p>
+            <div class="filed" [innerHTML]="'<b>Description:</b> ' + currentOffer.descriptionE" ></div>
+
+          </div>
+        </p-card>
+      </div>
+    </div>
+  
+    <div class="row">
+      <div class="col-md-4">
+        <p-card>
+          <h3 class="card-header">Offer Info</h3>
+          <div class="card-body">
+            <p><b>Types of Positions:</b> {{ currentOffer.TypesOfPositions }}</p>
+            <p><b>Availability:</b> {{ currentOffer.Availability }}</p>
+            <p><b>Desired Minimum Net Salary:</b> {{ currentOffer.DesiredMinimumNetSalary }} TND</p>
+            <p><b>Desired Maximum Net Salary:</b> {{ currentOffer.DesiredMaximumNetSalary }} TND</p>
+            <p><b>In:</b> {{ currentOffer.in }}</p>
+            <p><b>Level of Education:</b> {{ currentOffer.LevelOfEducation }}</p>
+            <p><b>Level of Experience:</b> {{ currentOffer.LevelOfExperience }}</p>
+            <p *ngIf="currentOffer.languages"><b>Languages:</b> {{ currentOffer.languages.join(', ') }}</p>
+            <p *ngIf="currentOffer.JobCategorie"><b>Job Category:</b> {{ currentOffer.JobCategorie.join(', ') }}</p>
+            
+          </div>
+        </p-card>
+      </div>
+      <div class="col-md-4">
+        <p-card>
+          <h3 class="card-header">Offer Place</h3>
+          <div class="card-body">
+            <p><b>Country:</b> {{ currentOffer.Address }}</p>
+            <p><b>Region:</b> {{ currentOffer.Region }}</p>
+            <p><b>City:</b> {{ currentOffer.City }}</p>
+            <p><b>Mobility:</b> {{ currentOffer.mobility }}</p>
+          </div>
+        </p-card>
+      </div>
+      <div class="col-md-4">
+        <p-card>
+          <h3 class="card-header">Offer Settings</h3>
+          <div class="card-body">
+            <p><b>Date:</b> {{ currentOffer.date | date: 'yyyy-MM-dd' }}</p>
+            <p><b>Responsible:</b> {{ currentOffer.responable }}</p>
+            <p><b>Email for sending emails:</b> {{ currentOffer.emailforsendmails }}</p>
+          </div>
+        </p-card>
+      </div>
+    </div>
+  </div>
+  

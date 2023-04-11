@@ -63,13 +63,13 @@ export class ListJobOfferComponent {
       header: 'Confirm',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
-        this.deletelangue(item);
+        this.deleteoffer(item);
         this.getAllOffersByIdEntreprsie()
       }
     });
   }
 
-  deletelangue(item: Offer) {
+  deleteoffer(item: Offer) {
     this.apiServiceOffer.deleteOffer(item._id).subscribe(
       () => {
         this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Offer deleted Successfully', life: 3000 });

@@ -40,6 +40,9 @@ import { EditJobOfferComponent } from './consultor/dashboard-consultor/edit-job-
 import { AddCategoryComponent } from './admin/components/add-category/add-category.component';
 import { CategorylayoutComponent } from './admin/components/categorylayout/categorylayout.component';
 import { ProfileComponent } from './admin/components/profile/profile.component';
+import { UserslayoutComponent } from './admin/components/userslayout/userslayout.component';
+import { AdminJobOfferComponent } from './admin/components/admin-job-offer/admin-job-offer.component';
+import { AdminOfferDetailsComponent } from './admin/components/admin-offer-details/admin-offer-details.component';
 
 const routes: Routes = [
   { path: "", redirectTo: "consultor", pathMatch: "full" },
@@ -50,6 +53,9 @@ const routes: Routes = [
       { path: 'category', component: CategorylayoutComponent },
       { path: 'profile', component: ProfileComponent },
       { path: 'newcategory', component: AddCategoryComponent },
+      { path: 'users', component: UserslayoutComponent },
+      { path: 'offers', component: AdminJobOfferComponent },
+      { path: 'admin-offer-details/:id', component: AdminOfferDetailsComponent },
     
 
 
@@ -61,6 +67,7 @@ const routes: Routes = [
   {
     path: 'dashboardConsultor', component: DashboardConsultorComponent,
     children: [
+      { path: '', redirectTo: 'statistics', pathMatch: 'full' },
       { path: 'statistics', component: DashbordIndexComponent },
       { path: 'Resume', component: ResumeComponent },
       { path: 'Settings', component: SettingsComponent },

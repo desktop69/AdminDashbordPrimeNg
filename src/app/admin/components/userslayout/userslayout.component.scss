@@ -1,0 +1,23 @@
+.drop-up-container {
+        position: relative;
+      
+        .p-dropdown {
+          position: absolute;
+          bottom: 100%; // Position the dropdown above the input field
+          z-index: 1000; // Ensure the dropdown is above other elements
+        }
+      
+        .p-dropdown-panel {
+          position: fixed !important;
+          max-height: 200px; // Set a maximum height for the dropdown
+          overflow-y: auto; // Add a scrollbar if the content is too long
+        }
+ }
+      
+ .add {
+
+    background-color: #292eb3;
+ 
+    cursor: pointer;
+
+  }

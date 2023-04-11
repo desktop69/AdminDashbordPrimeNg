@@ -1,18 +1,24 @@
 <div class="layout-topbar">
-    <a class="layout-topbar-logo" routerLink="">
-        <img src="assets/layout/images/{{layoutService.config.colorScheme === 'light' ? 'logo-dark' : 'logo-white'}}.svg" alt="logo">
-        <span>SAKAI</span>
+    <a class="layout-topbar-logo " routerLink="">
+        <img src="./assets/logoclevcomplet.png" style="width: 70%; height: 100%;" class="logo" alt="">
     </a>
 
-    <button #menubutton class="p-link layout-menu-button layout-topbar-button" (click)="layoutService.onMenuToggle()">
+    <button #menubutton class="p-link layout-menu-button layout-topbar-button ml-0" (click)="layoutService.onMenuToggle()">
         <i class="pi pi-bars"></i>
     </button>
 
-    <button #topbarmenubutton class="p-link layout-topbar-menu-button layout-topbar-button" (click)="layoutService.showProfileSidebar()">
+    <button #topbarmenubutton class="p-link layout-topbar-menu-button layout-topbar-button "
+        (click)="layoutService.showProfileSidebar()">
         <i class="pi pi-ellipsis-v"></i>
     </button>
 
-    <div #topbarmenu class="layout-topbar-menu" [ngClass]="{'layout-topbar-menu-mobile-active': layoutService.state.profileSidebarVisible}">
+    <div #topbarmenu class="layout-topbar-menu"
+    
+        [ngClass]="{'layout-topbar-menu-mobile-active': layoutService.state.profileSidebarVisible}">
+   
+          <!-- Add this inside the .layout-topbar-menu div -->
+
+  
         <button class="p-link layout-topbar-button">
             <i class="pi pi-calendar"></i>
             <span>Calendar</span>
@@ -21,9 +27,60 @@
             <i class="pi pi-user"></i>
             <span>Profile</span>
         </button>
-        <button class="p-link layout-topbar-button" [routerLink]="'/documentation'">
+        <button class="p-link layout-topbar-button mr-2" [routerLink]="'/documentation'">
             <i class="pi pi-cog"></i>
             <span>Settings</span>
         </button>
-    </div>
+ 
+
+          <div class="header-widget" [class.active]="isUserMenuActive">
+            <div class="header-notifications user-menu" [class.active]="isUserMenuActive">
+          
+                <button class="p-link layout-topbar-button user-avatar status-online" (click)="toggleUserMenu()">
+                    <div *ngIf="image"(click)="toggleUserMenu()">
+                    <img [src]="'data:image/png;base64,' + image.data" alt="Profile Photo" class="profile-photo" (click)="toggleUserMenu()" />
+                    </div>
+                    <div *ngIf="!image" (click)="toggleUserMenu()">
+                        <a (click)="toggleUserMenu()"><div class="user-avatar status-online"><img src="./assets/avatarifnot.jpg" alt=""></div></a>
+                    </div>
+                 
+                 
+                 
+                  </button>
+                <!-- Dropdown -->
+                <div class="header-notifications-dropdown" style="margin-right: auto; padding-right: auto;" >
+                        <!-- User Status -->
+                        <div class="user-status">
+                        
+                        
+                        
+                            <!-- User Name / Avatar -->
+                            <div class="user-details">
+                                <div *ngIf="image">
+                                <div class="user-avatar status-online"><img [src]="'data:image/png;base64,' + image.data"  alt=""></div>
+                                </div>
+                                <div *ngIf="!image">
+                                    <div class="user-avatar status-online"><img src="./assets/avatarifnot.jpg" alt=""></div>
+                                    </div>
+                                <div class="user-name " style="text-transform: uppercase;">
+                                    {{this.authService.LoggedUserName}} <span>{{this.authService.roles}}</span>
+                                </div>
+                            </div>
+                            
+                            <!-- User Status Switcher -->
+                
+                    </div>
+                    
+                    <ul class="user-menu-small-nav">
+                        <li><a class="cur" ><i class="icon-material-outline-dashboard"></i> Dashboard</a></li>
+                        <li><a  class="cur" ><i  class="icon-material-outline-settings"></i> Settings</a></li>
+                        <li><a class="cur"  (click)="onLogout()"><i class="icon-material-outline-power-settings-new"></i> Logout</a></li>
+                    </ul>
+                </div>
+              </div>
+              
+            <!-- Messages -->
+        
+
+        </div>
 </div>

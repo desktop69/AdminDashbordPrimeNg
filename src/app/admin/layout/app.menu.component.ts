@@ -17,16 +17,17 @@ export class AppMenuComponent implements OnInit {
             {
                 label: 'Home',
                 items: [
-                    { label: 'Dashboard', icon: 'pi pi-fw pi-home', routerLink: ['/admin/dashboard'] }
+                    { label: 'Dashboard', icon: 'pi pi-fw pi-chart-pie', routerLink: ['/admin/dashboard'] }
+                    
                 ]
             },
             {
-                label: 'UI Components',
+                label: 'RH Components',
                 items: [
-                    { label: 'Form Layout', icon: 'pi pi-fw pi-id-card', routerLink: ['/admin/products'] },
-                    { label: 'Input', icon: 'pi pi-fw pi-check-square', routerLink: ['/uikit/input'] },
-                    { label: 'Float Label', icon: 'pi pi-fw pi-bookmark', routerLink: ['/uikit/floatlabel'] },
-                    { label: 'Invalid State', icon: 'pi pi-fw pi-exclamation-circle', routerLink: ['/uikit/invalidstate'] },
+                    { label: 'Users Managment', icon: 'pi pi-fw pi-users', routerLink: ['/admin/users'] },
+                    { label: 'Category Managment', icon: 'pi  pi-th-large', routerLink: 'category', badge: 'NEW' },
+                    { label: 'Offer  Managment', icon: 'pi pi-shopping-bag', routerLink: ['/admin/offers'] },
+                    { label: 'Account Managment', icon: 'pi  pi-lock', routerLink: ['/admin/profile'] },
                     // { label: 'Button', icon: 'pi pi-fw pi-box', routerLink: ['/uikit/button'] },
                     // { label: 'Table', icon: 'pi pi-fw pi-table', routerLink: ['/uikit/table'] },
                     // { label: 'List', icon: 'pi pi-fw pi-list', routerLink: ['/uikit/list'] },
@@ -41,20 +42,22 @@ export class AppMenuComponent implements OnInit {
                     // { label: 'Misc', icon: 'pi pi-fw pi-circle', routerLink: ['/uikit/misc'] }
                 ]
             },
-            {
-                label: 'Categories management',
-                items: [
-                    { label: 'Liste of categorie', icon: 'pi pi-fw pi-eye', routerLink: 'category', badge: 'NEW' },
-                    { label: 'Add categorie', icon: 'pi pi-fw pi-globe', routerLink: 'newcategory' },
-                ]
-            },
-            {
-                label: 'Utilities',
-                items: [
-                    { label: 'PrimeIcons', icon: 'pi pi-fw pi-prime', routerLink: ['/utilities/icons'] },
-                    { label: 'PrimeFlex', icon: 'pi pi-fw pi-desktop', url: ['https://www.primefaces.org/primeflex/'], target: '_blank' },
-                ]
-            },
+            // {
+            //     label: 'Settings',
+            //     items: [
+            //         //{ label: 'Liste of categorie', icon: 'pi pi-fw pi-microsoft', routerLink: 'category', badge: 'NEW' },
+            //         //{ label: 'Add categorie', icon: 'pi pi-fw pi-plus-circle', routerLink: 'newcategory' }, 
+            //         { label: 'Logout', icon: 'pi pi-fw pi-sign-in', routerLink: 'newcategory' }, 
+                    
+            //     ] 
+            // },
+            // {
+            //     label: 'Utilities',
+            //     items: [
+            //         { label: 'PrimeIcons', icon: 'pi pi-fw pi-prime', routerLink: ['/utilities/icons'] },
+            //         { label: 'PrimeFlex', icon: 'pi pi-fw pi-desktop', url: ['https://www.primefaces.org/primeflex/'], target: '_blank' },
+            //     ]
+            // },
  /*            {
                 label: 'Pages',
                 icon: 'pi pi-fw pi-briefcase',

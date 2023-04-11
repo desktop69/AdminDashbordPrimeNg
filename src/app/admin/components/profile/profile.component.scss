@@ -1,0 +1,63 @@
+.surface-card {
+    display: flex;
+    flex-direction: column;
+    background-color: #ffffff;
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  
+    .text-3xl {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+  
+    .font-medium {
+      font-weight: 500;
+      margin-bottom: 1rem;
+    }
+  
+    .border-2 {
+      padding: 1rem;
+      border: 2px solid #e0e0e0;
+      border-radius: 0.25rem;
+    }
+  
+    .row {
+      display: flex;
+      flex-wrap: wrap;
+      margin-right: -15px;
+      margin-left: -15px;
+
+ 
+  
+      .col {
+        flex-basis: 0;
+        flex-grow: 1;
+        max-width: 100%;
+        padding-right: 15px;
+        padding-left: 15px;
+        margin-bottom: 1rem;
+      
+   
+  
+        h5 {
+          font-size: 1.125rem;
+          font-weight: 500;
+          margin-bottom: 0.5rem;
+        }
+  
+        span {
+   
+          display: block;
+          font-weight: bold;
+          margin-bottom: 0.25rem;
+        }
+    
+  
+        p-tag {
+          margin-top: 0.25rem;
+        }
+      }
+    }
+  }
+  

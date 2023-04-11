@@ -47,13 +47,28 @@ import { MessagesModule } from 'primeng/messages';
 import { TreeTableModule } from 'primeng/treetable';
 import { TreeNode } from 'primeng/api';
 import { ConfirmPopupModule } from 'primeng/confirmpopup';
+import { UserslayoutComponent } from './components/userslayout/userslayout.component';
+import { PasswordModule } from 'primeng/password';
+import { DividerModule } from 'primeng/divider';
+import { InputSwitchModule } from 'primeng/inputswitch';
+import { OverlayPanelModule } from 'primeng/overlaypanel';
+import { AdminJobOfferComponent } from './components/admin-job-offer/admin-job-offer.component';
+import { AdminResetPasswordComponent } from './components/admin-reset-password/admin-reset-password.component';
+import { SharedService } from '../consultor/dashboard-consultor/entreprise/shared/shared';
+import { AdminOfferDetailsComponent } from './components/admin-offer-details/admin-offer-details.component';
+
 
 @NgModule({
   declarations: [
     TableComponent,
     CategorylayoutComponent,
     ProfileComponent,
-    AddCategoryComponent
+    AddCategoryComponent,
+    UserslayoutComponent,
+    AdminJobOfferComponent,
+    AdminResetPasswordComponent,
+    AdminOfferDetailsComponent,
+
   ],
 
   imports: [
@@ -71,7 +86,6 @@ import { ConfirmPopupModule } from 'primeng/confirmpopup';
     DialogModule,
     MultiSelectModule,
     ContextMenuModule,
-    DropdownModule,
     ToastModule,
     InputTextModule,
     ProgressBarModule,
@@ -93,11 +107,16 @@ import { ConfirmPopupModule } from 'primeng/confirmpopup';
     MessageModule,
     MessagesModule,
     TreeTableModule,
-    ConfirmPopupModule
+    ConfirmPopupModule,
+    DividerModule,
+    InputSwitchModule,
+    PasswordModule,
+    DropdownModule,
+    OverlayPanelModule
 
 
   ],
-  providers: [ProductService, ConfirmationService, MessageService],
+  providers: [ProductService, ConfirmationService, MessageService,SharedService],
   bootstrap: [TableComponent]
 })
 export class AdminModule { }
