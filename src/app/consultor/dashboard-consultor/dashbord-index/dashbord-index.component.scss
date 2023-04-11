@@ -1,0 +1,18 @@
+.note-priority {
+    background-color: #333;
+    
+    color: #fff;
+    font-size: 14px;
+    padding: 5px 9px;
+    display: inline-block;
+    line-height: 20px;
+    &.high {
+      background-color: #dc3139;
+    }
+    &.medium {
+      background-color: #f59110;
+    }
+    &.low {
+      background-color: #3fb660;
+    }
+  }
