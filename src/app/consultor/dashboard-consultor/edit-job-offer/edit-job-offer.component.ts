@@ -6,15 +6,9 @@ import { AbstractControl, FormControl, FormGroup, ValidationErrors, Validators }
 import { SelectItemGroup } from 'primeng/api';
 import { SharedService } from '../entreprise/shared/shared';
 import { data } from 'src/app/utils/data';
-interface City {
-  name: string,
-  code: string
-}
+import { CategorieDto } from 'src/app/admin/interface/categorie.dto';
+import { CategoryService } from 'src/app/admin/services/category.service';
 
-interface Country {
-  name: string,
-  code: string
-}
 @Component({
   selector: 'app-edit-job-offer',
   templateUrl: './edit-job-offer.component.html',
@@ -25,18 +19,15 @@ export class EditJobOfferComponent {
   submitted: boolean = false;
   coverLetterForm!: FormGroup;
   liveContent: string = '';
-  groupedCities1!: SelectItemGroup[];
-  cities1!: City[];
+
+  selectedJobs: string[] = [];
   countries = data;
 
+  categories: CategorieDto[] = [];
+  groupedCategories: SelectItemGroup[] = [];
+  groupedJobs: any[] = [];
 
-  countries1!: Country[];
-
-  selectedCity1!: City;
-
-  selectedCountries1!: Country[];
-
-  constructor(private sharedService: SharedService, private apiofferService: JobOfferService, private activatedRoute: ActivatedRoute, private router: Router) {
+  constructor(private sharedService: SharedService, private apiofferService: JobOfferService, private activatedRoute: ActivatedRoute, private router: Router,private categoryService :CategoryService) {
 
     this.coverLetterForm = new FormGroup({
       coverLetterText: new FormControl('',
@@ -45,57 +36,7 @@ export class EditJobOfferComponent {
           this.maxWordsValidator(400)
         ])
     });
-    this.cities1 = [
-      { name: 'New York', code: 'NY' },
-      { name: 'Rome', code: 'RM' },
-      { name: 'London', code: 'LDN' },
-      { name: 'Istanbul', code: 'IST' },
-      { name: 'Paris', code: 'PRS' }
-    ];
-
-    this.countries1 = [
-      { name: 'Australia', code: 'AU' },
-      { name: 'Brazil', code: 'BR' },
-      { name: 'China', code: 'CN' },
-      { name: 'Egypt', code: 'EG' },
-      { name: 'France', code: 'FR' },
-      { name: 'Germany', code: 'DE' },
-      { name: 'India', code: 'IN' },
-      { name: 'Japan', code: 'JP' },
-      { name: 'Spain', code: 'ES' },
-      { name: 'United States', code: 'US' }
-    ];
-
-    this.groupedCities1 = [
-      {
-        label: 'Germany', value: 'de',
-        items: [
-          { label: 'Berlin', value: 'Berlin' },
-          { label: 'Frankfurt', value: 'Frankfurt' },
-          { label: 'Hamburg', value: 'Hamburg' },
-          { label: 'Munich', value: 'Munich' }
-        ]
-      },
-      {
-        label: 'USA', value: 'us',
-        items: [
-          { label: 'Chicago', value: 'Chicago' },
-          { label: 'Los Angeles', value: 'Los Angeles' },
-          { label: 'New York', value: 'New York' },
-          { label: 'San Francisco', value: 'San Francisco' }
-        ]
-      },
-      {
-        label: 'Japan', value: 'jp',
-        items: [
-          { label: 'Kyoto', value: 'Kyoto' },
-          { label: 'Osaka', value: 'Osaka' },
-          { label: 'Tokyo', value: 'Tokyo' },
-          { label: 'Yokohama', value: 'Yokohama' }
-        ]
-      }
-    ];
-
+    
   }
 
   ngOnInit(): void {
@@ -104,8 +45,22 @@ export class EditJobOfferComponent {
         this.currentOffer = offer;
         console.log(this.currentOffer);
       });
+
+      this.fetchCategories();
   }
 
+  fetchCategories(): void {
+    this.categoryService.getAllCategories().subscribe((data) => {
+      const categories = data.filter(category => !category.Parent);
+      this.groupedJobs = categories.map(category => {
+        const group = {
+          label: category.title,
+          items: category.childrens?.map(child => ({ label: child.title, value: child.title })) || []
+        };
+        return group;
+      });
+    });
+  }
 
   onSubmit(): void {
 
