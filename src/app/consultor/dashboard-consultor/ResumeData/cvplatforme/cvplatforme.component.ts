@@ -34,9 +34,14 @@ export class CVPlatformeComponent implements OnInit {
   professionaldata!: ProfessionalData;
   proexperience: ProfessionalExperienceDTO[] = [];
   newProExperience = new ProfessionalExperienceDTO();
-  skills: SkillsDTO[] = [];
+  skills: SkillsDTO[] = [ ];
   trainingsQualifications: TrainingsQualificationsDTO[] = [];
   additionaldata: AdditionalDataDTO[] = [];
+  skillslength!: number;
+  additionaldatalength!: number;
+  proexperiencelength!: number;
+  languageslength!: number;
+  trainquallength!:number;
   constructor(private imageService: ImageService, public authService: AuthService, private personalDataService: PersonalDataService,
     private proexpService: ProExperienceService, private prosevices: ProfessionalDataService, private skillsService: SkillsService,
     private trainingQualificationService: TrainingQualificationService,private AdditionalDataService: AdditionalDataService,
@@ -112,7 +117,8 @@ downloadAsPDF() {
     }
     this.LanguageService.getAllLanguageDTOByUserId(userId).subscribe((data) => {
       this.languages=data; 
-      console.log(this.languages)
+      this.languageslength=this.languages.length;
+      //console.log(this.languages)
       },
     );
   }
@@ -125,7 +131,7 @@ downloadAsPDF() {
     }
     this.AdditionalDataService.getAllAdditionalDataByUserId(userId).subscribe((data) => {
       this.additionaldata = data;
-
+     this.additionaldatalength=this.additionaldata.length;
     },
     );
   }
@@ -137,6 +143,7 @@ downloadAsPDF() {
     }
     this.trainingQualificationService.getAllTrainingQualificationByUserId(userId).subscribe((data) => {
       this.trainingsQualifications = data;
+      this.trainquallength=this.trainingsQualifications.length;
       console.log(this.trainingsQualifications)
     },
     );
@@ -150,6 +157,7 @@ downloadAsPDF() {
     }
     this.skillsService.getAllSkillsDTOByUserId(userId).subscribe((data) => {
       this.skills = data;
+      this.skillslength=this.skills.length;
       //console.log(this.skills)
     },
     );
@@ -169,7 +177,7 @@ downloadAsPDF() {
     }
     this.proexpService.getAllProfessionalExperienceByUserId(userId).subscribe((data) => {
       this.proexperience = data;
-
+    this.proexperiencelength=this.proexperience.length;
     },
     );
   }

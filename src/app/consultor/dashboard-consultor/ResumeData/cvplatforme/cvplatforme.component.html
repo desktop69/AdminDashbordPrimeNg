@@ -10,44 +10,57 @@
 <body>
 
     <header>
-        <button id="downloadButton" (click)="downloadAsPDF()">Download as PDF</button>
+        <button id="downloadButton" (click)="downloadAsPDF() ">Download as PDF</button>
     </header>
 
     <div id="resume-content">
+
         <header>
-
             <div class="row ">
-
-                <div class="col-md-2 pl-4 pt-3" *ngIf="image">
+                <div class="col-md-2 pl-4 pt-3" *ngIf="image; else defaultImage">
                     <img [src]="'data:image/png;base64,' + image.data" alt="" class="profile-image">
                 </div>
-               
-                    
-              
+                <ng-template #defaultImage>
+                    <div class="col-md-2 pl-4 pt-3">
+                        <img src="./assets/avatarifnot.jpg" alt="" class="profile-image">
+                    </div>
+                </ng-template>
 
-                <div class="col-md-2 pl-4 pt-3" *ngIf="!image">
-                   <a ><div class="user-avatar status-online" class="profile-image"><img src="./assets/avatarifnot.jpg" alt=""></div></a>
-                </div>
-                <div class="col-md-4 content" *ngIf="personalData || professionaldata">
+                <div class="col-md-4 content" *ngIf="personalData || professionaldata; else defaultPersonalData">
                     <h1 class="">{{personalData.Name}}&nbsp;{{personalData.FirstName}}</h1>
                     <p class="title uppercase">{{professionaldata.Title}}</p>
-                    <p class="description">{{personalData.about}}
-                    </p>
+                    <p class="description">{{personalData.about}}</p>
                 </div>
+                <ng-template #defaultPersonalData>
+                    <div class="col-md-4 content">
+                        <h1 class="">John Doe</h1>
+                        <p class="title uppercase">Software Developer</p>
+                        <p class="description">I am a highly motivated software developer with a passion for creating
+                            innovative solutions.</p>
+                    </div>
+                </ng-template>
             </div>
         </header>
-        <div class="small-header" *ngIf="personalData || professionaldata">
+        <div class="small-header" *ngIf="personalData || professionaldata; else defaultSmallHeader">
             <p><i class="icon-material-outline-email">&nbsp;</i>{{this.authService.emailUser}} &nbsp; <i
                     class="icon-feather-phone-call"></i>&nbsp;{{personalData.phoneNumber}}
-                &nbsp;<i class="icon-material-outline-location-on"></i>&nbsp; Address:&nbsp; {{personalData.Address }} ,
+                &nbsp;<i class="icon-material-outline-location-on"></i>&nbsp; Address:&nbsp; {{personalData.Address }},
                 {{personalData.Region }}, {{personalData.Country }}</p>
         </div>
+        <ng-template #defaultSmallHeader>
+            <div class="small-header">
+                <p><i class="icon-material-outline-email">&nbsp;</i>john.doe@example.com &nbsp; <i
+                        class="icon-feather-phone-call"></i>&nbsp;+1 (555) 123-4567
+                    &nbsp;<i class="icon-material-outline-location-on"></i>&nbsp; Address:&nbsp; 123 Main St, New York,
+                    NY</p>
+            </div>
+        </ng-template>
         <div class="container ">
             <div class="left">
 
                 <section class="section">
                     <h2>Professional Data</h2>
-                    <ul *ngIf="professionaldata" class="mt-3">
+                    <ul *ngIf="professionaldata;else defaultProfessionalData " class="mt-3">
                         <li>
                             <h4><b>Professional Title:</b> {{professionaldata.Title}}</h4>
                         </li>
@@ -79,9 +92,78 @@
                             <h4><b>Desired Work Locations:</b> {{professionaldata.DesiredWorkLocations}}</h4>
                         </li>
                     </ul>
-                    <!-- Add professional data here -->
-                </section>
+                    <ng-template #defaultProfessionalData>
+                        <ul class="mt-3">
+                            <!-- Add your fake professional data here -->
+                            <li>
+                                <h4><b>Professional Title:</b> Software Developer</h4>
+                            </li>
+                            <li>
+                                <h4><b>Level Of Education:</b> Bachelor's Degree in Computer Science</h4>
+                            </li>
+                            <li>
+                                <h4><b>Level Of Experience:</b> 3 years</h4>
+                            </li>
+                            <li>
+                                <h4><b>Current Net Salary:</b> $60,000</h4>
+                            </li>
+                            <li>
+                                <h4><b>Professional Situation:</b> Employed Full-Time</h4>
+                            </li>
+                            <li>
+                                <h4><b>Desired Minimum Net Salary:</b> $70,000</h4>
+                            </li>
+                            <li>
+                                <h4><b>Availability:</b> 1 month notice period</h4>
+                            </li>
+                            <li>
+                                <h4><b>Job category:</b> Web Development</h4>
+                            </li>
+                            <li>
+                                <h4><b>Types Of Positions:</b> Full-Time, Contract</h4>
+                            </li>
+                            <li>
+                                <h4><b>Desired Work Locations:</b> New York, San Francisco, Remote</h4>
+                            </li>
+                        </ul>
+                    </ng-template>
 
+
+                </section>
+                <section class="section">
+
+
+                    <h2>Trainings Qualifications</h2>
+
+                    <div *ngFor="let item of trainingsQualifications" class="mt-3 ml-4">
+
+                        <h3 class="card-title">{{item.degreeObtained}} | {{item.typeOfDegree}}</h3>
+                        <h4 class="icon-line-awesome-graduation-cap card-title">{{ item.status }}&nbsp;<i
+                                class="icon-material-outline-access-time"></i>{{item.periodStart| date:
+                            'yyyy-MM-dd' }} TO <i class="icon-material-outline-access-time"></i>{{
+                            item.periodEnd | date: 'yyyy-MM-dd'}} </h4>
+
+                        <h4 class="icon-material-outline-location-on card-title ">{{item.institution}} In
+                            {{item.country}}</h4>
+
+
+
+                    </div>
+                    <div *ngIf="!trainquallength" class="mt-3 ml-4">
+                        <h3 class="card-title">Bachelor of Science in Computer Science | BSc</h3>
+                        <h4 class="icon-line-awesome-graduation-cap card-title">Completed &nbsp;<i
+                                class="icon-material-outline-access-time"></i> 2016-01-01 TO <i
+                                class="icon-material-outline-access-time"></i> 2020-12-31</h4>
+                        <h4 class="icon-material-outline-location-on card-title">XYZ University In United States</h4>
+                    </div>
+                    <div class="mt-3 ml-4">
+                        <h3 class="card-title">Master of Science in Artificial Intelligence | MSc</h3>
+                        <h4 class="icon-line-awesome-graduation-cap card-title">In Progress &nbsp;<i
+                                class="icon-material-outline-access-time"></i> 2021-01-01 TO <i
+                                class="icon-material-outline-access-time"></i> 2023-12-31</h4>
+                        <h4 class="icon-material-outline-location-on card-title">ABC Institute In Canada</h4>
+                    </div>
+                </section>
                 <section class="section">
                     <h2>Professional Experience</h2>
                     <div *ngFor="let item of proexperience" class="mt-3 ml-4">
@@ -93,40 +175,71 @@
                         <h4 class="icon-material-outline-location-on card-title mt-1">{{item.Industry}} In
                             {{item.Workplace}}</h4>
                     </div>
+
+                    <div class="mt-3 ml-4" *ngIf="!proexperiencelength">
+                        <h3 class="card-title mt-1">Software Engineer | Full-time</h3>
+                        <h4 class="icon-material-outline-access-alarm mt-1">2020-01-01 <i
+                                class="icon-material-outline-access-time"></i> 2020-01-01 TO <i
+                                class="icon-material-outline-access-time"></i> 2022-12-31</h4>
+                        <h4 class="icon-material-outline-location-on card-title mt-1">Technology In ABC Inc.</h4>
+                    </div>
+
                 </section>
 
             </div>
-            <div class="right">
+            <div class="right mt-3">
                 <section class="section">
                     <h2>Languages</h2>
-                    <div *ngFor="let item of languages" class="mt-3 ml-4">
-                        <h4 class="card-text icon-material-outline-language">&nbsp;{{item.language}} | {{item.level}}</h4>
-
+                    <div *ngFor="let item of languages; else defaultLanguages" >
+                        <h4 class="card-text icon-material-outline-language">&nbsp;{{item.language}} | {{item.level}}
+                        </h4>
                     </div>
 
+                    <div *ngIf="!languageslength">
+                        <div class="mt-3 ml-4">
+                            <h4 class="card-text icon-material-outline-language">&nbsp;English | Fluent</h4>
+                            <h4 class="card-text icon-material-outline-language">&nbsp;Spanish | Intermediate</h4>
+                        </div>
+                    </div>
                 </section>
+
                 <section class="section">
                     <h2>Skills</h2>
-                    <div *ngFor="let item of skills" class="mt-3 ml-4">
-                        <h4 class="icon-line-awesome-code-fork mt-1">&nbsp;{{item.competence}} | {{item.level}}
-                        </h4>
+                    <div *ngFor="let item of skills; else defaultSkills " class="mt-3 ml-4">
+                        <h4 class="icon-line-awesome-code-fork mt-1">&nbsp;{{item.competence}} | {{item.level}}</h4>
                         <h4 class="mt-1">{{item.description}}</h4>
                     </div>
-
+                    <div *ngIf="!skillslength">
+                        <div class="mt-3 ml-4">
+                            <h4 class="icon-line-awesome-code-fork mt-1">&nbsp;JavaScript | Advanced</h4>
+                            <h4 class="icon-line-awesome-code-fork mt-1">&nbsp;Angular | Intermediate</h4>
+                            <h4 class="icon-line-awesome-code-fork mt-1">&nbsp;Python | Beginner</h4>
+                        </div>
+                    </div>
                 </section>
 
-                <section class="section ">
+                <section class="section">
                     <h2>Additional Info</h2>
-                    <div *ngFor="let item of additionaldata" class="mt-3 ml-4">
-                        <h4 class="icon-line-awesome-star-half-o mt-1">{{item.interests}} </h4>
-
+                    <div *ngFor="let item of additionaldata; else defaultAdditionalInfo" class="mt-3 ml-4">
+                        <h4 class="icon-line-awesome-star-half-o mt-1">{{item.interests}}</h4>
                         <h4 class="icon-material-outline-contact-support mt-3">{{item.strengths}}</h4>
                     </div>
-
+                    <div *ngIf="!additionaldatalength">
+                        <div class="mt-3 ml-4">
+                            <h4 class="icon-line-awesome-star-half-o mt-1">Interests: Web Development, Artificial
+                                Intelligence</h4>
+                            <h4 class="icon-material-outline-contact-support mt-3">Strengths: Problem Solving, Teamwork
+                            </h4>
+                        </div>
+                    </div>
                 </section>
             </div>
+
         </div>
     </div>
+
+
 </body>
 <app-dashboard-consultor-footer></app-dashboard-consultor-footer>
+
 </html>
