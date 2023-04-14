@@ -46,6 +46,7 @@
               "src/assets/css/colors/blue.css",
               "node_modules/quill/dist/quill.core.css",
                "node_modules/quill/dist/quill.snow.css"
+            
             ],
             "scripts": [
               "src/assets/js/jquery-3.3.1.min.js",

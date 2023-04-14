@@ -13,7 +13,7 @@ export class JobOfferService {
 
   constructor(private http: HttpClient, private authService: AuthService) { }
 
-  createOffer(dto: Partial<Offer>, token: string): Observable<Offer>{
+  createOffer(dto: Partial<Offer>, token: string): Observable<Offer> {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
@@ -23,9 +23,14 @@ export class JobOfferService {
     return this.http.post<Offer>(`${this.apiUrl}/createOffer`, dto, httpOptions);
   }
 
+  getAllOfferspagination(page: number, rows: number): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/getAllofferswithpagination?page=${page}&rows=${rows}`);
+  }
+  
   getAllOffers(): Observable<Offer[]> {
     return this.http.get<Offer[]>(`${this.apiUrl}/getAlloffers`);
   }
+
 
   getAllOfferByUserId(IdUser: string): Observable<Offer[]> {
     return this.http.get<Offer[]>(`${this.apiUrl}/findAllOfferByIdUser/${IdUser}`);
@@ -44,5 +49,5 @@ export class JobOfferService {
   getOfferId(IdUser: string): Observable<Offer> {
     return this.http.get<Offer>(`${this.apiUrl}/getOfferbyId/${IdUser}`);
   }
-  
+
 }

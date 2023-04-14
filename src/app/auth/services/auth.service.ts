@@ -32,6 +32,13 @@ export class AuthService {
     return this.http.get<any>(`${this.apiURL}/getUserById/${id}`);
   }
 
+
+checkEmailExists(email: string): Observable<boolean> {
+  const url = `${this.apiURL}/check-email-exists`;
+  return this.http.post<boolean>(url, { email });
+}
+
+
   register(registerDTO: RegisterDTO): Observable<any> {
     const url = `${this.apiURL + '/register'}`;
     //console.log("url :"+url );

@@ -23,6 +23,8 @@ import { RequestPasswordResetComponent } from '../auth/request-password-reset/re
 import { ResetPasswordComponent } from '../auth/reset-password/reset-password.component';
 import { ToastModule } from 'primeng/toast';
 import { ForbiddenComponent } from './forbidden/forbidden.component';
+import { Paginator, PaginatorModule } from 'primeng/paginator';
+import { FullPageJobsComponent } from './landingPage/full-page-jobs/full-page-jobs.component';
 
 
 @NgModule({
@@ -44,7 +46,8 @@ import { ForbiddenComponent } from './forbidden/forbidden.component';
     HeaderComponent,
     ResetPasswordComponent,
     RequestPasswordResetComponent,
-    ForbiddenComponent
+    ForbiddenComponent,
+    FullPageJobsComponent
    
 
   ],
@@ -56,6 +59,7 @@ import { ForbiddenComponent } from './forbidden/forbidden.component';
     HttpClientModule,
     ReactiveFormsModule,
     ToastModule,
+    PaginatorModule
   ]
 
 })

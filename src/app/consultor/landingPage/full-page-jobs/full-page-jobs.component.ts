@@ -1,16 +1,16 @@
-import { Component, OnInit } from '@angular/core';
-import { JobOfferService } from '../../services/offer/job-offer.service';
-import { Offer } from '../../models/offer/offer.model';
-import { ImageService } from '../../services/image.service';
-import { EntrepriseProfileService } from '../../services/entreprise/entreprise-profile.service';
+import { Component } from '@angular/core';
 import { EntrepriseDTO } from '../../models/entreprise/profile-entreprise.model';
+import { Offer } from '../../models/offer/offer.model';
+import { EntrepriseProfileService } from '../../services/entreprise/entreprise-profile.service';
+import { ImageService } from '../../services/image.service';
+import { JobOfferService } from '../../services/offer/job-offer.service';
 
 @Component({
-  selector: 'app-features-jobs',
-  templateUrl: './features-jobs.component.html',
-  styleUrls: ['./features-jobs.component.scss']
+  selector: 'app-full-page-jobs',
+  templateUrl: './full-page-jobs.component.html',
+  styleUrls: ['./full-page-jobs.component.scss']
 })
-export class FeaturesJobsComponent implements OnInit {
+export class FullPageJobsComponent {
   offers: Offer[] = [];
   rows: number = 10;
   totalRecords: number = 0;
@@ -37,20 +37,20 @@ export class FeaturesJobsComponent implements OnInit {
 
   }
 
-  // getOffers(): void {
-  //   this.apiofferService.getAllOfferspagination(this.currentPage, this.rows).subscribe(response => {
-  //     this.offers = response.offers;
-  //     this.totalRecords = response.totalRecords;
-  //   });
-  // }
-
   getOffers(): void {
-    this.apiofferService.getAllOffers().subscribe((response) => {
-      this.offers = response
-        .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
-        .slice(0, 5);
+    this.apiofferService.getAllOfferspagination(this.currentPage, this.rows).subscribe(response => {
+      this.offers = response.offers;
+      this.totalRecords = response.totalRecords;
     });
   }
+
+  // getOffers(): void {
+  //   this.apiofferService.getAllOffers().subscribe((response) => {
+  //     this.offers = response
+  //       .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+  //       .slice(0, 5);
+  //   });
+  // }
   
 
 
@@ -124,5 +124,7 @@ export class FeaturesJobsComponent implements OnInit {
     const diffInYears = Math.floor(diffInMonths / 12);
     return `${diffInYears} years ago`;
   }
-
 }
+
+
+

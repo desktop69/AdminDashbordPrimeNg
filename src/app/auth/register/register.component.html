@@ -71,7 +71,10 @@
 								class="form-control" formControlName="email" id="emailaddress-register"
 								placeholder="Email Address" required />
 						</div>
-
+						<div class="alert alert-danger" alert alert-danger *ngIf="registerForm.get('email').errors?.emailExists">
+							This email is already in use.
+						  </div>
+						  
 						<div  alert alert-danger *ngIf="email.invalid && (email.dirty || email.touched)">
 							<div class="alert" alert alert-danger *ngIf="email.errors?.required">Email is required.</div>
 							<div class="alert" *ngIf="email.errors?.email">Email must be a valid email address.</div>

@@ -15,7 +15,11 @@ export class ImageService {
   loadImageByUserId(IdUser: string): Observable<any> {
     return this.http.get<ImageDTO>(`${this.apiUrl}/loadImageByUserId/${IdUser}`);
   }
-
+  
+  loadImagesByUserIds(userIds: string[]): Observable<any[]> {
+    return this.http.post<any[]>(`${this.apiUrl}/loadImagesByUserIds`, { userIds });
+  }
+  
 
   deleteImageByUserId(userId: string): Observable<any> {
     return this.http.delete<any>(`${this.apiUrl}/deleteImageByUserId/${userId}`);

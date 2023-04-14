@@ -24,10 +24,28 @@ export class ProfessionalDataComponent implements OnInit {
   
   typesOfPositions: any[] = []; // Initialize the array with an empty array as a default value.
   // Example dropdown options
-  educationLevels = [{ name: 'High School' }, { name: 'Bachelor' }, { name: 'Master' }, { name: 'PhD' }];
-  experienceLevels = [{ name: 'Junior' }, { name: 'Intermediate' }, { name: 'Senior' }];
+  educationLevels = [
+    { name: 'Primary' },
+    { name: 'Secondary' },
+    { name: 'Professional training' },
+    { name: 'Bac' },
+    { name: 'Bac +3' },
+    { name: 'Bac +5' },
+    { name: 'PHD' },
+    { name: 'Expert, Research' },
+  ];
+  
+  experienceLevels = [
+    { name: 'No experience' },
+    { name: 'Less than a year' },
+    { name: 'Between 1 and 2 years' },
+    { name: 'Between 2 and 5 years' },
+    { name: 'Between 5 and 10 years' },
+    { name: 'More than 10 years' },
+  ];
+  
   professionalSituations = [{ name: 'Employed' }, { name: 'Unemployed' }, { name: 'Student' }];
-  availabilities = [{ name: 'Immediately' }, { name: 'Part Time' }, { name: 'Full Time' }];
+  availabilities = [{ name: 'Immediately' }, { name: 'Part Time' }, { name: 'Full Time' },{ name: 'Freelance' },{ name: 'Internship' }];
   //  desiredWorkLocations = [{ name: 'Tunis' }, { name: 'Nabeul' }, { name: 'Sousse' },]
   desiredWorkLocations = [{
     label: 'Tunis', value: 'tn',

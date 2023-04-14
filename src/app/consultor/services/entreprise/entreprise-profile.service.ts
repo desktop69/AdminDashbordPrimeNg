@@ -13,15 +13,24 @@ export class EntrepriseProfileService {
   constructor(private http: HttpClient) {}
 
   // Methods for interacting with the API
-  getEntrepriseById(id: string): Observable<EntrepriseDTO> {
-    return this.http.get<EntrepriseDTO>(`${this.apiUrl}/getEntrepriseById/${id}`);
+  getEntrepriseById(id: string): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/getEntrepriseById/${id}`);
   }
 
   updateEntreprise(id: string, entrepriseDto: EntrepriseDTO): Observable<EntrepriseDTO> {
     return this.http.put<EntrepriseDTO>(`${this.apiUrl}/updateEntreprise/${id}`, entrepriseDto);
   }
 
+  loadentrepriseByUserIds(userIds: string[]): Observable<any[]> {
+    return this.http.post<any[]>(`${this.apiUrl}/loadEntreprisesByUserIds`, { userIds });
+  }
 
+  findAllbyUserid(userIds: string): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/findAllbyUserid/${userIds}`);
+  }
+
+
+  
   createEntreprise(entrepriseDto: EntrepriseDTO, token: string): Observable<EntrepriseDTO> {
 
     const httpOptions = {
