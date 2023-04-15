@@ -25,6 +25,7 @@ import { ToastModule } from 'primeng/toast';
 import { ForbiddenComponent } from './forbidden/forbidden.component';
 import { Paginator, PaginatorModule } from 'primeng/paginator';
 import { FullPageJobsComponent } from './landingPage/full-page-jobs/full-page-jobs.component';
+import { HomeJobOfferDetailsComponent } from './landingPage/home-job-offer-details/home-job-offer-details.component';
 
 
 @NgModule({
@@ -47,7 +48,8 @@ import { FullPageJobsComponent } from './landingPage/full-page-jobs/full-page-jo
     ResetPasswordComponent,
     RequestPasswordResetComponent,
     ForbiddenComponent,
-    FullPageJobsComponent
+    FullPageJobsComponent,
+    HomeJobOfferDetailsComponent
    
 
   ],

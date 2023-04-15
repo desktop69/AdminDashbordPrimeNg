@@ -7,7 +7,7 @@
 				<!-- Section Headline -->
 				<div class="section-headline margin-top-0 margin-bottom-35">
 					<h3>Featured Jobs</h3>
-					<a href="jobs-list-layout-full-page-map.html" class="headline-link">Browse All Jobs</a>
+					<a routerLink="/home/full-page-jobs" class="headline-link">Browse All Jobs</a>
 				</div>
 				
 				<!-- Jobs Container -->
@@ -15,7 +15,7 @@
 					
 					<!-- Job Listing -->
 			<div *ngFor="let offer of offers">
-				<a  *ngIf="offer.isAccepted" class="job-listing with-apply-button">
+				<a  *ngIf="offer.isAccepted" class="job-listing with-apply-button" [routerLink]="['/home/home-job-offer-details', offer._id]">
 
 					<!-- Job Listing Details -->
 					<div class="job-listing-details">

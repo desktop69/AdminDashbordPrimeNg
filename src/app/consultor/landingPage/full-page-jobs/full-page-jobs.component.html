@@ -167,7 +167,7 @@
     <div class="listings-container  margin-top-35">
 
     	<div *ngFor="let offer of offers">
-            <a class="job-listing" *ngIf="offer.isAccepted" [routerLink]="['/job', offer._id]" >
+            <a class="job-listing" *ngIf="offer.isAccepted" [routerLink]="['/home/home-job-offer-details', offer._id]" >
                 <!-- Job Listing Details -->
                 <div class="job-listing-details">
                     <!-- Logo -->

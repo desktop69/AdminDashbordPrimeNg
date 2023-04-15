@@ -44,9 +44,13 @@ import { UserslayoutComponent } from './admin/components/userslayout/userslayout
 import { AdminJobOfferComponent } from './admin/components/admin-job-offer/admin-job-offer.component';
 import { AdminOfferDetailsComponent } from './admin/components/admin-offer-details/admin-offer-details.component';
 import { FullPageJobsComponent } from './consultor/landingPage/full-page-jobs/full-page-jobs.component';
+import { HomeJobOfferDetailsComponent } from './consultor/landingPage/home-job-offer-details/home-job-offer-details.component';
 
 const routes: Routes = [
   { path: "", redirectTo: "consultor", pathMatch: "full" },
+  {
+    path: 'consultor', component: ConsultorComponent,
+  },
   {
     path: 'admin', component: AppLayoutComponent,
     children: [
@@ -60,13 +64,11 @@ const routes: Routes = [
     ]
   },
   {
-    path: 'consultor', component: ConsultorComponent,
-  },
-  {
     path: 'home', 
     component: IndexHomeComponent,
     children: [
-    {path: 'full-page-jobs', component: FullPageJobsComponent}
+    {path: 'full-page-jobs', component: FullPageJobsComponent},
+    {path: 'home-job-offer-details/:id', component: HomeJobOfferDetailsComponent}
     ]
   },
   
