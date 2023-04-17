@@ -43,6 +43,7 @@ import { ProfileComponent } from './admin/components/profile/profile.component';
 import { UserslayoutComponent } from './admin/components/userslayout/userslayout.component';
 import { AdminJobOfferComponent } from './admin/components/admin-job-offer/admin-job-offer.component';
 import { AdminOfferDetailsComponent } from './admin/components/admin-offer-details/admin-offer-details.component';
+import { NotificationsComponent } from './consultor/notifications/notifications.component';
 
 const routes: Routes = [
   { path: "", redirectTo: "consultor", pathMatch: "full" },
@@ -78,6 +79,7 @@ const routes: Routes = [
       { path: 'profile-entreprise', component: ProfileEntrepriseComponent, canActivate: [ProfileEntrepriseGuard] },
       { path: 'add-profile', component: AddProfileComponent },
       { path: 'edit-profile/:id', component: EditProfileComponent },
+      { path: 'test', component: NotificationsComponent },
       {
         path: 'Job-offer',
         component: JobOfferComponent,

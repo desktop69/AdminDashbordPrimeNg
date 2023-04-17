@@ -1,0 +1,5 @@
+<p>notifications works!</p>
+<ul>
+    <li *ngFor="let notification of notifications">{{ notification.content }} 
+        {{ notification.createdAt | date: "dd/MM/yyyy, h:mm a"  }}</li>
+</ul>

@@ -3,420 +3,390 @@
     <div class="card-body mt-5">
 
         <form (ngSubmit)="onSubmit()" #offerInfoForm="ngForm">
-<div class="row">
-<div class="col-md-6">
-    <div class="form-group">
-        <label for="referenceO" class="required">Reference</label>
-        <input
-        #referenceO="ngModel"
-          type="text"
-          class="form-control"
-          id="referenceO"
-          name="referenceO"
-          [(ngModel)]="currentOffer.referenceO"
-          [ngClass]="{ 'ng-dirty': (referenceO.invalid && submitted) || (referenceO.dirty && referenceO.invalid) }"
-          required
-        />
-      </div>
-      <small *ngIf="(referenceO.invalid && submitted) || (referenceO.dirty && referenceO.invalid)" class="p-error">Reference is required.</small>
-</div>
-<div class="col-md-6">
-    <div class="form-group">
-        <label for="titleO" class="required">Title</label>
-        <input
-        #titleO="ngModel"
-          type="text"
-          class="form-control"
-          id="titleO"
-          name="titleO"
-          [(ngModel)]="currentOffer.titleO"
-          [ngClass]="{ 'ng-dirty': (titleO.invalid && submitted) || (titleO.dirty && titleO.invalid) }"
-          required
-        />
-      </div>
-      <small *ngIf="(titleO.invalid && submitted) || (titleO.dirty && titleO.invalid)" class="p-error">Title is required.</small>
-      
-</div>
-</div>
-     
-
-    <div class="row">
-        <div class="col-md-12">
-            <form class="form-group" [formGroup]="coverLetterForm">
-                <label for="descriptionE" class="required">Description</label>
-                  <div style="position: relative;">
-                      <p-editor formControlName="coverLetterText" [style]="{ height: '320px' }"    [(ngModel)]="currentOffer.descriptionE"
-                       [ngClass]="{'ng-invalid ng-dirty': isFieldInvalid('coverLetterText')}"></p-editor>
-                  </div>
-                    <div *ngIf="isFieldInvalid('coverLetterText')" class="p-error">
-                      <span>cover Letter Description is required </span>
-                  </div>
-                  <div *ngIf="maxWordsError" class="p-error">
-                      Maximum {{maxWordsError['maxWords']}} words allowed. You have {{actualWords}} words.
-                  </div>
-              </form>
-        </div>
-  
-    
-    </div>
-
-    <div class="row mt-3">
-        <div class="col-md-4">
-            <div class="form-group">
-                <label for="LevelOfEducation" class="required">Level of Education</label>
-                <select id="LevelOfEducation" name="LevelOfEducation"
-                    [(ngModel)]="currentOffer.LevelOfEducation">
-                    <option value="Primary">Primary</option>
-                    <option value="Secondary">Secondary</option>
-                    <option value="Professional training">Professional training</option>
-                    <option value="Bac">Bac</option>
-                    <option value="Bac +3">Bac +3</option>
-                    <option value="Bac +5">Bac +5</option>
-                    <option value="PhD">PhD</option>
-                    <option value="Expert, Research">Expert, Research</option>
-                </select>
-            </div>
-        </div>
-
-        <div class="col-md-4">
-            <div class="form-group">
-                <label for="LevelOfExperience" class="required">Level of Experience</label>
-                <select id="LevelOfExperience" name="LevelOfExperience"
-                    [(ngModel)]="currentOffer.LevelOfExperience">
-                    <option value="No experience">No experience</option>
-                    <option value="Less than a year">Less than a year</option>
-                    <option value="Between 1 and 2 years">Between 1 and 2 years</option>
-                    <option value="Between 2 and 5 years">Between 2 and 5 years</option>
-                    <option value="Between 5 and 10 years">Between 5 and 10 years</option>
-                    <option value="More than 10 years">More than 10 years</option>
-                </select>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="form-group">
-                <label for="Availability" class="required">Availability</label>
-                <select id="Availability" name="Availability" [(ngModel)]="currentOffer.Availability">
-                    <option value="Part-time">Part-time</option>
-                    <option value="Full Time">Full Time</option>
-                    <option value="another">another</option>
-                </select>
-            </div>
-        </div>
-
-    </div>
-
-
-
-
-    <div class="row">
-        <div class="col-md-4">
-            <label for="DesiredMinimumNetSalary" class="required">Desired Minimum Net Salary</label>
-            <p-inputNumber [size]="70" name="DesiredMinimumNetSalary"
-                [(ngModel)]="currentOffer.DesiredMinimumNetSalary" [showButtons]="true"
-                buttonLayout="horizontal" inputId="horizontal" spinnerMode="horizontal" [step]="100.000"
-                decrementButtonClass="p-button-info" incrementButtonClass="p-button-info"
-                incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus" [min]="300" mode="currency"
-                currency="TND">
-            </p-inputNumber>
-        </div>
-
-
-        <div class="col-md-4">
-            <label for="currentNetSalary" class="required">Desired Maximum Net Salary</label>
-            <p-inputNumber [size]="70" name="DesiredMaximumNetSalary"
-                [(ngModel)]="currentOffer.DesiredMaximumNetSalary" [showButtons]="true"
-                buttonLayout="horizontal" inputId="horizontal" spinnerMode="horizontal" [step]="100.000"
-                decrementButtonClass="p-button-info" incrementButtonClass="p-button-info"
-                incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus" [min]="300" mode="currency"
-                currency="TND">
-            </p-inputNumber>
-        </div>
-        <div class="col-md-4">
-            <div class="form-group">
-                <label for="in" class="required">In</label>
-                <select id="in" name="in" [(ngModel)]="currentOffer.in">
-                    <option value="Part-time">Monthly</option>
-                    <option value="Full Time">weekly</option>
-                    <option value="another">another</option>
-                </select>
-            </div>
-        </div>
-
-    </div>
-    <div class="row">
-        <div class="col-md-4">
-            <div class="p-field-select">
-                <label for="country" class="required">Country</label>
-                <select id="country" name="country" [(ngModel)]="currentOffer.Address"
-                    (change)="onSelectCountry()">
-                    <option value="">Select a country</option>
-                    <option *ngFor="let country of keys(countries)" [value]="country">{{country}}</option>
-                </select>
-            </div>
-        </div>
-
-        <div class="col-md-4">
-            <div class="p-field-select">
-                <label for="region" class="required">Region</label>
-                <ng-container *ngIf="currentOffer.Address === 'Tunisia'">
-                    <select id="region" name="region" [(ngModel)]="currentOffer.Region">
-                        <option value="">Select a region</option>
-                        <option *ngFor="let region of keys(countries[currentOffer.Address])" [value]="region">
-                            {{region}}</option>
-                    </select>
-                </ng-container>
-                <ng-container *ngIf="currentOffer.Address !== 'Tunisia'">
-                    <input id="region" name="region" [(ngModel)]="currentOffer.Region"
-                        placeholder="Enter region" />
-                </ng-container>
-            </div>
-        </div>
-
-        <div class="col-md-4">
-            <div class="p-field-select">
-                <label for="city" class="required">City</label>
-         
-                <ng-container *ngIf="currentOffer.Address === 'Tunisia' && currentOffer.Region">
-                    <select id="city" name="city" [(ngModel)]="currentOffer.City">
-                        <option value="">Select a city</option>
-                        <option *ngFor="let city of getCities(currentOffer.Address, currentOffer.Region)"
-                            [value]="city">{{city}}</option>
-                    </select>
-                </ng-container>
-                <ng-container *ngIf="currentOffer.Address !== 'Tunisia' || !currentOffer.Region">
-                    <input id="city" name="city" [(ngModel)]="currentOffer.City" placeholder="Enter city" />
-                </ng-container>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-
-        <div class="col-md-4">
-
-            <label for="descriptionE" class="required">Jobs</label>
-            <p-listbox [options]="groupedCities1" name="selectedCountries1" [group]="true" [(ngModel)]="selectedCountries1"
-                [metaKeySelection]="false" [checkbox]="true" [filter]="true" [multiple]="true"
-                [listStyle]="{'max-height':'150px'}" [style]="{'width':'36rem'}">
-                <ng-template let-group pTemplate="group">
-                    <div class="flex align-items-center">
-                        <span>{{group.label}}</span>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="referenceO" class="required">Reference</label>
+                        <input #referenceO="ngModel" type="text" class="form-control" id="referenceO" name="referenceO"
+                            [(ngModel)]="currentOffer.referenceO"
+                            [ngClass]="{ 'ng-dirty': (referenceO.invalid && submitted) || (referenceO.dirty && referenceO.invalid) }"
+                            required />
                     </div>
-                </ng-template>
-            </p-listbox>
-        </div>
-        <div class="col-md-4">
-            <div class="form-group">
-                <label for="descriptionE" class="required">Types Of Positions</label>
-                <table>
-                    <tr>
-                        <td>
-                            <p-checkbox  class="checkbox-spacing" name="TypesOfPositions"
-                                value="CDI" [(ngModel)]="currentOffer.TypesOfPositions"
-                                label="CDI"></p-checkbox>
-                        </td>
-                        <td>
-                            <p-checkbox  class="checkbox-spacing" name="TypesOfPositions"
-                                value="CDD" [(ngModel)]="currentOffer.TypesOfPositions"
-                                label="CDD"></p-checkbox>
-                        </td>
-                        <td>
-                            <p-checkbox  class="checkbox-spacing" name="TypesOfPositions"
-                                value="SIVP" [(ngModel)]="currentOffer.TypesOfPositions"
-                                label="SIVP"></p-checkbox>
-                        </td>
-                    </tr>
+                    <small *ngIf="(referenceO.invalid && submitted) || (referenceO.dirty && referenceO.invalid)"
+                        class="p-error">Reference is required.</small>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="titleO" class="required">Title</label>
+                        <input #titleO="ngModel" type="text" class="form-control" id="titleO" name="titleO"
+                            [(ngModel)]="currentOffer.titleO"
+                            [ngClass]="{ 'ng-dirty': (titleO.invalid && submitted) || (titleO.dirty && titleO.invalid) }"
+                            required />
+                    </div>
+                    <small *ngIf="(titleO.invalid && submitted) || (titleO.dirty && titleO.invalid)"
+                        class="p-error">Title is required.</small>
 
-                    <tr>
-                        <td>
-                            <p-checkbox  class="checkbox-spacing" name="TypesOfPositions"
-                                value="Public Sector" [(ngModel)]="currentOffer.TypesOfPositions"
-                                label="Public Sector"></p-checkbox>
-                        </td>
-                        <td>
-                            <p-checkbox  class="checkbox-spacing" name="TypesOfPositions"
-                                value="Independent/Freelance" [(ngModel)]="currentOffer.TypesOfPositions"
-                                label="Independent/Freelance"></p-checkbox>
-                        </td>
-                        <td>
-                            <p-checkbox  class="checkbox-spacing" name="TypesOfPositions"
-                                value="Temporary" [(ngModel)]="currentOffer.TypesOfPositions"
-                                label="Temporary"></p-checkbox>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <p-checkbox  class="checkbox-spacing" name="TypesOfPositions"
-                                value="Internship/PFE" [(ngModel)]="currentOffer.TypesOfPositions"
-                                label="Internship/PFE"></p-checkbox>
-                        </td>
-                        <td>
-                            <p-checkbox  class="checkbox-spacing" name="TypesOfPositions"
-                                value="Internship" [(ngModel)]="currentOffer.TypesOfPositions"
-                                label="Internship"></p-checkbox>
-                        </td>
-                        <td>
-                            <p-checkbox  class="checkbox-spacing" name="TypesOfPositions"
-                                value="Seasonal" [(ngModel)]="currentOffer.TypesOfPositions"
-                                label="Seasonal"></p-checkbox>
-                        </td>
-                    </tr>
-                  
-                </table>
+                </div>
             </div>
-        </div>
-
-        <div class="col-md-4">
-            <div class="form-group">
-                <label for="descriptionE" class="required">Languages</label>
-                <table>
-                    <tr>
-                        <td>
-                            <p-checkbox  class="checkbox-spacing" name="languages"
-                                value="French" [(ngModel)]="currentOffer.languages" label="French"></p-checkbox>
-                        </td>
-                        <td>
-                            <p-checkbox  class="checkbox-spacing" name="languages"
-                                value="English" [(ngModel)]="currentOffer.languages"
-                                label="English"></p-checkbox>
-                        </td>
-                        <td>
-                            <p-checkbox  class="checkbox-spacing" name="languages"
-                                value="Arabic" [(ngModel)]="currentOffer.languages" label="Arabic"></p-checkbox>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <p-checkbox  class="checkbox-spacing" name="languages"
-                                value="Italien" [(ngModel)]="currentOffer.languages"
-                                label="Italien"></p-checkbox>
-
-                        </td>
-                        <td>
-                            <p-checkbox  class="checkbox-spacing" name="languages"
-                                value="Hinidi" [(ngModel)]="currentOffer.languages" label="Hinidi"></p-checkbox>
-                        <td>
-                            <p-checkbox  class="checkbox-spacing" name="languages"
-                                value="Japanese" [(ngModel)]="currentOffer.languages"
-                                label="Japanese"></p-checkbox>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <p-checkbox  class="checkbox-spacing" name="languages"
-                                value="Russian" [(ngModel)]="currentOffer.languages"
-                                label="Russian"></p-checkbox>
-
-                        </td>
-                        <td>
-                            <p-checkbox  class="checkbox-spacing" name="languages"
-                                value="Portuguese" [(ngModel)]="currentOffer.languages"
-                                label="Portuguese"></p-checkbox>
-                        <td>
-                            <p-checkbox  class="checkbox-spacing" name="languages"
-                                value="Chinese" [(ngModel)]="currentOffer.TypesOfPositions"
-                                label="Chinese"></p-checkbox>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <p-checkbox  class="checkbox-spacing" name="languages" value="Dutch"
-                                [(ngModel)]="currentOffer.languages" label="Dutch"></p-checkbox>
-
-                        </td>
-                        <td>
-                            <p-checkbox  class="checkbox-spacing" name="languages"
-                                value=" Czech" [(ngModel)]="currentOffer.languages" label="Czech"></p-checkbox>
-                        <td>
-                            <p-checkbox  class="checkbox-spacing" name="languages"
-                                value="Polish" [(ngModel)]="currentOffer.languages" label="Polish"></p-checkbox>
-                    </tr>
 
 
+            <div class="row">
+                <div class="col-md-12">
+                    <form class="form-group" [formGroup]="coverLetterForm">
+                        <label for="descriptionE" class="required">Description</label>
+                        <div style="position: relative;">
+                            <p-editor formControlName="coverLetterText" [style]="{ height: '320px' }"
+                                [(ngModel)]="currentOffer.descriptionE"
+                                [ngClass]="{'ng-invalid ng-dirty': isFieldInvalid('coverLetterText')}"></p-editor>
+                        </div>
+                        <div *ngIf="isFieldInvalid('coverLetterText')" class="p-error">
+                            <span>cover Letter Description is required </span>
+                        </div>
+                        <div *ngIf="maxWordsError" class="p-error">
+                            Maximum {{maxWordsError['maxWords']}} words allowed. You have {{actualWords}} words.
+                        </div>
+                    </form>
+                </div>
 
 
-
-            
-                </table>
             </div>
-        </div>
 
-    </div>
-    
+            <div class="row mt-3">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="LevelOfEducation" class="required">Level of Education</label>
+                        <select id="LevelOfEducation" name="LevelOfEducation"
+                            [(ngModel)]="currentOffer.LevelOfEducation">
+                            <option value="Primary">Primary</option>
+                            <option value="Secondary">Secondary</option>
+                            <option value="Professional training">Professional training</option>
+                            <option value="Bac">Bac</option>
+                            <option value="Bac +3">Bac +3</option>
+                            <option value="Bac +5">Bac +5</option>
+                            <option value="PhD">PhD</option>
+                            <option value="Expert, Research">Expert, Research</option>
+                        </select>
+                    </div>
+                </div>
 
-    <div class="form-group">
-        <label for="date">Date</label>
-        <input type="date" class="form-control" id="date" name="date"
-            [ngModel]="currentOffer.date | date: 'yyyy-MM-dd' "(ngModelChange)="currentOffer.date= $event"
-    />
-    </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="LevelOfExperience" class="required">Level of Experience</label>
+                        <select id="LevelOfExperience" name="LevelOfExperience"
+                            [(ngModel)]="currentOffer.LevelOfExperience">
+                            <option value="No experience">No experience</option>
+                            <option value="Less than a year">Less than a year</option>
+                            <option value="Between 1 and 2 years">Between 1 and 2 years</option>
+                            <option value="Between 2 and 5 years">Between 2 and 5 years</option>
+                            <option value="Between 5 and 10 years">Between 5 and 10 years</option>
+                            <option value="More than 10 years">More than 10 years</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="Availability" class="required">Availability</label>
+                        <select id="Availability" name="Availability" [(ngModel)]="currentOffer.Availability">
+                            <option value="Part-time">Part-time</option>
+                            <option value="Full Time">Full Time</option>
+                            <option value="another">another</option>
+                        </select>
+                    </div>
+                </div>
 
-
-    <div class="form-group">
-        <label for="responable" class="required">Responable</label>
-        <input #responable="ngModel" type="text" class="form-control" id="responable" name="responable"
-             [(ngModel)]="currentOffer.responable"
-            [ngClass]="{ 'ng-dirty': (responable.invalid && submitted) || (responable.dirty && responable.invalid) }"
-            required />
-
-    </div>
-    <small *ngIf="(responable.invalid && submitted) || (responable.dirty && responable.invalid)"
-        class="p-error">Responable is required.</small>
-        <input
-        type="email"
-        class="form-control"
-        id="emailforsendmails"
-        name="emailforsendmails"
-        placeholder="nom@gmail.com"
-        [(ngModel)]="currentOffer.emailforsendmails"
-        required
-      />
-      
-
+            </div>
 
 
 
 
+            <div class="row">
+                <div class="col-md-4">
+                    <label for="DesiredMinimumNetSalary" class="required">Desired Minimum Net Salary</label>
+                    <p-inputNumber [size]="70" name="DesiredMinimumNetSalary"
+                        [(ngModel)]="currentOffer.DesiredMinimumNetSalary" [showButtons]="true"
+                        buttonLayout="horizontal" inputId="horizontal" spinnerMode="horizontal" [step]="100.000"
+                        decrementButtonClass="p-button-info" incrementButtonClass="p-button-info"
+                        incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus" [min]="300" mode="currency"
+                        currency="TND">
+                    </p-inputNumber>
+                </div>
 
-        
-    <div class="row">
-        <div class="col-md-6">
+
+                <div class="col-md-4">
+                    <label for="currentNetSalary" class="required">Desired Maximum Net Salary</label>
+                    <p-inputNumber [size]="70" name="DesiredMaximumNetSalary"
+                        [(ngModel)]="currentOffer.DesiredMaximumNetSalary" [showButtons]="true"
+                        buttonLayout="horizontal" inputId="horizontal" spinnerMode="horizontal" [step]="100.000"
+                        decrementButtonClass="p-button-info" incrementButtonClass="p-button-info"
+                        incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus" [min]="300" mode="currency"
+                        currency="TND">
+                    </p-inputNumber>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="in" class="required">In</label>
+                        <select id="in" name="in" [(ngModel)]="currentOffer.in">
+                            <option value="Part-time">Monthly</option>
+                            <option value="Full Time">weekly</option>
+                            <option value="another">another</option>
+                        </select>
+                    </div>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="p-field-select">
+                        <label for="country" class="required">Country</label>
+                        <select id="country" name="country" [(ngModel)]="currentOffer.Address"
+                            (change)="onSelectCountry()">
+                            <option value="">Select a country</option>
+                            <option *ngFor="let country of keys(countries)" [value]="country">{{country}}</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="p-field-select">
+                        <label for="region" class="required">Region</label>
+                        <ng-container *ngIf="currentOffer.Address === 'Tunisia'">
+                            <select id="region" name="region" [(ngModel)]="currentOffer.Region">
+                                <option value="">Select a region</option>
+                                <option *ngFor="let region of keys(countries[currentOffer.Address])" [value]="region">
+                                    {{region}}</option>
+                            </select>
+                        </ng-container>
+                        <ng-container *ngIf="currentOffer.Address !== 'Tunisia'">
+                            <input id="region" name="region" [(ngModel)]="currentOffer.Region"
+                                placeholder="Enter region" />
+                        </ng-container>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="p-field-select">
+                        <label for="city" class="required">City</label>
+
+                        <ng-container *ngIf="currentOffer.Address === 'Tunisia' && currentOffer.Region">
+                            <select id="city" name="city" [(ngModel)]="currentOffer.City">
+                                <option value="">Select a city</option>
+                                <option *ngFor="let city of getCities(currentOffer.Address, currentOffer.Region)"
+                                    [value]="city">{{city}}</option>
+                            </select>
+                        </ng-container>
+                        <ng-container *ngIf="currentOffer.Address !== 'Tunisia' || !currentOffer.Region">
+                            <input id="city" name="city" [(ngModel)]="currentOffer.City" placeholder="Enter city" />
+                        </ng-container>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="descriptionE" class="required">Jobs</label>
+                        <p-listbox [options]="groupedJobs" name="selectedJobs" [group]="true"
+                            [(ngModel)]="currentOffer.JobCategorie" [metaKeySelection]="false" [checkbox]="true"
+                            [filter]="true" [multiple]="true" [listStyle]="{'max-height':'150px'}"
+                            [style]="{'width':'36rem'}">
+                            <ng-template let-group pTemplate="group">
+                                <div class="flex align-items-center">
+                                    <span>{{group.label}}</span>
+                                </div>
+                            </ng-template>
+                        </p-listbox>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="descriptionE" class="required">Types Of Positions</label>
+                        <table>
+                            <tr>
+                                <td>
+                                    <p-checkbox class="checkbox-spacing" name="TypesOfPositions" value="CDI"
+                                        [(ngModel)]="currentOffer.TypesOfPositions" label="CDI"></p-checkbox>
+                                </td>
+                                <td>
+                                    <p-checkbox class="checkbox-spacing" name="TypesOfPositions" value="CDD"
+                                        [(ngModel)]="currentOffer.TypesOfPositions" label="CDD"></p-checkbox>
+                                </td>
+                                <td>
+                                    <p-checkbox class="checkbox-spacing" name="TypesOfPositions" value="SIVP"
+                                        [(ngModel)]="currentOffer.TypesOfPositions" label="SIVP"></p-checkbox>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <p-checkbox class="checkbox-spacing" name="TypesOfPositions" value="Public Sector"
+                                        [(ngModel)]="currentOffer.TypesOfPositions" label="Public Sector"></p-checkbox>
+                                </td>
+                                <td>
+                                    <p-checkbox class="checkbox-spacing" name="TypesOfPositions"
+                                        value="Independent/Freelance" [(ngModel)]="currentOffer.TypesOfPositions"
+                                        label="Independent/Freelance"></p-checkbox>
+                                </td>
+                                <td>
+                                    <p-checkbox class="checkbox-spacing" name="TypesOfPositions" value="Temporary"
+                                        [(ngModel)]="currentOffer.TypesOfPositions" label="Temporary"></p-checkbox>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <p-checkbox class="checkbox-spacing" name="TypesOfPositions" value="Internship/PFE"
+                                        [(ngModel)]="currentOffer.TypesOfPositions" label="Internship/PFE"></p-checkbox>
+                                </td>
+                                <td>
+                                    <p-checkbox class="checkbox-spacing" name="TypesOfPositions" value="Internship"
+                                        [(ngModel)]="currentOffer.TypesOfPositions" label="Internship"></p-checkbox>
+                                </td>
+                                <td>
+                                    <p-checkbox class="checkbox-spacing" name="TypesOfPositions" value="Seasonal"
+                                        [(ngModel)]="currentOffer.TypesOfPositions" label="Seasonal"></p-checkbox>
+                                </td>
+                            </tr>
+
+                        </table>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="descriptionE" class="required">Languages</label>
+                        <table>
+                            <tr>
+                                <td>
+                                    <p-checkbox class="checkbox-spacing" name="languages" value="French"
+                                        [(ngModel)]="currentOffer.languages" label="French"></p-checkbox>
+                                </td>
+                                <td>
+                                    <p-checkbox class="checkbox-spacing" name="languages" value="English"
+                                        [(ngModel)]="currentOffer.languages" label="English"></p-checkbox>
+                                </td>
+                                <td>
+                                    <p-checkbox class="checkbox-spacing" name="languages" value="Arabic"
+                                        [(ngModel)]="currentOffer.languages" label="Arabic"></p-checkbox>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <p-checkbox class="checkbox-spacing" name="languages" value="Italien"
+                                        [(ngModel)]="currentOffer.languages" label="Italien"></p-checkbox>
+
+                                </td>
+                                <td>
+                                    <p-checkbox class="checkbox-spacing" name="languages" value="Hinidi"
+                                        [(ngModel)]="currentOffer.languages" label="Hinidi"></p-checkbox>
+                                <td>
+                                    <p-checkbox class="checkbox-spacing" name="languages" value="Japanese"
+                                        [(ngModel)]="currentOffer.languages" label="Japanese"></p-checkbox>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <p-checkbox class="checkbox-spacing" name="languages" value="Russian"
+                                        [(ngModel)]="currentOffer.languages" label="Russian"></p-checkbox>
+
+                                </td>
+                                <td>
+                                    <p-checkbox class="checkbox-spacing" name="languages" value="Portuguese"
+                                        [(ngModel)]="currentOffer.languages" label="Portuguese"></p-checkbox>
+                                <td>
+                                    <p-checkbox class="checkbox-spacing" name="languages" value="Chinese"
+                                        [(ngModel)]="currentOffer.TypesOfPositions" label="Chinese"></p-checkbox>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <p-checkbox class="checkbox-spacing" name="languages" value="Dutch"
+                                        [(ngModel)]="currentOffer.languages" label="Dutch"></p-checkbox>
+
+                                </td>
+                                <td>
+                                    <p-checkbox class="checkbox-spacing" name="languages" value=" Czech"
+                                        [(ngModel)]="currentOffer.languages" label="Czech"></p-checkbox>
+                                <td>
+                                    <p-checkbox class="checkbox-spacing" name="languages" value="Polish"
+                                        [(ngModel)]="currentOffer.languages" label="Polish"></p-checkbox>
+                            </tr>
+
+
+
+
+
+
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+
+
             <div class="form-group">
-                <label for="descriptionE" class="required">Mobility</label>
-                <table>
-                    <tr>
-                        <td>
-                            <p-checkbox  class="checkbox-spacing" name="mobility"
-                            value=" With the possibility of local travel" [(ngModel)]="currentOffer.mobility"
-                            label="
+                <label for="date">Date</label>
+                <input type="date" class="form-control" id="date" name="date"
+                    [ngModel]="currentOffer.date | date: 'yyyy-MM-dd' " (ngModelChange)="currentOffer.date= $event" />
+            </div>
+
+
+            <div class="form-group">
+                <label for="responable" class="required">Responable</label>
+                <input #responable="ngModel" type="text" class="form-control" id="responable" name="responable"
+                    [(ngModel)]="currentOffer.responable"
+                    [ngClass]="{ 'ng-dirty': (responable.invalid && submitted) || (responable.dirty && responable.invalid) }"
+                    required />
+
+            </div>
+            <small *ngIf="(responable.invalid && submitted) || (responable.dirty && responable.invalid)"
+                class="p-error">Responable is required.</small>
+            <input type="email" class="form-control" id="emailforsendmails" name="emailforsendmails"
+                placeholder="nom@gmail.com" [(ngModel)]="currentOffer.emailforsendmails" required />
+
+
+
+
+
+
+
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="descriptionE" class="required">Mobility</label>
+                        <table>
+                            <tr>
+                                <td>
+                                    <p-checkbox class="checkbox-spacing" name="mobility"
+                                        value=" With the possibility of local travel"
+                                        [(ngModel)]="currentOffer.mobility" label="
                             With the possibility of local travel ?"></p-checkbox>
-                        </td>
-                        <td>
-                            <p-checkbox  class="checkbox-spacing" name="mobility"
-                            value="  With the possibility of international travel" [(ngModel)]="currentOffer.mobility"
-                            label="
+                                </td>
+                                <td>
+                                    <p-checkbox class="checkbox-spacing" name="mobility"
+                                        value="  With the possibility of international travel"
+                                        [(ngModel)]="currentOffer.mobility" label="
                             With the possibility of international travel ?"></p-checkbox>
-                        </td>
-                      
-                    </tr>
+                                </td>
 
-                 
-                  
-                </table>
+                            </tr>
+
+
+
+                        </table>
+                    </div>
+                </div>
+
+
             </div>
-        </div>
+            <div class="grid grid-nogutter justify-content-end mt-5">
 
+                <p-button type="submit" label="Update" iconPos="right"></p-button>
 
+            </div>
+        </form>
     </div>
-    <div class="grid grid-nogutter justify-content-end mt-5">
- 
-        <p-button type="submit" label="Update"  
-            iconPos="right"></p-button>
 
-    </div>
-    </form> 
-    </div>
-    
-  </p-card>
+</p-card>
 
 
-  <app-dashboard-consultor-footer></app-dashboard-consultor-footer>
+<app-dashboard-consultor-footer></app-dashboard-consultor-footer>

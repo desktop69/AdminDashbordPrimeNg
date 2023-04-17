@@ -49,13 +49,15 @@
                       }">{{ offer.isAccepted ? 'Accepted' : 'Not Accepted' }}</span>
                 </td>
                 <td>
-                    <p-inputSwitch [(ngModel)]="offer.isAccepted" (onChange)="updateUserswitch(offer)" onLabel="Confirmed"
-                      offLabel="Not Confirmed"></p-inputSwitch>
-                  </td>
+                    <p-inputSwitch [(ngModel)]="offer.isAccepted" (onChange)="updateUserswitch(offer)"
+                        onLabel="Confirmed" offLabel="Not Confirmed"></p-inputSwitch>
+                </td>
                 <td>
                     <!-- <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-primary mr-2"[routerLink]="['/dashboardConsultor/edit-job-offer', offer._id]" ></button> -->
-                    <button pButton pRipple icon="pi pi-trash" class=" p-button-danger mr-2" (click)="confirmDelete(offer)"></button>
-                    <button pButton pRipple icon="pi pi-eye" class=" p-button-secondary " [routerLink]="['/admin/admin-offer-details', offer._id]"></button>
+                    <button pButton pRipple icon="pi pi-trash" class=" p-button-danger mr-2"
+                        (click)="confirmDelete(offer)"></button>
+                    <button pButton pRipple icon="pi pi-eye" class=" p-button-secondary "
+                        [routerLink]="['/admin/admin-offer-details', offer._id]"></button>
                 </td>
             </tr>
         </ng-template>

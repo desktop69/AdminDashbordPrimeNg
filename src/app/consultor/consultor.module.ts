@@ -23,7 +23,9 @@ import { RequestPasswordResetComponent } from '../auth/request-password-reset/re
 import { ResetPasswordComponent } from '../auth/reset-password/reset-password.component';
 import { ToastModule } from 'primeng/toast';
 import { ForbiddenComponent } from './forbidden/forbidden.component';
-
+import { NotificationsComponent } from './notifications/notifications.component';
+import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
+ const config: SocketIoConfig = { url: 'ws://localhost:3011', options: {} };
 
 @NgModule({
   declarations: [
@@ -44,8 +46,9 @@ import { ForbiddenComponent } from './forbidden/forbidden.component';
     HeaderComponent,
     ResetPasswordComponent,
     RequestPasswordResetComponent,
-    ForbiddenComponent
-   
+    ForbiddenComponent,
+    NotificationsComponent
+
 
   ],
   imports: [
@@ -56,6 +59,7 @@ import { ForbiddenComponent } from './forbidden/forbidden.component';
     HttpClientModule,
     ReactiveFormsModule,
     ToastModule,
+    SocketIoModule.forRoot(config)
   ]
 
 })
