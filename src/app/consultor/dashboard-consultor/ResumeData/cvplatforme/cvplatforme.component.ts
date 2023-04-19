@@ -42,6 +42,7 @@ export class CVPlatformeComponent implements OnInit {
   proexperiencelength!: number;
   languageslength!: number;
   trainquallength!:number;
+  isDownloading: boolean = false;
   constructor(private imageService: ImageService, public authService: AuthService, private personalDataService: PersonalDataService,
     private proexpService: ProExperienceService, private prosevices: ProfessionalDataService, private skillsService: SkillsService,
     private trainingQualificationService: TrainingQualificationService,private AdditionalDataService: AdditionalDataService,
@@ -82,9 +83,11 @@ export class CVPlatformeComponent implements OnInit {
 // }
 
 downloadAsPDF() {
+  this.isDownloading = true;
   const resumeElement = document.getElementById('resume-content');
   if (!resumeElement) {
     console.error('Resume content not found');
+    this.isDownloading = false;
     return;
   }
   const pdf = new jsPDF('p', 'mm', 'a4');
@@ -93,20 +96,26 @@ downloadAsPDF() {
     backgroundColor: 'white'
   });
 
-  canvas.then((canvas: any) => {
-    const imgData = canvas.toDataURL('image/png');
-    const bufferX = 15;
-    const bufferY = 10;
-    const imgProps = (pdf as any).getImageProperties(imgData);
-    const pdfWidth = pdf.internal.pageSize.getWidth() - 2 * bufferX;
-    const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+  canvas
+    .then((canvas: any) => {
+      const imgData = canvas.toDataURL('image/png');
+      const bufferX = 15;
+      const bufferY = 10;
+      const imgProps = (pdf as any).getImageProperties(imgData);
+      const pdfWidth = pdf.internal.pageSize.getWidth() - 2 * bufferX;
+      const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
 
-    pdf.addImage(imgData, 'PNG', bufferX, bufferY, pdfWidth, pdfHeight, undefined, 'FAST');
-    return pdf;
-  }).then((pdf: any) => {
-    pdf.save(`${this.personalData.Name}_Resume.pdf`);
-  });
+      pdf.addImage(imgData, 'PNG', bufferX, bufferY, pdfWidth, pdfHeight, undefined, 'FAST');
+      return pdf;
+    })
+    .then((pdf: any) => {
+      pdf.save(`${this.personalData.Name}_Resume.pdf`);
+    })
+    .finally(() => {
+      this.isDownloading = false; 
+    });
 }
+
 
 
   loadLaguages() {

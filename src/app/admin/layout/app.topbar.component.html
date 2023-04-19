@@ -38,7 +38,7 @@
           
                 <button class="p-link layout-topbar-button user-avatar status-online" (click)="toggleUserMenu()">
                     <div *ngIf="image"(click)="toggleUserMenu()">
-                    <img [src]="'data:image/png;base64,' + image.data" alt="Profile Photo" class="profile-photo" (click)="toggleUserMenu()" />
+                    <img [src]="'data:image/png;base64,' + image.data" alt="Profile Photo" class="user-avatar status-online" (click)="toggleUserMenu()" />
                     </div>
                     <div *ngIf="!image" (click)="toggleUserMenu()">
                         <a (click)="toggleUserMenu()"><div class="user-avatar status-online"><img src="./assets/avatarifnot.jpg" alt=""></div></a>

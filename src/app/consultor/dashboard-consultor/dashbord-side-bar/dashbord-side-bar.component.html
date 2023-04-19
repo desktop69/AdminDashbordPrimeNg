@@ -14,31 +14,32 @@
 		<!-- Navigation -->
 		<div class="dashboard-nav">
 			<div class="dashboard-nav-inner">
-
 				<ul data-submenu-title="Start">
-					<li><a routerLink="/dashboardConsultor/statistics"><i class="icon-material-outline-dashboard"></i>
+					<li><a routerLink="/dashboardConsultor/statistics"  routerLinkActive="active"><i class="icon-material-outline-dashboard"></i>
 							Dashboard</a></li>
-					<li><a routerLink="/dashboardConsultor/Resume"><i
+					<li><a routerLink="/dashboardConsultor/Resume"  routerLinkActive="active"><i
 								class="icon-material-outline-question-answer"></i>My Resume <span
 								class="nav-tag">1</span></a></li>
-					<li><a routerLink="/dashboardConsultor/file"><i class="icon-line-awesome-file"></i> My Documents</a>
-					</li>
-					<li><a routerLink="/dashboardConsultor/CVplatforme"><i
-								class="icon-material-outline-rate-review"></i> Generated CV</a></li>
+					<li><a routerLink="/dashboardConsultor/file"  routerLinkActive="active"><i class="icon-line-awesome-file"></i>My Documents
+							<span class="nav-tag">{{this.filesLength}}</span></a></li>
+					<li><a routerLink="/dashboardConsultor/applied-offers-consultant"  routerLinkActive="active"><i
+								class="icon-material-outline-outlined-flag"  routerLinkActive="active"></i>My Applications</a></li>
+					<li><a routerLink="/dashboardConsultor/CVplatforme"  routerLinkActive="active"><i
+								class="icon-material-outline-picture-as-pdf"></i>Generated CV</a></li>
 
-					<li><a routerLink="/dashboardConsultor/profile-entreprise"><i
-								class="icon-material-outline-account-balance"></i>My Profile</a></li>
-					<li><a routerLink="/dashboardConsultor/offer-list"><i
+					<li><a routerLink="/dashboardConsultor/profile-entreprise"  routerLinkActive="active"><i
+								class="icon-material-outline-account-balance" ></i>My Profile</a></li>
+					<li><a routerLink="/dashboardConsultor/offer-list" routerLinkActive="active"><i
 								class="icon-material-outline-business-center"></i>Manage Job Offers <span
-								class="nav-tag">3</span></a>
-					<li><a routerLink="/dashboardConsultor/Job-offer"><i class="icon-line-awesome-plus"></i>Add Job
+								class="nav-tag">{{this.offerslength}}</span></a>
+					<li><a routerLink="/dashboardConsultor/Job-offer" routerLinkActive="active"><i class="icon-feather-plus-square"></i>Add Job
 							Offer</a></li>
 				</ul>
-				<ul data-submenu-title="Organize and Manage">
+				<ul data-submenu-title="Organize and Manage" >
 					<li (click)="toggleSubmenu('jobs')">
-						<a ng-click="false"><i class="icon-material-outline-business-center"></i> Jobs</a>
+						<a ><i class="icon-material-outline-business-center"></i> Jobs</a>
 						<ul [ngClass]="{ open: activeSubmenu === 'jobs' }">
-							<li><a routerLink="/dashboardConsultor/offer-list">Manage Job Offers <span
+							<li><a routerLink="/dashboardConsultor/offer-list"  routerLinkActive="active">Manage Job Offers <span
 										class="nav-tag">3</span></a></li>
 							<li><a href="dashboard-manage-candidates.html">Manage Candidates</a></li>
 							<li><a href="dashboard-post-a-job.html">Post a Job</a></li>

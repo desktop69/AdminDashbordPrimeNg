@@ -26,7 +26,9 @@ import { ForbiddenComponent } from './forbidden/forbidden.component';
 import { Paginator, PaginatorModule } from 'primeng/paginator';
 import { FullPageJobsComponent } from './landingPage/full-page-jobs/full-page-jobs.component';
 import { HomeJobOfferDetailsComponent } from './landingPage/home-job-offer-details/home-job-offer-details.component';
-
+import { NotificationsComponent } from './notifications/notifications.component';
+import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
+const config: SocketIoConfig = { url: 'ws://localhost:3011', options: {} };
 
 @NgModule({
   declarations: [
@@ -49,7 +51,8 @@ import { HomeJobOfferDetailsComponent } from './landingPage/home-job-offer-detai
     RequestPasswordResetComponent,
     ForbiddenComponent,
     FullPageJobsComponent,
-    HomeJobOfferDetailsComponent
+    HomeJobOfferDetailsComponent,
+    NotificationsComponent
    
 
   ],
@@ -61,7 +64,8 @@ import { HomeJobOfferDetailsComponent } from './landingPage/home-job-offer-detai
     HttpClientModule,
     ReactiveFormsModule,
     ToastModule,
-    PaginatorModule
+    PaginatorModule,
+    SocketIoModule.forRoot(config)
   ]
 
 })

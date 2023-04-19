@@ -1,1 +1,123 @@
-<p>home-job-offer-details works!</p>
+<div class="single-page-header " >
+    <div class="container " >
+        <div class="row">
+            <div class="col-md-12">
+                <div class="single-page-header-inner">
+                    <div class="left-side">
+                
+                            <!-- Assuming you have an 'entrepriseData' object with a 'logo' property -->
+                            <!-- <a href="single-company-profile.html"><img [src]="entrepriseData.logo" alt=""></a> -->
+                            <div class="header-image"><a *ngIf="entrepriseData[offer.IdUser]">    <img [src]="('data:image/png;base64,' + entrepriseData[offer.IdUser].image.data)" alt="" /></a></div>
+                       
+                  
+                        <div class="header-details">
+                            <h3>{{offer.titleO}}</h3>
+                            <h5>About the Employer</h5>
+                            <ul>
+                                <li><a href="single-company-profile.html"  *ngIf="entrepriseData1[offer.IdUser]"><i class="icon-material-outline-business"></i> {{ entrepriseData1[offer.IdUser].nameE }}</a></li>
+                                <li><div class="star-rating" data-rating="4.9"></div></li>
+                                <li><i class="icon-material-outline-location-on"></i> {{ offer.Address }}, {{ offer.Region }}, {{ offer.City }}</li>
+                                <li><div class="verified-badge-with-title">Verified</div></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="right-side">
+                        <div class="salary-box">
+                            <div class="salary-type">{{offer.in}} Salary</div>
+                            <div class="salary-amount">{{offer.DesiredMinimumNetSalary}} TND - {{offer.DesiredMaximumNetSalary}} TND</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Page Content -->
+<div class="container" >
+    <div class="row" >
+
+        <!-- Content -->
+        <div class="col-xl-8 col-lg-8 content-left-offset">
+
+            <div class="single-page-section">
+                <h3 class="margin-bottom-80">Job Description</h3>
+                <p [innerHTML]="offer.descriptionE" ></p>
+            </div>
+
+			
+	
+
+
+
+
+        </div>
+        <div class="col-xl-4 col-lg-4">
+            <div class="sidebar-container">
+        
+                <a class="apply-now-button popup-with-zoom-anim  cur" (click)="applyForOffer( entrepriseData1[offer.IdUser].IdUser)">Apply Now <i class="icon-material-outline-arrow-right-alt"></i></a>
+        
+                <!-- Sidebar Widget -->
+                <div class="sidebar-widget">
+                    <div class="job-overview">
+                        <div class="job-overview-headline">Job Summary</div>
+                        <div class="job-overview-inner">
+                            <ul>
+                                <li>
+                                    <i class="icon-material-outline-location-on"></i>
+                                    <span>Location</span>
+                                    <h5>{{ offer.Address }}, {{ offer.Region }}, {{ offer.City }}</h5>
+                                </li>
+                                <li>
+                                    <i class="icon-material-outline-business-center"></i>
+                                    <span>Job Type</span>
+                                    <h5>{{ offer.TypesOfPositions }}</h5>
+                                </li>
+                                <li>
+                                    <i class="icon-material-outline-person-pin"></i>
+                                    <span>Availability</span>
+                                    <h5>{{ offer.Availability }}</h5>
+                                </li>
+                                <li>
+                                    <i class="icon-material-outline-local-atm"></i>
+                                    <span>Salary</span>
+                                    <h5>{{ offer.DesiredMinimumNetSalary }} TND - {{ offer.DesiredMaximumNetSalary }} TND</h5>
+                                </li>
+                                <li>
+                                    <i class="icon-material-outline-access-time"></i>
+                                    <span>Date Posted</span>
+                                    <!-- Assuming you have a function to calculate the number of days since the posting date -->
+                                    <h5>{{ daysSincePosted(offer.date) }} days ago</h5>
+                                </li>
+                                <li>
+                                    <i class="icon-material-outline-school"></i>
+                                    <span>Level of Education</span>
+                                    <h5>{{ offer.LevelOfEducation }}</h5>
+                                </li>
+                                <li>
+                                    <i class="icon-material-outline-assessment"></i>
+                                    <span>Level of Experience</span>
+                                    <h5>{{ offer.LevelOfExperience }}</h5>
+                                </li>
+                                <li *ngIf="offer.languages">
+                                    <i class="icon-material-outline-language"></i>
+                                    <span>Languages</span>
+                                    <h5>{{ offer.languages.join(', ') }}</h5>
+                                </li>
+                                <li *ngIf="offer.JobCategorie">
+                                    <i class="icon-material-outline-dashboard"></i>
+                                    <span>Job Category</span>
+                                    <h5>{{ offer.JobCategorie.join(', ') }}</h5>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+        
+                <!-- Add the other widgets as needed -->
+        
+            </div>
+        </div>
+        
+    </div>
+</div>

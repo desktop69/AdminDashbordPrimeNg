@@ -20,6 +20,7 @@ export class OfferSettingsComponent {
   ) {}
 
   ngOnInit():void {
+   this.offerSettingsData.emailforsendmails = this.authService.emailUser;
     this.offerSettingsData.responable = this.authService.LoggedUserName;
     this.offerSettingsData.date = new Date();
   }

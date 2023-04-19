@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,15 +9,47 @@
 
     <!-- CSS
 ================================================== -->
+
 </head>
 
-<body>
+<body class="">
     <!-- Wrapper -->
-<div id="wrapper">
-    <app-header></app-header>
-    <router-outlet></router-outlet>
-    <app-footer></app-footer>
-    </div>
-    
+    <div id="wrapper">
+        <div id="header-container" class="fullwidth not-sticky">
+            <div id="header">
+                <app-header>
+
+                </app-header>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+
+
+        <div class="dashboard-content-container " >
+         
+
+                <router-outlet>
+
+                </router-outlet>
+          
+        </div>
+
+
+
+            <div id="footer">
+                <!-- Footer Top Section -->
+                <div class="footer-top-section">
+                    <app-footer>
+                    </app-footer>
+                </div>
+                <!-- Footer / End -->
+            </div>
+
+
+
+        </div>
+
+
 </body>
+
 </html>

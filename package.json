@@ -23,6 +23,7 @@
     "@auth0/angular-jwt": "^5.1.2",
     "html2canvas": "^1.4.1",
     "jspdf": "^2.5.1",
+    "ngx-socket-io": "^4.4.0",
     "primeflex": "^3.3.0",
     "primeicons": "^6.0.1",
     "primeng": "^15.2.0",

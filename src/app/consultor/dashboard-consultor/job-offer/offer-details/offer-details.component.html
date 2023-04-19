@@ -77,9 +77,10 @@
                 <div class="form-group">
                     <label for="in" class="required">In</label>
                     <select id="in" name="in" [(ngModel)]="offerDetailsData.in">
-                        <option value="Part-time">Monthly</option>
-                        <option value="Full Time">weekly</option>
-                        <option value="another">another</option>
+                        <option value="Monthly">Monthly</option>
+                        <option value="weekly">weekly</option>
+                        <option value="Annual">Annual</option>
+                        <option value="Daily">Daily</option>
                     </select>
                 </div>
             </div>
@@ -90,77 +91,70 @@
 
             <div class="col-md-4">
                 <div class="form-group">
-                  <label for="descriptionE" class="required">Jobs</label>
-                  <p-listbox [options]="groupedJobs" name="selectedJobs" [group]="true" [(ngModel)]="offerDetailsData.JobCategorie"
-                    [metaKeySelection]="false" [checkbox]="true" [filter]="true" [multiple]="true"
-                    [listStyle]="{'max-height':'150px'}" [style]="{'width':'36rem'}">
-                    <ng-template let-group pTemplate="group">
-                      <div class="flex align-items-center">
-                        <span>{{group.label}}</span>
-                      </div>
-                    </ng-template>
-                  </p-listbox>
+                    <label for="descriptionE" class="required">Jobs</label>
+                    <p-listbox [options]="groupedJobs" name="selectedJobs" [group]="true"
+                        [(ngModel)]="offerDetailsData.JobCategorie" [metaKeySelection]="false" [checkbox]="true"
+                        [filter]="true" [multiple]="true" [listStyle]="{'max-height':'150px'}"
+                        [style]="{'width':'36rem'}">
+                        <ng-template let-group pTemplate="group">
+                            <div class="flex align-items-center">
+                                <span>{{group.label}}</span>
+                            </div>
+                        </ng-template>
+                    </p-listbox>
                 </div>
-              </div>
-              
-              
+            </div>
+
+
             <div class="col-md-4">
                 <div class="form-group">
                     <label for="descriptionE" class="required">Types Of Positions</label>
                     <table>
                         <tr>
                             <td>
-                                <p-checkbox  class="checkbox-spacing" name="TypesOfPositions"
-                                    value="CDI" [(ngModel)]="offerDetailsData.TypesOfPositions"
-                                    label="CDI"></p-checkbox>
+                                <p-checkbox class="checkbox-spacing" name="TypesOfPositions" value="CDI"
+                                    [(ngModel)]="offerDetailsData.TypesOfPositions" label="CDI"></p-checkbox>
                             </td>
                             <td>
-                                <p-checkbox  class="checkbox-spacing" name="TypesOfPositions"
-                                    value="CDD" [(ngModel)]="offerDetailsData.TypesOfPositions"
-                                    label="CDD"></p-checkbox>
+                                <p-checkbox class="checkbox-spacing" name="TypesOfPositions" value="CDD"
+                                    [(ngModel)]="offerDetailsData.TypesOfPositions" label="CDD"></p-checkbox>
                             </td>
                             <td>
-                                <p-checkbox  class="checkbox-spacing" name="TypesOfPositions"
-                                    value="SIVP" [(ngModel)]="offerDetailsData.TypesOfPositions"
-                                    label="SIVP"></p-checkbox>
+                                <p-checkbox class="checkbox-spacing" name="TypesOfPositions" value="SIVP"
+                                    [(ngModel)]="offerDetailsData.TypesOfPositions" label="SIVP"></p-checkbox>
                             </td>
                         </tr>
 
                         <tr>
                             <td>
-                                <p-checkbox  class="checkbox-spacing" name="TypesOfPositions"
-                                    value="Public Sector" [(ngModel)]="offerDetailsData.TypesOfPositions"
-                                    label="Public Sector"></p-checkbox>
+                                <p-checkbox class="checkbox-spacing" name="TypesOfPositions" value="Public Sector"
+                                    [(ngModel)]="offerDetailsData.TypesOfPositions" label="Public Sector"></p-checkbox>
                             </td>
                             <td>
-                                <p-checkbox  class="checkbox-spacing" name="TypesOfPositions"
+                                <p-checkbox class="checkbox-spacing" name="TypesOfPositions"
                                     value="Independent/Freelance" [(ngModel)]="offerDetailsData.TypesOfPositions"
                                     label="Independent/Freelance"></p-checkbox>
                             </td>
                             <td>
-                                <p-checkbox  class="checkbox-spacing" name="TypesOfPositions"
-                                    value="Temporary" [(ngModel)]="offerDetailsData.TypesOfPositions"
-                                    label="Temporary"></p-checkbox>
+                                <p-checkbox class="checkbox-spacing" name="TypesOfPositions" value="Temporary"
+                                    [(ngModel)]="offerDetailsData.TypesOfPositions" label="Temporary"></p-checkbox>
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <p-checkbox  class="checkbox-spacing" name="TypesOfPositions"
-                                    value="Internship/PFE" [(ngModel)]="offerDetailsData.TypesOfPositions"
-                                    label="Internship/PFE"></p-checkbox>
+                                <p-checkbox class="checkbox-spacing" name="TypesOfPositions" value="Internship/PFE"
+                                    [(ngModel)]="offerDetailsData.TypesOfPositions" label="Internship/PFE"></p-checkbox>
                             </td>
                             <td>
-                                <p-checkbox  class="checkbox-spacing" name="TypesOfPositions"
-                                    value="Internship" [(ngModel)]="offerDetailsData.TypesOfPositions"
-                                    label="Internship"></p-checkbox>
+                                <p-checkbox class="checkbox-spacing" name="TypesOfPositions" value="Internship"
+                                    [(ngModel)]="offerDetailsData.TypesOfPositions" label="Internship"></p-checkbox>
                             </td>
                             <td>
-                                <p-checkbox  class="checkbox-spacing" name="TypesOfPositions"
-                                    value="Seasonal" [(ngModel)]="offerDetailsData.TypesOfPositions"
-                                    label="Seasonal"></p-checkbox>
+                                <p-checkbox class="checkbox-spacing" name="TypesOfPositions" value="Seasonal"
+                                    [(ngModel)]="offerDetailsData.TypesOfPositions" label="Seasonal"></p-checkbox>
                             </td>
                         </tr>
-                      
+
                     </table>
                 </div>
             </div>
@@ -171,71 +165,65 @@
                     <table>
                         <tr>
                             <td>
-                                <p-checkbox  class="checkbox-spacing" name="languages"
-                                    value="French" [(ngModel)]="offerDetailsData.languages" label="French"></p-checkbox>
+                                <p-checkbox class="checkbox-spacing" name="languages" value="French"
+                                    [(ngModel)]="offerDetailsData.languages" label="French"></p-checkbox>
                             </td>
                             <td>
-                                <p-checkbox  class="checkbox-spacing" name="languages"
-                                    value="English" [(ngModel)]="offerDetailsData.languages"
-                                    label="English"></p-checkbox>
+                                <p-checkbox class="checkbox-spacing" name="languages" value="English"
+                                    [(ngModel)]="offerDetailsData.languages" label="English"></p-checkbox>
                             </td>
                             <td>
-                                <p-checkbox  class="checkbox-spacing" name="languages"
-                                    value="Arabic" [(ngModel)]="offerDetailsData.languages" label="Arabic"></p-checkbox>
+                                <p-checkbox class="checkbox-spacing" name="languages" value="Arabic"
+                                    [(ngModel)]="offerDetailsData.languages" label="Arabic"></p-checkbox>
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <p-checkbox  class="checkbox-spacing" name="languages"
-                                    value="Italien" [(ngModel)]="offerDetailsData.languages"
-                                    label="Italien"></p-checkbox>
+                                <p-checkbox class="checkbox-spacing" name="languages" value="Italien"
+                                    [(ngModel)]="offerDetailsData.languages" label="Italien"></p-checkbox>
 
                             </td>
                             <td>
-                                <p-checkbox  class="checkbox-spacing" name="languages"
-                                    value="Hinidi" [(ngModel)]="offerDetailsData.languages" label="Hinidi"></p-checkbox>
+                                <p-checkbox class="checkbox-spacing" name="languages" value="Hinidi"
+                                    [(ngModel)]="offerDetailsData.languages" label="Hinidi"></p-checkbox>
                             <td>
-                                <p-checkbox  class="checkbox-spacing" name="languages"
-                                    value="Japanese" [(ngModel)]="offerDetailsData.languages"
-                                    label="Japanese"></p-checkbox>
+                                <p-checkbox class="checkbox-spacing" name="languages" value="Japanese"
+                                    [(ngModel)]="offerDetailsData.languages" label="Japanese"></p-checkbox>
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <p-checkbox  class="checkbox-spacing" name="languages"
-                                    value="Russian" [(ngModel)]="offerDetailsData.languages"
-                                    label="Russian"></p-checkbox>
+                                <p-checkbox class="checkbox-spacing" name="languages" value="Russian"
+                                    [(ngModel)]="offerDetailsData.languages" label="Russian"></p-checkbox>
 
                             </td>
                             <td>
-                                <p-checkbox  class="checkbox-spacing" name="languages"
-                                    value="Portuguese" [(ngModel)]="offerDetailsData.languages"
-                                    label="Portuguese"></p-checkbox>
+                                <p-checkbox class="checkbox-spacing" name="languages" value="Portuguese"
+                                    [(ngModel)]="offerDetailsData.languages" label="Portuguese"></p-checkbox>
                             <td>
-                                <p-checkbox  class="checkbox-spacing" name="languages"
-                                    value="Chinese" [(ngModel)]="offerDetailsData.TypesOfPositions"
-                                    label="Chinese"></p-checkbox>
+                                <p-checkbox class="checkbox-spacing" name="languages" value="Chinese"
+                                    [(ngModel)]="offerDetailsData.TypesOfPositions" label="Chinese"></p-checkbox>
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <p-checkbox  class="checkbox-spacing" name="languages" value="Dutch"
+                                <p-checkbox class="checkbox-spacing" name="languages" value="Dutch"
                                     [(ngModel)]="offerDetailsData.languages" label="Dutch"></p-checkbox>
 
                             </td>
                             <td>
-                                <p-checkbox  class="checkbox-spacing" name="languages"
-                                    value=" Czech" [(ngModel)]="offerDetailsData.languages" label="Czech"></p-checkbox>
+                                <p-checkbox class="checkbox-spacing" name="languages" value=" Czech"
+                                    [(ngModel)]="offerDetailsData.languages" label="Czech"></p-checkbox>
                             <td>
-                                <p-checkbox  class="checkbox-spacing" name="languages"
-                                    value="Polish" [(ngModel)]="offerDetailsData.languages" label="Polish"></p-checkbox>
+                                <p-checkbox class="checkbox-spacing" name="languages" value="Polish"
+                                    [(ngModel)]="offerDetailsData.languages" label="Polish"></p-checkbox>
                         </tr>
 
 
 
 
 
-                
+
                     </table>
                 </div>
             </div>
@@ -246,8 +234,8 @@
 
 
         <div class="grid grid-nogutter justify-content-center mt-5">
-            <p-button type="button" icon="pi pi-angle-left" class="p-button-success mr-2" label="Back" (click)="onBack()"
-                iconPos="left"></p-button>
+            <p-button type="button" icon="pi pi-angle-left" class="p-button-success mr-2" label="Back"
+                (click)="onBack()" iconPos="left"></p-button>
             <p-button type="submit" label="Next" [disabled]="!offerDetailsForm.form.valid" icon="pi pi-angle-right"
                 iconPos="right"></p-button>
 

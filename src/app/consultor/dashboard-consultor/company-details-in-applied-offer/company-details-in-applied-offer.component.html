@@ -1,0 +1,60 @@
+<p-toast></p-toast>
+<div class="row">
+    <!-- Dashboard Box -->
+    <div class="col-xl-12">
+        <div class="dashboard-box ">
+            <!-- Headline -->
+            <div class="headline mt-5">
+                <div class="d-flex bd-highlight">
+                    <div class="p-2 flex-grow-1 bd-highlight">
+                        <h1><i></i><b>Profile Company</b></h1>
+                    </div>
+                    <br>
+          
+          <div></div>              
+                 
+                </div>
+                <div class="content pl-5 padding-bottom-0">
+                    <div class="row ">
+                <img  class="profile-image"
+                            [src]="(image ? ('data:image/png;base64,' + image.data) : 'assets/avatar.png')" alt="" />
+                        <div class="col-md-10">
+                            <div *ngIf=" !entreprise; else show">
+
+                                <div class="card">
+                                    <div class="card-body mt-1">
+                                        <p-messages [(value)]="messages" [enableService]="false"
+                                            [closable]="false"></p-messages>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <ng-template #show>
+                            <div *ngIf="entreprise">
+                                <div class="filed"><b>Company Name:</b> {{entreprise.nameE}}</div>
+                                <div class="filed"><b>Activity Sector:</b> {{entreprise.activitySectorE}}</div>
+                              
+                                <div class="filed"><b>Size:</b> {{entreprise.sizeE}}</div>
+                                <div class="filed"><b>Description:</b> {{entreprise.descriptionE }}
+                                </div>
+                                <div class="filed"><b>Country :</b> {{entreprise.countryE}}</div>
+                                <div class="filed"><b>Region :</b> {{entreprise.regionE}}</div>
+                                <div class="filed"><b>City :</b> {{entreprise.villeE}}</div>
+                        
+                                <div class="filed"><b>Address:</b>{{entreprise.adresse}}</div>
+                            
+                                <div class="filed"><b>Phone Numbers: </b> {{ entreprise.telE.join(', ') }}</div>
+                             
+                                <div class="filed"><b>Website:</b>{{ entreprise.linkWebSite }}</div>
+                            </div>
+                        </ng-template>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+

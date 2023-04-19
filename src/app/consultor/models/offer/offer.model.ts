@@ -26,6 +26,7 @@ export class Offer {
 
     //offer settings
      date!: Date;
+     dateFin!: Date;
      responable!: string;
      emailforsendmails!: string;
      isAccepted!: boolean;

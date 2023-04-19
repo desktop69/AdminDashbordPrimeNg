@@ -59,6 +59,8 @@ import { ToolbarModule } from 'primeng/toolbar';
 import { EditorModule } from 'primeng/editor';
 import { EditJobOfferComponent } from './edit-job-offer/edit-job-offer.component';
 import { ViewJobOfferComponent } from './view-job-offer/view-job-offer.component';
+import { AppliedOffersConsultantComponent } from './applied-offers-consultant/applied-offers-consultant.component';
+import { CompanyDetailsInAppliedOfferComponent } from './company-details-in-applied-offer/company-details-in-applied-offer.component';
 //import {MenuItem} from 'primeng/api';
 
 @NgModule({
@@ -92,6 +94,8 @@ import { ViewJobOfferComponent } from './view-job-offer/view-job-offer.component
     ListJobOfferComponent,
     EditJobOfferComponent,
     ViewJobOfferComponent,
+    AppliedOffersConsultantComponent,
+    CompanyDetailsInAppliedOfferComponent,
   ],
   imports: [
     CommonModule,
@@ -121,7 +125,7 @@ import { ViewJobOfferComponent } from './view-job-offer/view-job-offer.component
     CheckboxModule,
     ListboxModule,
     ToolbarModule,
-
+    BrowserModule,
     EditorModule
   ],
   providers: [ConfirmationService, MessageService, AuthService, SharedService],

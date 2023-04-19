@@ -1,0 +1,80 @@
+<p-toast></p-toast>
+
+<div class="card">
+    <p-toolbar styleClass="p-mb-4">
+        <ng-template pTemplate="left">
+            <h2><b>List Applied offers</b></h2>
+            <!-- <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success p-mr-2"></button>&nbsp;
+            <button pButton pRipple label="Delete" icon="pi pi-trash" class="p-button-danger" [disabled]="!selectedappliedoffers || !selectedOffers.length"></button> -->
+        </ng-template>
+
+  
+    </p-toolbar>
+
+    <p-table #dt [value]="appliedoffers" [rows]="10" [paginator]="false" [globalFilterFields]="['titleO','date','Adresse','nameE']"
+        [(selection)]="selectedappliedOffers" [rowHover]="true" dataKey="IdUser"
+        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true">
+        <ng-template pTemplate="caption">
+            <div class="p-d-flex p-ai-center p-jc-between">
+                <h4 class="p-m-0 "><b>Manage Applied offers</b></h4>
+                <span class="p-input-icon-left mt-3">
+                    <i class="pi pi-search "></i>
+                    <input pInputText type="text" (input)="dt.filterGlobal($any($event.target).value, 'contains')"
+                        placeholder="Global Search" />
+                </span>
+            </div>
+        </ng-template>
+        <ng-template pTemplate="header">
+            <tr>
+                <th pSortableColumn="titleO">Title <p-sortIcon field="titleO"></p-sortIcon></th>
+                <th pSortableColumn="nameE">Company Name <p-sortIcon field="nameE"></p-sortIcon></th>
+                <th pSortableColumn="Adresse">Location <p-sortIcon field="Adresse"></p-sortIcon></th>
+              
+                
+            
+                <th pSortableColumn="isAccepted">Applied At </th>
+         
+                <th pSortableColumn="isAccepted">Status <p-sortIcon field="Status"></p-sortIcon></th>
+                <th pSortableColumn="Action">Action</th>
+          
+                <th></th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-offer>
+            <tr>
+        
+                <td>{{offer.titleO}}</td>
+<td *ngIf="entrepriseData1[offer.IdUser]"><a [routerLink]="['/dashboardConsultor/company-details-in-applied-offer', entrepriseData1[offer.IdUser].IdUser]">{{entrepriseData1[offer.IdUser].nameE}}</a>  </td> 
+                <td> <i class="icon-material-outline-location-on"></i> {{ offer.Address }}, {{ offer.Region }}, {{ offer.City }}</td>  
+                <td>
+                    <span [ngClass]="{
+                      'badge-status-pending': getMatchingOfferApplication(offer._id)?.status === 'Pending',
+                      'badge-status-reviewed': getMatchingOfferApplication(offer._id)?.status === 'Reviewed',
+                      'badge-status-accepted': getMatchingOfferApplication(offer._id)?.status === 'Accepted',
+                      'badge-status-rejected': getMatchingOfferApplication(offer._id)?.status === 'Rejected'
+                    }">{{getMatchingOfferApplication(offer._id)?.status}}</span>
+                  </td>                     
+                <td>{{(getMatchingOfferApplication(offer._id)?.appliedAt) | date: 'd MMMM y' }}</td>
+          
+                  
+                
+          
+                <td>
+                    <!-- <button pButton pRipple icon="pi pi-pencil" class=" p-button-primary mr-2"[routerLink]="['/dashboardConsultor/edit-job-offer', offer._id]" ></button>-->
+                    <button pButton pRipple icon="pi pi-trash" class="p-button-danger mr-2" ></button>
+                    <button pButton pRipple icon="pi pi-eye" class="p-button-secondary " [routerLink]="['/dashboardConsultor/view-job-offer', offer._id]"></button> 
+                </td>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="summary">
+            <div class="p-d-flex p-ai-center p-jc-between">
+                In total there are {{appliedoffers ? appliedoffers.length : 0 }} Applied Offers.
+            </div>
+        </ng-template>
+    </p-table>
+
+
+</div><p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>
+<footer>
+    <app-dashboard-consultor-footer></app-dashboard-consultor-footer>
+</footer>
