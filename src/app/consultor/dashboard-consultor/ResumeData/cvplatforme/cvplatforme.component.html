@@ -29,7 +29,7 @@
                     </div>
                 </ng-template>
 
-                <div class="col-md-4 content" *ngIf="personalData || professionaldata; else defaultPersonalData">
+                <div class="col-md-4 content" *ngIf="personalData && professionaldata; else defaultPersonalData">
                     <h1 class="">{{personalData.Name}}&nbsp;{{personalData.FirstName}}</h1>
                     <p class="title uppercase">{{professionaldata.Title}}</p>
                     <p class="description">{{personalData.about}}</p>

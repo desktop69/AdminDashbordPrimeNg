@@ -48,6 +48,8 @@ import { HomeJobOfferDetailsComponent } from './consultor/landingPage/home-job-o
 import { AppliedOffersConsultantComponent } from './consultor/dashboard-consultor/applied-offers-consultant/applied-offers-consultant.component';
 import { CompanyDetailsInAppliedOfferComponent } from './consultor/dashboard-consultor/company-details-in-applied-offer/company-details-in-applied-offer.component';
 import { NotificationsComponent } from './consultor/notifications/notifications.component';
+import { ListCandidatureComponent } from './consultor/dashboard-consultor/list-candidature/list-candidature.component';
+import { UpdateCandidatureComponent } from './consultor/dashboard-consultor/update-candidature/update-candidature.component';
 
 const routes: Routes = [
   { path: "", redirectTo: "consultor", pathMatch: "full" },
@@ -67,14 +69,14 @@ const routes: Routes = [
     ]
   },
   {
-    path: 'home', 
+    path: 'home',
     component: IndexHomeComponent,
     children: [
-    {path: 'full-page-jobs', component: FullPageJobsComponent},
-    {path: 'home-job-offer-details/:id', component: HomeJobOfferDetailsComponent}
+      { path: 'full-page-jobs', component: FullPageJobsComponent },
+      { path: 'home-job-offer-details/:id', component: HomeJobOfferDetailsComponent }
     ]
   },
-  
+
   {
     path: 'dashboardConsultor', component: DashboardConsultorComponent,
     children: [
@@ -86,11 +88,15 @@ const routes: Routes = [
       { path: 'image', component: ImageComponent },
       { path: 'file', component: FilesComponent },
       { path: 'CVplatforme', component: CVPlatformeComponent },
+      {
+        path: 'cv/:id',
+        component: CVPlatformeComponent,
+      },
       { path: 'profile-entreprise', component: ProfileEntrepriseComponent, canActivate: [ProfileEntrepriseGuard] },
       { path: 'add-profile', component: AddProfileComponent },
       { path: 'edit-profile/:id', component: EditProfileComponent },
-      {path: 'applied-offers-consultant',component : AppliedOffersConsultantComponent},
-      {path: 'company-details-in-applied-offer/:id',component : CompanyDetailsInAppliedOfferComponent},
+      { path: 'applied-offers-consultant', component: AppliedOffersConsultantComponent },
+      { path: 'company-details-in-applied-offer/:id', component: CompanyDetailsInAppliedOfferComponent },
       { path: 'test', component: NotificationsComponent },
       {
         path: 'Job-offer',
@@ -105,8 +111,11 @@ const routes: Routes = [
         ],
       },
       { path: 'offer-list', component: ListJobOfferComponent },
+      // new route for condatures 
+      { path: 'list-candidature/:id', component: ListCandidatureComponent },
       { path: 'view-job-offer/:id', component: ViewJobOfferComponent },
       { path: 'edit-job-offer/:id', component: EditJobOfferComponent },
+      { path: 'update-candidature', component: UpdateCandidatureComponent },
 
 
 

@@ -16,11 +16,11 @@ export class ProfessionalDataService {
 
   }
 
-  FindProfessionalDataById(): Observable<ProfessionalData> {
-    const loggedInUserId = this.authService.getLoggedInUserId();
+  FindProfessionalDataById(id :string): Observable<ProfessionalData> {
+   // const loggedInUserId = this.authService.getLoggedInUserId();
 
     console.log(" here calling the service");
-    return this.http.get<ProfessionalData>(`${this.apiUrl}/getProfessionalDataByIdUser/${loggedInUserId}`);
+    return this.http.get<ProfessionalData>(`${this.apiUrl}/getProfessionalDataByIdUser/${id}`);
 
   }
   updateProfessionalDataById(data: ProfessionalData): Observable<ProfessionalData> {

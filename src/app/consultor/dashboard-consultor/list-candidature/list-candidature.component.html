@@ -1,0 +1,85 @@
+<div class="card">
+  <p-toolbar styleClass="p-mb-4">
+    <ng-template pTemplate="left">
+      <h2><b>List of Candidatures</b></h2>
+    </ng-template>
+    <ng-template pTemplate="right">
+      <button type="button" pButton pRipple icon="pi pi-file" (click)="dt.exportCSV()" class="mr-2" pTooltip="CSV"
+        tooltipPosition="bottom"></button>
+      <button type="button" pButton pRipple icon="pi pi-file-excel" (click)="exportExcel()"
+        class="p-button-success mr-2" pTooltip="XLS" tooltipPosition="bottom"></button>
+      <button type="button" pButton pRipple icon="pi pi-file-pdf" (click)="exportPdf()" class="p-button-warning mr-2"
+        pTooltip="PDF" tooltipPosition="bottom"></button>
+      <button type="button" pButton pRipple icon="pi pi-filter" (click)="dt.exportCSV({selectionOnly:true})"
+        class="p-button-info ml-auto" pTooltip="Selection Only" tooltipPosition="bottom"></button>
+    </ng-template>
+  </p-toolbar>
+  <p-table #dt [columns]="cols" [value]="candidature" [rows]="10" [paginator]="true"
+    [globalFilterFields]="['consultantObject.Name', 'consultantObject.FirstName', 'consultantObject.Country', 'status']"
+    [rowHover]="true" dataKey="_id" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+    [showCurrentPageReport]="true" selectionMode="multiple" [(selection)]="selectedCandidature"
+    [exportHeader]="'customExportHeader'">
+    <ng-template pTemplate="caption">
+      <div class="p-d-flex p-ai-center p-jc-between">
+        <h4 class="p-m-0"><b>Manage Candidatures</b></h4>
+
+        <span class="p-input-icon-left mt-3">
+          <input pInputText type="text" (input)="dt.filterGlobal($any($event.target).value, 'contains')"
+            placeholder="Global Search" />
+        </span>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="header">
+      <tr>
+        <th style="width: 3rem;">
+          <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+        </th>
+        <th *ngFor="let col of cols" pSortableColumn="{{col.field}}">
+          {{col.header}} <p-sortIcon field="{{col.field}}"></p-sortIcon>
+        </th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-candidatures let-columns="columns">
+      <tr [pSelectableRow]="candidatures">
+        <td>
+          <p-tableCheckbox [value]="candidatures"></p-tableCheckbox>
+        </td>
+        <td *ngFor="let col of cols">
+          <ng-container [ngSwitch]="col.field">
+            <ng-container *ngSwitchCase="'consultantObject.Name'">{{candidatures.consultantObject.Name}}</ng-container>
+            <ng-container
+              *ngSwitchCase="'consultantObject.FirstName'">{{candidatures.consultantObject.FirstName}}</ng-container>
+            <ng-container *ngSwitchCase="'consultantObject.Dateofbirth'">{{candidatures.consultantObject.Dateofbirth |
+              date: 'yyyy-MM-dd'}}</ng-container>
+            <ng-container
+              *ngSwitchCase="'consultantObject.Region'">{{candidatures.consultantObject.Region}}</ng-container>
+            <ng-container *ngSwitchCase="'phoneNumber'">
+              <div *ngFor="let phoneNumber of candidatures.consultantObject.phoneNumber">
+                {{phoneNumber}}
+              </div>
+            </ng-container>
+            <ng-container *ngSwitchCase="'appliedAt'">{{candidatures.appliedAt | date: 'yyyy-MM-dd' }}</ng-container>
+            <ng-container *ngSwitchCase="'status'">
+              <p-chip label="{{candidatures.status}}" [styleClass]="getChipStyle(candidatures.status).styleClass"
+                [icon]="getChipStyle(candidatures.status).icon"></p-chip>
+            </ng-container>            
+
+            <ng-container *ngSwitchCase="'actions'">
+              <button pButton pRipple icon="icon-line-awesome-file" class="p-button-secondary m-2"
+                [routerLink]="['/dashboardConsultor/cv', candidatures.consultantId]"></button>
+              <button pButton pRipple icon="pi pi-pencil" class="p-button-secondary m-2"
+                (click)="openUpdateModal(candidatures)"></button>
+            </ng-container>
+          </ng-container>
+        </td>
+      </tr>
+    </ng-template>
+
+    <ng-template pTemplate="summary">
+      <div class="p-d-flex p-ai-center p-jc-between">
+        In total there are {{candidature ? candidature.length : 0 }} candidatures.
+      </div>
+    </ng-template>
+  </p-table>
+</div>
+<app-update-candidature></app-update-candidature>

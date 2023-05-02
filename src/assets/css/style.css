@@ -12808,7 +12808,7 @@ body .pac-container {
 /* Apply Now Button */
 a.apply-now-button {
 	background-color: #66676b;
-	color: #fff;
+	color: #FFFFFF !important;
 	text-align: center;
 	font-size: 18px;
 	border-radius: 4px;

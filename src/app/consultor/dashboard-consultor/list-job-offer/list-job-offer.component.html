@@ -9,7 +9,8 @@
         </ng-template>
 
         <ng-template pTemplate="right">
-            <button pButton pRipple label="New Job Offer" routerLink="/dashboardConsultor/Job-offer" icon="pi pi-plus" class="add p-mr-2"></button>&nbsp;
+            <button pButton pRipple label="New Job Offer" routerLink="/dashboardConsultor/Job-offer" icon="pi pi-plus"
+                class="add p-mr-2"></button>&nbsp;
         </ng-template>
     </p-toolbar>
 
@@ -47,11 +48,16 @@
                         'badge-status-not-accepted': !offer.isAccepted
                       }">{{ offer.isAccepted ? 'Accepted' : 'Not Accepted' }}</span>
                 </td>
-          
+
                 <td>
-                    <button pButton pRipple icon="pi pi-pencil" class=" p-button-primary mr-2"[routerLink]="['/dashboardConsultor/edit-job-offer', offer._id]" ></button>
-                    <button pButton pRipple icon="pi pi-trash" class="p-button-danger mr-2" (click)="confirmDelete(offer)"></button>
-                    <button pButton pRipple icon="pi pi-eye" class="p-button-secondary " [routerLink]="['/dashboardConsultor/view-job-offer', offer._id]"></button>
+                    <button pButton pRipple icon="pi pi-pencil" class=" p-button-primary mr-2"
+                        [routerLink]="['/dashboardConsultor/edit-job-offer', offer._id]"></button>
+                    <button pButton pRipple icon="pi pi-trash" class="p-button-danger mr-2"
+                        (click)="confirmDelete(offer)"></button>
+                    <button pButton pRipple icon="pi pi-eye" class="p-button-secondary mr-2 "
+                        [routerLink]="['/dashboardConsultor/view-job-offer', offer._id]"></button>
+                    <button pButton pRipple icon="pi pi-users" class="p-button-secondary "
+                        [routerLink]="['/dashboardConsultor/list-candidature', offer._id]"></button>
                 </td>
             </tr>
         </ng-template>

@@ -1,0 +1,23 @@
+::ng-deep .custom-dropdown .p-dropdown {
+    width: 100% !important;
+  }
+  
+  .status-item {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+  }
+  
+  .status-item i {
+    margin-right: 0.5rem;
+  }
+  .fixed-height-dropdown .p-dropdown-panel {
+    height: auto !important;
+    max-height: 200px; // Adjust this value according to your needs
+  }
+  .icon-with-spacing {
+    margin-right: 8px; /* Adjust this value as needed */
+  }
+  
+  
+  

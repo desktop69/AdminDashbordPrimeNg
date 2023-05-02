@@ -1,0 +1,72 @@
+:host {
+    display: block;
+    padding: 1rem;
+  }
+  
+  .table-header {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .p-column-title {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #333;
+    display: block;
+    margin-bottom: 0.25rem;
+  }
+  
+  .p-selectable-row:hover {
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.05) !important;
+  }
+  
+  .p-table {
+    .pi-search {
+      font-size: 1rem;
+      vertical-align: middle;
+    }
+  
+    input[type='text'] {
+      width: 100%;
+      max-width: 300px;
+      padding: 0.5rem 1rem;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+    }
+  
+    th {
+      font-weight: 600;
+      text-align: left;
+      background-color: #f4f4f4;
+      border-bottom: 1px solid #d1d1d1;
+    }
+  
+    td {
+      padding: 0.75rem;
+      border-bottom: 1px solid #d1d1d1;
+    }
+  }
+  :host ::ng-deep .p-chip.p-chip-warning {
+    background-color: #f0ad4e;
+    color: #fff;
+}
+
+:host ::ng-deep .p-chip.p-chip-success {
+    background-color: #5cb85c;
+    color: #fff;
+}
+
+:host ::ng-deep .p-chip.p-chip-danger {
+    background-color: #d9534f;
+    color: #fff;
+}
+
+:host ::ng-deep .p-chip.p-chip-info {
+    background-color: #5bc0de;
+    color: #fff;
+}

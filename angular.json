@@ -23,7 +23,10 @@
               "raf",
               "rgbcolor",
               "quill",
-              "html2canvas"
+              "html2canvas",
+              "file-saver",
+              "jspdf-autotable",
+              "xlsx"
             ],
             "outputPath": "dist/dashbord",
             "index": "src/index.html",
@@ -31,10 +34,7 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ],
+            "assets": ["src/favicon.ico", "src/assets"],
             "styles": [
               "src/styles.scss",
               "node_modules/primeicons/primeicons.css",
@@ -45,8 +45,7 @@
               "src/assets/css/style.css",
               "src/assets/css/colors/blue.css",
               "node_modules/quill/dist/quill.core.css",
-               "node_modules/quill/dist/quill.snow.css"
-            
+              "node_modules/quill/dist/quill.snow.css"
             ],
             "scripts": [
               "src/assets/js/jquery-3.3.1.min.js",
@@ -63,7 +62,6 @@
               "src/assets/js/slick.min.js",
               "src/assets/js/custom.js",
               "node_modules/quill/dist/quill.js"
-
             ]
           },
           "configurations": {
@@ -125,13 +123,8 @@
             "tsConfig": "tsconfig.spec.json",
             "karmaConfig": "karma.conf.js",
             "inlineStyleLanguage": "scss",
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ],
-            "styles": [
-              "src/styles.scss"
-            ],
+            "assets": ["src/favicon.ico", "src/assets"],
+            "styles": ["src/styles.scss"],
             "scripts": []
           }
         }

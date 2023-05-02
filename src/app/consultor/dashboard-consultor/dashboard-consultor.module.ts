@@ -61,7 +61,12 @@ import { EditJobOfferComponent } from './edit-job-offer/edit-job-offer.component
 import { ViewJobOfferComponent } from './view-job-offer/view-job-offer.component';
 import { AppliedOffersConsultantComponent } from './applied-offers-consultant/applied-offers-consultant.component';
 import { CompanyDetailsInAppliedOfferComponent } from './company-details-in-applied-offer/company-details-in-applied-offer.component';
+import { ListCandidatureComponent } from './list-candidature/list-candidature.component';
 //import {MenuItem} from 'primeng/api';
+// new
+import { ChipModule } from 'primeng/chip';
+import { DatePipe } from '@angular/common';
+import { UpdateCandidatureComponent } from './update-candidature/update-candidature.component';
 
 @NgModule({
   declarations: [
@@ -96,6 +101,8 @@ import { CompanyDetailsInAppliedOfferComponent } from './company-details-in-appl
     ViewJobOfferComponent,
     AppliedOffersConsultantComponent,
     CompanyDetailsInAppliedOfferComponent,
+    ListCandidatureComponent,
+    UpdateCandidatureComponent,
   ],
   imports: [
     CommonModule,
@@ -126,9 +133,10 @@ import { CompanyDetailsInAppliedOfferComponent } from './company-details-in-appl
     ListboxModule,
     ToolbarModule,
     BrowserModule,
-    EditorModule
+    EditorModule,
+    ChipModule
   ],
-  providers: [ConfirmationService, MessageService, AuthService, SharedService],
+  providers: [ConfirmationService, MessageService, AuthService, SharedService, DatePipe],
   bootstrap: [TrainingsQualificationsComponent]
 })
 export class DashboardConsultorModule { }

@@ -1,0 +1,111 @@
+<!-- crate new dialoge for put request ? -->
+<p-dialog class='custom-close-button' header="Update candidature" [(visible)]="displayModal" [modal]="true"
+  [style]="{height :'30vw',width:'55vw'}" [baseZIndex]="10000" [draggable]="true" [resizable]="true" [closable]="false">
+  <!--  put ur conetent here   -->
+  <div class="container" #container>
+    <div class="container">
+      <!-- begin card-->
+      <div class="p-mb-5 mt-5">
+        <div class="grid mt-5">
+
+          <div class="container">
+
+            <div class="row">
+              <div class="col-md-6" *ngIf="app_obj">
+                <label for="Name">Fisrt name</label>
+                <input type="text" id="Name" [disabled]="true" [(ngModel)]="app_obj.consultantObject.Name" name="Name"
+                  pInputText />
+              </div>
+              <div class="col-md-6" *ngIf="app_obj">
+                <label for="Name">Last name :</label>
+                <input type="text" id="FirstName" [disabled]="true" [(ngModel)]="app_obj.consultantObject.FirstName"
+                  name="FirstName" pInputText />
+              </div>
+              <div class="col-md-6" *ngIf="app_obj">
+                <label for="Dateofbirth">Date of birth :</label>
+                <input type="text" id="Dateofbirth" [disabled]="true"
+                  [ngModel]="app_obj.consultantObject.Dateofbirth | date: 'yyyy-MM-dd'"
+                  (ngModelChange)="app_obj.consultantObject.Dateofbirth= $event" name="Dateofbirth" pInputText />
+              </div>
+              <div class="col-md-6" *ngIf="app_obj">
+                <label for="Region">Region :</label>
+                <input type="text" id="Region" [disabled]="true" [(ngModel)]="app_obj.consultantObject.Region"
+                  name="Region" pInputText />
+              </div>
+              <div class="col-md-6" *ngIf="app_obj">
+                <label for="phoneNumber">phoneNumber :</label>
+                <input type="text" id="phoneNumber" [disabled]="true" [(ngModel)]="app_obj.consultantObject.phoneNumber"
+                  name="phoneNumber" pInputText />
+              </div>
+              <div class="col-md-6" *ngIf="app_obj">
+                <label for="status">Status</label>
+                <p-dropdown *ngIf="app_obj.status" class="custom-dropdown" [options]="statusOptions"
+                  [(ngModel)]="app_obj.status" (onChange)="updateStatus($event)" optionLabel="label" optionValue="value"
+                  [showClear]="true" [style]="{'width': '100%'}" [appendTo]="'body'" dataKey="value" name="status">
+                  <ng-template let-option pTemplate="item">
+                    <span class="p-dropdown-item">
+                      <i [class]="option.icon" class="icon-with-spacing"></i>
+                      {{option.label}}
+                    </span>
+                  </ng-template>
+                  <ng-template let-selectedOption pTemplate="selectedItem">
+                    <span>
+                      <i [class]="selectedOption.icon" class="icon-with-spacing"></i>
+                      {{selectedOption.label}}
+                    </span>
+                  </ng-template>
+                </p-dropdown>
+
+
+
+
+
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!--end of card -->
+    </div>
+  </div>
+  <ng-template pTemplate="footer">
+    <button pButton pRipple icon="pi pi-times" (click)="closeModal()" label="No"
+      class="p-button-outlined p-button-rounded p-button-secondary blue-hover"></button>
+    <button pButton pRipple icon="pi pi-check" (click)="onSubmit()" label="Save"
+      class="p-button-outlined p-button-rounded p-button-secondary blue-hover"></button>
+  </ng-template>
+</p-dialog>
+
+
+<p-dialog header="Are you sure you want to close this window?" [(visible)]="displayPosition" [modal]="true"
+  [style]="{width: '20vw'}" [baseZIndex]="10000" [draggable]="false" [resizable]="false">
+  <p> Your changes will be lost if you leave without saving.</p>
+  <ng-template pTemplate="footer">
+    <button pButton pRipple icon="pi pi-times" (click)="displayPosition=false" label="No"
+      class="p-button-outlined p-button-rounded p-button-secondary blue-hover"></button>
+    <button pButton pRipple icon="pi pi-check" (click)="closeAllModals()" label="Yes"
+      class="p-button-outlined p-button-rounded p-button-secondary blue-hover"></button>
+  </ng-template>
+</p-dialog>
+<p-confirmPopup></p-confirmPopup>
+
+<!-- 
+ <p-dropdown class="custom-dropdown fixed-height-dropdown"  [options]="statusOptions"
+                    [(ngModel)]="app_obj.status" optionLabel="label" [filter]="false" filterBy="label"
+                    [showClear]="true" placeholder="Select a Status" appendTo="body" name="status" >
+                    <ng-template pTemplate="selectedItem">
+                      <div class="status-item status-item-value" *ngIf="getStatusObject(app_obj.status)">
+                        <i [ngClass]="getStatusObject(app_obj.status)?.icon"></i>
+                        {# <div>{{getStatusObject(app_obj.status)?.label}}</div> #}
+                      </div>
+                    </ng-template>
+                    <ng-template let-status pTemplate="item">
+                      <div class="status-item" (onChange)="updateStatus()">
+                        <i [ngClass]="status.icon"></i>
+                        {# <div>{{status.label}}</div> #}
+                      </div>
+                    </ng-template>
+                  </p-dropdown>
+-->

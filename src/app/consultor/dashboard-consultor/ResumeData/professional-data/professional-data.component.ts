@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ConfirmationService, Message, MessageService, PrimeNGConfig, SelectItemGroup } from 'primeng/api';
 import { CategoryService } from 'src/app/admin/services/category.service';
+import { AuthService } from 'src/app/auth/services/auth.service';
 import { ProfessionalData } from 'src/app/consultor/models/ProfessionalData.model';
 import { ProfessionalDataService } from 'src/app/consultor/services/professional-data.service';
 
@@ -19,6 +20,7 @@ export class ProfessionalDataComponent implements OnInit {
   messages!: Message[];
   professionalDataForm!: FormGroup;
   newprofessionalDataForm!: FormGroup;
+
 
   JobCategorie: any[] = [];
   
@@ -62,7 +64,8 @@ export class ProfessionalDataComponent implements OnInit {
     private messageService: MessageService,
     private confirmationService: ConfirmationService,
     private formBuilder: FormBuilder,
-    private categoryService: CategoryService
+    private categoryService: CategoryService ,
+    public authService: AuthService
   ) {
     this.messages = [
       { severity: 'info', summary: 'Info', detail: '    You havent figured out your Personal Data' },
@@ -118,7 +121,12 @@ export class ProfessionalDataComponent implements OnInit {
     this.displayModalcreate = false;
   }
   DataCharger() {
-    this.prosevices.FindProfessionalDataById().subscribe((pro) => {
+    const userId = this.authService.getLoggedInUserId()
+    if (!userId) {
+      console.error('No logged-in user found');
+      return;
+    }
+    this.prosevices.FindProfessionalDataById(userId).subscribe((pro) => {
       console.log(pro);
       this.professionaldata = pro;
       this.initializeFormForUpdate();
