@@ -24,6 +24,7 @@ export class AppMenuComponent implements OnInit {
             {
                 label: 'RH Components',
                 items: [
+                    { label: 'Admin Managment', icon: 'pi pi-fw pi-users', routerLink: ['/admin/admins'] },
                     { label: 'Users Managment', icon: 'pi pi-fw pi-users', routerLink: ['/admin/users'] },
                     { label: 'Category Managment', icon: 'pi  pi-th-large', routerLink: 'category', badge: 'NEW' },
                     { label: 'Offer  Managment', icon: 'pi pi-shopping-bag', routerLink: ['/admin/offers'] },

@@ -61,7 +61,8 @@
               "src/assets/js/magnific-popup.min.js",
               "src/assets/js/slick.min.js",
               "src/assets/js/custom.js",
-              "node_modules/quill/dist/quill.js"
+              "node_modules/quill/dist/quill.js",
+              "node_modules/chart.js/dist/chart.js"
             ]
           },
           "configurations": {

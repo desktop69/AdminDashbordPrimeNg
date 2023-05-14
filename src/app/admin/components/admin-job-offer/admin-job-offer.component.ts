@@ -27,8 +27,6 @@ export class AdminJobOfferComponent {
       this.offers = data;
       //console.log('hello',this.offers);
     })
-
-
   }
 
   confirmDelete(item: Offer) {

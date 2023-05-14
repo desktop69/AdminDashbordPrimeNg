@@ -56,7 +56,9 @@ import { AdminJobOfferComponent } from './components/admin-job-offer/admin-job-o
 import { AdminResetPasswordComponent } from './components/admin-reset-password/admin-reset-password.component';
 import { SharedService } from '../consultor/dashboard-consultor/entreprise/shared/shared';
 import { AdminOfferDetailsComponent } from './components/admin-offer-details/admin-offer-details.component';
-
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { ChartModule } from 'primeng/chart';
+import { ListUsersComponent } from './components/list-users/list-users.component';
 
 @NgModule({
   declarations: [
@@ -68,6 +70,9 @@ import { AdminOfferDetailsComponent } from './components/admin-offer-details/adm
     AdminJobOfferComponent,
     AdminResetPasswordComponent,
     AdminOfferDetailsComponent,
+    DashboardComponent,
+    ListUsersComponent,
+
 
   ],
 
@@ -112,11 +117,12 @@ import { AdminOfferDetailsComponent } from './components/admin-offer-details/adm
     InputSwitchModule,
     PasswordModule,
     DropdownModule,
-    OverlayPanelModule
+    OverlayPanelModule,
+    ChartModule
 
 
   ],
-  providers: [ProductService, ConfirmationService, MessageService,SharedService],
+  providers: [ProductService, ConfirmationService, MessageService, SharedService],
   bootstrap: [TableComponent]
 })
 export class AdminModule { }

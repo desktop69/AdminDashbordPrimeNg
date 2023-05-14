@@ -67,6 +67,7 @@ import { ListCandidatureComponent } from './list-candidature/list-candidature.co
 import { ChipModule } from 'primeng/chip';
 import { DatePipe } from '@angular/common';
 import { UpdateCandidatureComponent } from './update-candidature/update-candidature.component';
+import { ChartModule } from 'primeng/chart';
 
 @NgModule({
   declarations: [
@@ -134,7 +135,8 @@ import { UpdateCandidatureComponent } from './update-candidature/update-candidat
     ToolbarModule,
     BrowserModule,
     EditorModule,
-    ChipModule
+    ChipModule,
+    ChartModule
   ],
   providers: [ConfirmationService, MessageService, AuthService, SharedService, DatePipe],
   bootstrap: [TrainingsQualificationsComponent]

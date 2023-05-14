@@ -1,18 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ConfirmationService, MessageService } from 'primeng/api';
+import { MessageService, ConfirmationService } from 'primeng/api';
 import { Users } from 'src/app/auth/models/Admin-users.model';
-import { RegisterDTO } from 'src/app/auth/models/register.model';
-import { User } from 'src/app/auth/models/user.model';
 import { AuthService } from 'src/app/auth/services/auth.service';
-import { confirmPassword } from './formvalidator';
+import { confirmPassword } from '../userslayout/formvalidator';
 
 @Component({
-  selector: 'app-userslayout',
-  templateUrl: './userslayout.component.html',
-  styleUrls: ['./userslayout.component.scss']
+  selector: 'app-list-users',
+  templateUrl: './list-users.component.html',
+  styleUrls: ['./list-users.component.scss']
 })
-export class UserslayoutComponent implements OnInit {
+export class ListUsersComponent {
   displayModal!: boolean;
   displayPosition!: boolean;
   position!: string;
@@ -21,7 +19,7 @@ export class UserslayoutComponent implements OnInit {
   userForm!: FormGroup;
   confirmedLabel = 'Confirmed';
   notConfirmedLabel = 'Not Confirmed';
-  roleOptions = [{ label: 'Slelect a role ', value: null }, { label: 'Superadmin', value: 'superadmin' }, { label: 'Admin', value: 'admin' }];
+  roleOptions = [{ label: 'Slelect a role ', value: null }, { label: 'Superadmin', value: 'superadmin' }, { label: 'Admin', value: 'admin' }, { label: 'User', value: 'user' }];
   constructor(private authService: AuthService, private messageService: MessageService, private formBuilder: FormBuilder,
     private confirmationService: ConfirmationService
   ) {
@@ -43,7 +41,7 @@ export class UserslayoutComponent implements OnInit {
   }
 
   loeadUserData() {
-    this.authService.getAllAdmins().subscribe((data) => {
+    this.authService.getAllUsers().subscribe((data) => {
       console.log(" loead all userss list ", data)
       this.users = data;
     });

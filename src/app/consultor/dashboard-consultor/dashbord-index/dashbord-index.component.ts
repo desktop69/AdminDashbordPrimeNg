@@ -1,49 +1,107 @@
 import { Component, OnInit, ElementRef, AfterViewInit } from '@angular/core';
+import { AuthService } from 'src/app/auth/services/auth.service';
+import { JobOfferService } from '../../services/offer/job-offer.service';
+import { Offer } from '../../models/offer/offer.model';
+import { OfferApplicationService } from '../../services/offer/offer-application.service';
+import { forkJoin } from 'rxjs';
+import { ChartService } from '../../services/charts/chart.service';
 
 @Component({
   selector: 'app-dashbord-index',
   templateUrl: './dashbord-index.component.html',
   styleUrls: ['./dashbord-index.component.scss']
 })
-export class DashbordIndexComponent implements OnInit, AfterViewInit {
-  constructor(private elementRef: ElementRef) {}
+export class DashbordIndexComponent {
+  offers: Offer[] = [];
+  offersApplications: any[] = [];
+  offersData!: any;
+  offersOptions!: any;
+  dotoptions!: any;
+  sumOfOffers: number = 0;
+  sumOfPending: number = 0;
+  sumOfApproved: number = 0;
+  sumOfRejected: number = 0;
+  sumOfHired: number = 0;
+  data: any;
+  constructor(private elementRef: ElementRef,
+    private authService: AuthService,
+    private apiServiceOffer: JobOfferService,
+    private appliService: OfferApplicationService,
+    private chartService: ChartService
+  ) { }
 
-  ngOnInit(): void {}
-
-  ngAfterViewInit(): void {
-    this.funFacts();
+  ngOnInit(): void {
+    this.loadDataForLinechart();
+    this.loadDataForDoughnutChart();
+  }
+  preparechartForDoughnutChart(Pending: number, Approved: number, Rejected: number, Hired: number) {
+    this.data = this.chartService.prepareDataForDoughnutChart(Pending, Approved, Rejected, Hired);
+    this.dotoptions = this.chartService.getDoughnutChartOptions();
   }
 
-  private funFacts(): void {
-    const funFactElements = this.elementRef.nativeElement.querySelectorAll('.fun-fact') as NodeListOf<HTMLElement>;
-    funFactElements.forEach((element) => {
-        const factColor = element.getAttribute('data-fun-fact-color');
-
-        if (factColor !== null) {
-            const rgbaColor = this.hexToRgbA(factColor);
-            if (rgbaColor !== undefined) {
-                element.querySelector<HTMLElement>('.fun-fact-icon')!.style.backgroundColor = rgbaColor;
-                element.querySelector<HTMLElement>('i')!.style.color = factColor;
-            }
-        }
-    });
-}
-
-
-private hexToRgbA(hex: string): string | undefined {
-  let c: string[];
-  if (/^#([A-Fa-f0-9]{3}){1,2}$/.test(hex)) {
-    c = hex.substring(1).split('');
-    if (c.length == 3) {
-      c = [c[0], c[0], c[1], c[1], c[2], c[2]];
+  loadDataForLinechart() {
+    const userId = this.authService.getLoggedInUserId();
+    if (!userId) {
+      console.error('No logged-in user found');
+      return;
     }
-    const hexValue = '0x' + c.join('');
-    return 'rgba(' + [(parseInt(hexValue) >> 16) & 255, (parseInt(hexValue) >> 8) & 255, parseInt(hexValue) & 255].join(',') + ',0.07)';
+    if (this.authService.checkRole('entreprise')) {
+      this.loadDataForLinechartForEntreprise(userId);
+     } else {
+       this.loadDataForLinechartForConsultant(userId);
+     }
   }
-  return undefined;
+  loadDataForLinechartForEntreprise(userId: string){
+    forkJoin({
+      offers: this.apiServiceOffer.getAllOfferByUserId(userId),
+      applications: this.appliService.getOfferApplicationsByEntrepriseId(userId),
+    }).subscribe(({ offers, applications }) => {
+      const { chartData, chartOptions } = this.chartService.prepareOffersChartData(offers, applications);
+      this.offersData = chartData;
+      this.offersOptions = chartOptions;
+      this.sumOfOffers = offers.length;
+    });
+  }
+  loadDataForLinechartForConsultant(userId: string){}
+
+
+  loadDataForDoughnutChart() {
+    const userId = this.authService.getLoggedInUserId();
+    if (!userId) {
+      console.error('No logged-in user found');
+      return;
+    }
+    if (this.authService.checkRole('entreprise')) {
+     this.loadDataForEntreprise(userId)
+    } else {
+      this.loadDataForConsultant(userId)
+     
+    }
+
+  }
+  loadDataForConsultant(userId: string) {
+    forkJoin({
+      Pending: this.appliService.getOfferAppliByconsultIdAndPending(userId),
+      Approved: this.appliService.getAppliByconsultIdAndApproved(userId),
+      Rejected: this.appliService.getAppliByconsultIdAndRejected(userId),
+      Hired: this.appliService.getAppliByconsultIdAndHired(userId),
+    }).subscribe(({ Pending, Approved, Rejected, Hired }) => {
+      this.preparechartForDoughnutChart(Pending, Approved, Rejected, Hired);
+      console.log("loadDataForDoughnutChart in the forkjoin");
+    })
+  }
+
+  loadDataForEntreprise(userId: string) {
+    forkJoin({
+      Pending: this.appliService.getOfferAppliByIdAndPending(userId),
+      Approved: this.appliService.getAppliByIdAndApproved(userId),
+      Rejected: this.appliService.getAppliByIdAndRejected(userId),
+      Hired: this.appliService.getAppliByIdAndHired(userId),
+    }).subscribe(({ Pending, Approved, Rejected, Hired }) => {
+      this.preparechartForDoughnutChart(Pending, Approved, Rejected, Hired);
+      console.log("loadDataForDoughnutChart in the forkjoin");
+    })
+  }
+  
+
 }
-
-
-}
-
-

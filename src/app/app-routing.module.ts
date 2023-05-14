@@ -50,6 +50,8 @@ import { CompanyDetailsInAppliedOfferComponent } from './consultor/dashboard-con
 import { NotificationsComponent } from './consultor/notifications/notifications.component';
 import { ListCandidatureComponent } from './consultor/dashboard-consultor/list-candidature/list-candidature.component';
 import { UpdateCandidatureComponent } from './consultor/dashboard-consultor/update-candidature/update-candidature.component';
+import { DashboardComponent } from './admin/components/dashboard/dashboard.component';
+import { ListUsersComponent } from './admin/components/list-users/list-users.component';
 
 const routes: Routes = [
   { path: "", redirectTo: "consultor", pathMatch: "full" },
@@ -63,9 +65,11 @@ const routes: Routes = [
       { path: 'category', component: CategorylayoutComponent },
       { path: 'profile', component: ProfileComponent },
       { path: 'newcategory', component: AddCategoryComponent },
-      { path: 'users', component: UserslayoutComponent },
+      { path: 'admins', component: UserslayoutComponent },
+      { path: 'users', component: ListUsersComponent },
       { path: 'offers', component: AdminJobOfferComponent },
       { path: 'admin-offer-details/:id', component: AdminOfferDetailsComponent },
+      { path: 'dashboard', component: DashboardComponent },
     ]
   },
   {
