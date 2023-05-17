@@ -23,8 +23,7 @@ export class DashbordIndexComponent {
   sumOfRejected: number = 0;
   sumOfHired: number = 0;
   data: any;
-  constructor(private elementRef: ElementRef,
-    private authService: AuthService,
+  constructor(private authService: AuthService,
     private apiServiceOffer: JobOfferService,
     private appliService: OfferApplicationService,
     private chartService: ChartService
@@ -47,22 +46,35 @@ export class DashbordIndexComponent {
     }
     if (this.authService.checkRole('entreprise')) {
       this.loadDataForLinechartForEntreprise(userId);
-     } else {
-       this.loadDataForLinechartForConsultant(userId);
-     }
+    } else {
+     // console.log("hereeee")
+      this.loadDataForLinechartForConsultant(userId);
+    }
   }
-  loadDataForLinechartForEntreprise(userId: string){
+  loadDataForLinechartForEntreprise(userId: string) {
     forkJoin({
       offers: this.apiServiceOffer.getAllOfferByUserId(userId),
       applications: this.appliService.getOfferApplicationsByEntrepriseId(userId),
     }).subscribe(({ offers, applications }) => {
       const { chartData, chartOptions } = this.chartService.prepareOffersChartData(offers, applications);
+
       this.offersData = chartData;
       this.offersOptions = chartOptions;
       this.sumOfOffers = offers.length;
     });
   }
-  loadDataForLinechartForConsultant(userId: string){}
+  loadDataForLinechartForConsultant(userId: string) {
+  //  getAppliedOffersByConsultantId
+    this.appliService.getOffersApplicationsByConsultantId(userId).subscribe((applications) => {
+       const { chartData, chartOptions } = this.chartService.prepareOffersChartDataConsultant(applications);
+       console.log("subscirebe to getAppliedOffersByConsultantId ", applications)
+      this.offersData = chartData;
+      this.offersOptions = chartOptions;
+      // console.log("line chart for consultant ", this.offersData)
+      // console.log("line chart for consultant ", this.offersOptions)
+    })
+  
+  }
 
 
   loadDataForDoughnutChart() {
@@ -72,10 +84,10 @@ export class DashbordIndexComponent {
       return;
     }
     if (this.authService.checkRole('entreprise')) {
-     this.loadDataForEntreprise(userId)
+      this.loadDataForEntreprise(userId)
     } else {
       this.loadDataForConsultant(userId)
-     
+
     }
 
   }
@@ -102,6 +114,6 @@ export class DashbordIndexComponent {
       console.log("loadDataForDoughnutChart in the forkjoin");
     })
   }
-  
+
 
 }

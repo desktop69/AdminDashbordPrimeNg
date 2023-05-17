@@ -41,15 +41,6 @@ export class ChartService {
     };
   }
 
-
-
-
-
-
-
-
-
-
   prepareOffersChartData(offersData: Offer[], offersApplications: any[]) {
     // Group offers by month
   //  console.log(" service calls work for prepare chart")
@@ -119,14 +110,72 @@ export class ChartService {
     return { chartData, chartOptions };
 
   }
-
-
-
-
   getMonthName(monthNumber: number): string {
     const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
     return monthNames[monthNumber - 1];
   }
+  prepareOffersChartDataConsultant(offersApplications: any[]) {
+    
+    // Group applications by month
+    const groupedApplicationsByMonth: { [key: string]: number } = offersApplications.reduce((acc: { [key: string]: number }, application: any) => {
+      if (isNaN(Date.parse(application.appliedAt))) {
+        console.error('Invalid date:', application.appliedAt);
+        return acc;
+      }
+      const dateKey = new Date(application.appliedAt).toISOString().slice(0, 7);
+      acc[dateKey] = (acc[dateKey] || 0) + 1;
+      return acc;
+  }, {});
+
+    // Sort all months from applications
+    const sortedMonths = Object.keys(groupedApplicationsByMonth).sort();
+
+    // Map sorted months to chart data for applications
+    const applicationsChartData = sortedMonths.map((month) => groupedApplicationsByMonth[month] || 0);
+
+    // Convert month numbers to month names
+    const monthLabels = sortedMonths.map((month) => {
+        const [year, monthNumber] = month.split('-');
+        return `${this.getMonthName(+monthNumber)} ${year}`;
+    });
+
+    // Set chart data and options
+    const chartData = {
+        labels: monthLabels,
+        datasets: [
+            {
+                label: 'Number of Applications',
+                data: applicationsChartData,
+                fill: false,
+                borderColor: '#42A5F5',
+            },
+        ],
+    };
+
+    const chartOptions = {
+        responsive: true,
+        scales: {
+            y: {
+                beginAtZero: true,
+                title: {
+                    display: true,
+                    text: 'Number',
+                },
+                ticks: {
+                    precision: 0,
+                },
+            },
+            x: {
+                title: {
+                    display: true,
+                    text: 'Month',
+                },
+            },
+        },
+    };
+
+    return { chartData, chartOptions };
+}
 
 
 }
